@@ -3,17 +3,17 @@ import { Certificate } from '../db';
 class certificateAuthService {
   static async addCertificate({
     currentUserId,
-    id,
-    name,
+    userId,
+    title,
     description,
     whenDate,
   }) {
-    if (currentUserId !== id) {
+    if (currentUserId !== userId) {
       const errorMessage = '다른 사람의 포트폴리오는 편집할 수 없습니다.';
       return { errorMessage };
     }
 
-    const newCertificate = { id, name, description, whenDate };
+    const newCertificate = { id: userId, title, description, whenDate };
     const createdNewCertificate = await Certificate.create({ newCertificate });
     createdNewCertificate.errorMessage = null;
 

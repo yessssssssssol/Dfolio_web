@@ -1,13 +1,13 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
-import { login_required } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { certificateAuthService } from '../services/certificateService';
 
 const certificateAuthRouter = Router();
 
 certificateAuthRouter.post(
   '/certificate/create',
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       if (is.emptyObject(req.body)) {
@@ -20,16 +20,16 @@ certificateAuthRouter.post(
       const currentUserId = req.currentUserId;
 
       //req 에서 데이터 가져오기
-      const id = req.body.id;
-      const name = req.body.name;
+      const userId = req.body.userId;
+      const title = req.body.title;
       const description = req.body.description;
       const whenDate = req.body.whenDate;
 
       //데이터 자격증 db에 추가하기
       const newCertificate = await certificateAuthService.addCertificate({
         currentUserId,
-        id,
-        name,
+        userId,
+        title,
         description,
         whenDate,
       });

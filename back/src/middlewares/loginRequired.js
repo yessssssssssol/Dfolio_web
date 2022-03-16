@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-function login_required(req, res, next) {
+async function loginRequired(req, res, next) {
   // request 헤더로부터 authorization bearer 토큰을 받음.
   const userToken = req.headers['authorization']?.split(' ')[1] ?? 'null';
 
@@ -11,10 +11,11 @@ function login_required(req, res, next) {
     res.status(400).send('로그인한 유저만 사용할 수 있는 서비스입니다.');
     return;
   }
-
+  console.log(userToken);
   // 해당 token 이 정상적인 token인지 확인 -> 토큰에 담긴 user_id 정보 추출
   try {
-    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+    console.log(jwt.verify(userToken, 'jwt-secret-key'));
+    const secretKey = process.env.JWT_SECRET_KEY || 'jwt-secret-key';
     const jwtDecoded = jwt.verify(userToken, secretKey);
     const user_id = jwtDecoded.user_id;
     req.currentUserId = user_id;
@@ -25,4 +26,4 @@ function login_required(req, res, next) {
   }
 }
 
-export { login_required };
+export { loginRequired };
