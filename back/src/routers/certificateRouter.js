@@ -8,7 +8,7 @@ const certificateAuthRouter = Router();
 certificateAuthRouter.post(
   '/certificate/create',
   loginRequired,
-  async function (req, res, next) {
+  async (req, res, next) => {
     try {
       if (is.emptyObject(req.body)) {
         throw new Error(
