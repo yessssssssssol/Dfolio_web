@@ -1,12 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-const UserSchema = new Schema(
+const CertificateSchema = new Schema(
   {
     id: {
-      type: String,
-      required: true,
-    },
-    email: {
       type: String,
       required: true,
     },
@@ -14,14 +10,14 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    password: {
+    description: {
       type: String,
       required: true,
     },
-    description: {
-      type: String,
+    whenDate: {
+      type: Date,
       required: false,
-      default: '설명이 아직 없습니다. 추가해 주세요.',
+      default: Date.now,
     },
   },
   {
@@ -29,6 +25,6 @@ const UserSchema = new Schema(
   },
 );
 
-const UserModel = model('User', UserSchema);
+const CertificateModel = model('Certificate', CertificateSchema);
 
-export { UserModel };
+export { CertificateModel };
