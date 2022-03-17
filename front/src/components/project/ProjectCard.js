@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
-const ProjectCard = ({ project, isEditable, setIsEditing }) => {
+function ProjectCard({ project, isEditable, setIsEditing }) {
   return (
     <Card.Text>
       <Row className="align-items-center">
@@ -30,6 +30,6 @@ const ProjectCard = ({ project, isEditable, setIsEditing }) => {
       </Row>
     </Card.Text>
   );
-};
+}
 
 export default ProjectCard;

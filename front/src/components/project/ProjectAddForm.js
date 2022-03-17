@@ -4,15 +4,21 @@ import DatePicker from 'react-datepicker';
 
 import * as Api from '../../api';
 
-const ProjectAddForm = ({ portfolioOwnerId, setProjects, setIsAdding }) => {
-  //useState로 title 상태를 생성함.
+function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
+  // useState로 title 상태를 생성함.
   const [title, setTitle] = useState('');
-  //useState로 description 상태를 생성함.
+  // useState로 description 상태를 생성함.
   const [description, setDescription] = useState('');
-  //useState로 fromDate 상태를 생성함.
+  // useState로 fromDate 상태를 생성함.
   const [fromDate, setFromDate] = useState(new Date());
-  //useState로 toDate 상태를 생성함.
+  // useState로 toDate 상태를 생성함.
   const [toDate, setToDate] = useState(new Date());
+
+  console.log(fromDate);
+
+  // const toISOStringFromDate = fromDate.toISOString();
+  // console.log('toISOString: ', fromDate.toISOString());
+  // console.log(typeof toISOStringFromDate);
 
   const handleSubmit = async e => {
     //  페이지가 리프레쉬 되는 고유의 브라우저 동작을 preventDefault()로 막아줌
@@ -22,6 +28,8 @@ const ProjectAddForm = ({ portfolioOwnerId, setProjects, setIsAdding }) => {
 
     const splitFromDate = fromDate.toISOString().split('T')[0];
     const splitToDate = toDate.toISOString().split('T')[0];
+
+    // console.log('splitToDate: ', splitToDate, 'type: ', typeof splitToDate);
 
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
@@ -87,6 +95,6 @@ const ProjectAddForm = ({ portfolioOwnerId, setProjects, setIsAdding }) => {
       </Form.Group>
     </Form>
   );
-};
+}
 
 export default ProjectAddForm;

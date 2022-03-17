@@ -6,13 +6,13 @@ import * as Api from '../../api';
 
 // import Project from '.Project';
 
-const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
+function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   console.log(currentProject.fromDate);
   console.log(currentProject.toDate);
 
-  //useState로 title 상태를 생성함.
+  // useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
-  //useState로 description 상태를 생성함.
+  // useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
@@ -22,7 +22,7 @@ const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
     e.stopPropagation();
 
     // currentProject의 userId를 userId 변수에 할당함.
-    const userId = currentProject.userId;
+    const { userId } = currentProject;
 
     // "projects/:id" 엔드포인트로 PUT 요청함.
     await Api.put(`projects/${currentProject.id}`, {
@@ -85,6 +85,6 @@ const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
       </Form.Group>
     </Form>
   );
-};
+}
 
 export default ProjectEditForm;
