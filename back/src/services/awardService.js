@@ -43,7 +43,12 @@ class AwardService {
     }
     return award;
   }
-  //
+
+  // Get Award list
+  static async getAwardListByUserId({ userId }) {
+    const awardList = await Award.findByUserId({ userId });
+    return awardList;
+  }
 }
 
 export { AwardService };
