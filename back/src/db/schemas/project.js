@@ -21,12 +21,12 @@ const ProjectSchema = new Schema(
     fromDate: {
       type: Date,
       required: false,
-      default: Date.now,
+      default: new Date(),
     },
     toDate: {
       type: Date,
       required: false,
-      default: Date.now,
+      default: new Date(),
     },
   },
   {

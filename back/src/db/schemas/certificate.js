@@ -21,7 +21,7 @@ const CertificateSchema = new Schema(
     whenDate: {
       type: Date,
       required: false,
-      default: Date.now,
+      default: new Date(),
     },
   },
   {
