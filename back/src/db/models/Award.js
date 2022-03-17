@@ -18,6 +18,11 @@ class Award {
 
     return updatedUser;
   }
+
+  static async findById({ award_id }) {
+    const award = await AwardModel.findOne({ id: awardId });
+    return award;
+  }
 }
 
 export { Award };
