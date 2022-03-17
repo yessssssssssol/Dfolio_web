@@ -46,4 +46,19 @@ awardRouter.put('/awards/:id', async (req, res, next) => {
   }
 });
 
+// Find Award By Award ID
+awardRouter.get('/awards/:id', async (req, res, next) => {
+  try {
+    const awardId = req.params.id;
+    const award = await AwardService.getAwardById({ awardId });
+
+    if (award.errorMessage) {
+      throw new Error(award.errorMessage);
+    }
+    res.status(200).json(award);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export { awardRouter };
