@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import * as Api from '../../api';
+// import * as Api from '../../api';
 
 import ProjectCard from './ProjectCard';
 import ProjectEditForm from './ProjectEditForm';
 
-const Project = ({ project, setProject, isEditable }) => {
+const Project = ({ project, setProjects, isEditable }) => {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
 
@@ -24,7 +24,7 @@ const Project = ({ project, setProject, isEditable }) => {
         <ProjectEditForm
           currentProject={project}
           setIsEditing={setIsEditing}
-          setProject={setProject}
+          setProjects={setProjects}
         />
       ) : (
         <ProjectCard

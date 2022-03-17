@@ -4,13 +4,18 @@ import DatePicker from 'react-datepicker';
 
 import * as Api from '../../api';
 
+// import Project from '.Project';
+
 const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
+  console.log(currentProject.fromDate);
+  console.log(currentProject.toDate);
+
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
-  const [fromDate, setFromDate] = useState(new Date());
-  const [toDate, setToDate] = useState(new Date());
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
