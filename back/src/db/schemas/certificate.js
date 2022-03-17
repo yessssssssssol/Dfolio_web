@@ -6,6 +6,10 @@ const CertificateSchema = new Schema(
       type: String,
       required: true,
     },
+    userId: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,

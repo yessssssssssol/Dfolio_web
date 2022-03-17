@@ -44,15 +44,31 @@ certificateAuthRouter.get(
   loginRequired,
   async (req, res, next) => {
     try {
-      const userId = req.params.id;
+      const id = req.params.id;
       const currentCertificateInfo =
-        await certificateAuthService.getcertificateInfo({ userId });
+        await certificateAuthService.getcertificateInfo({ id });
 
       if (currentCertificateInfo.errorMessage) {
         throw new Error(currentCertificateInfo.errorMessage);
       }
 
       res.status(200).send(currentCertificateInfo);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+certificateAuthRouter.get(
+  '/certificatelist/:id',
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      const userId = req.params.id;
+      // 사용자의 전체 자격증 목록을 가져옴
+      const certificates = await certificateAuthService.getCertificates({
+        userId,
+      });
+      res.status(200).send(certificates);
     } catch (error) {
       next(error);
     }
