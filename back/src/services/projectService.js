@@ -1,7 +1,7 @@
 import { Project } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 
-class ProjectAuthService {
+class projectAuthService {
   static async addProject({ userId, title, description, whenDate }) {
     // id는 유니크 값 부여
     const id = uuidv4();
@@ -13,33 +13,33 @@ class ProjectAuthService {
 
     return createdNewProject;
   }
-  static async getProjectInfo({ id }) {
-    const Project = await Project.findById({ id });
+  static async getprojectInfo({ id }) {
+    const project = await Project.findById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!Project) {
+    if (!project) {
       const errorMessage =
         '올바른 자격증id를 입력해 주세요. 자격증 내역이 없습니다.';
       return { errorMessage };
     }
 
-    return Project;
+    return project;
   }
   static async getProjects({ userId }) {
-    const Projects = await Project.findAll({ userId });
+    const projects = await Project.findAll({ userId });
 
-    if (!Projects) {
+    if (!projects) {
       const errorMessage =
         '해당 작성자의 자격증 내역이 없습니다. 다시 한번 확인해 주세요.';
     }
-    return Projects;
+    return projects;
   }
   static async setProject({ id, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
-    let Project = await Project.findById({ id });
+    let project = await Project.findById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!Project) {
+    if (!project) {
       const errorMessage =
         '올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.';
       return { errorMessage };
@@ -49,21 +49,21 @@ class ProjectAuthService {
     if (toUpdate.title) {
       const fieldToUpdate = 'title';
       const newValue = toUpdate.title;
-      Project = await Project.update({ id, fieldToUpdate, newValue });
+      project = await Project.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.description) {
       const fieldToUpdate = 'description';
       const newValue = toUpdate.description;
-      Project = await Project.update({ id, fieldToUpdate, newValue });
+      project = await Project.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.whenDate) {
       const fieldToUpdate = 'whenDate';
       const newValue = toUpdate.whenDate;
-      Project = await Project.update({ id, fieldToUpdate, newValue });
+      project = await Project.update({ id, fieldToUpdate, newValue });
     }
 
-    return Project;
+    return project;
   }
 }
 
-export { ProjectAuthService };
+export { projectAuthService };
