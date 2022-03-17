@@ -27,7 +27,7 @@ awardRouter.post('/award/create', async (req, res, next) => {
 // Update Award
 awardRouter.put('/awards/:id', async (req, res, next) => {
   try {
-    const award_id = req.params.id;
+    const awardId = req.params.id;
     const title = req.body.title ?? null;
     const description = req.body.description ?? null;
     const updateValue = { title, description };
