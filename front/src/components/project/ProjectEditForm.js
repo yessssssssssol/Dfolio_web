@@ -9,6 +9,8 @@ const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
   const [title, setTitle] = useState(currentProject.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
+  const [fromDate, setFromDate] = useState(new Date());
+  const [toDate, setToDate] = useState(new Date());
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
         />
       </Form.Group>
 
-      <FormGroup as={Row}>
+      <Form.Group as={Row}>
         <Col xs="auto">
           <DatePicker
             selected={fromDate}
@@ -64,7 +66,7 @@ const ProjectEditForm = ({ currentProject, setProjects, setIsEditing }) => {
         <Col xs="auto">
           <DatePicker selected={toDate} onChange={date => setToDate(date)} />
         </Col>
-      </FormGroup>
+      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
