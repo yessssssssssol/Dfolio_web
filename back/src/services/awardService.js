@@ -32,6 +32,17 @@ class AwardService {
     }
     return award;
   }
+
+  // Get Award
+  static async getAwardById({ awardId }) {
+    const award = await Award.findById({ award_id });
+
+    if (!award) {
+      const errorMessage = '일치하는 awardId가 없습니다.';
+      return { errorMessage };
+    }
+    return award;
+  }
 }
 
 export { AwardService };
