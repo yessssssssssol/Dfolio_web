@@ -5,7 +5,7 @@ import * as Api from '../../api';
 import ProjectCard from './ProjectCard';
 import ProjectEditForm from './ProjectEditForm';
 
-const Project = ({ portfolioOwnerId, isEditable }) => {
+const Project = ({ project, portfolioOwnerId, isEditable }) => {
   // useState 훅을 통해 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
 
