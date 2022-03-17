@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import * as Api from "../../api";
+<<<<<<< Updated upstream
 // import Certificate from "./Certificate";
 // import CertificateAddForm from "./CertificateAddForm";
+=======
+import Certificate from "./Certificate";
+>>>>>>> Stashed changes
 
 function CertificateEditForm({
   currentCertificate,
