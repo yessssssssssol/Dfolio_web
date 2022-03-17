@@ -8,9 +8,6 @@ import * as Api from '../api';
 
 import User from './user/User';
 import Certificates from './certificate_MVP/Certificates';
-import { UserStateContext } from '../App';
-import * as Api from '../api';
-import User from './user/User';
 import Project from './project/Project';
 
 function Portfolio() {
