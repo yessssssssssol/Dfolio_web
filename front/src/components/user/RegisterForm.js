@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 
-import * as Api from "../../api";
+import * as Api from '../../api';
 
 function RegisterForm() {
   const navigate = useNavigate();
 
   //useState로 email 상태를 생성함.
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   //useState로 password 상태를 생성함.
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   //useState로 confirmPassword 상태를 생성함.
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState('');
   //useState로 name 상태를 생성함.
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
-  const validateEmail = (email) => {
+  const validateEmail = email => {
     return email
       .toLowerCase()
       .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       );
   };
 
@@ -38,21 +38,21 @@ function RegisterForm() {
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     try {
       // "user/register" 엔드포인트로 post요청함.
-      await Api.post("user/register", {
+      await Api.post('user/register', {
         email,
         password,
         name,
       });
 
       // 로그인 페이지로 이동함.
-      navigate("/login");
+      navigate('/login');
     } catch (err) {
-      console.log("회원가입에 실패하였습니다.", err);
+      console.log('회원가입에 실패하였습니다.', err);
     }
   };
 
@@ -67,7 +67,7 @@ function RegisterForm() {
                 type="email"
                 autoComplete="off"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
               />
               {!isEmailValid && (
                 <Form.Text className="text-success">
@@ -82,7 +82,7 @@ function RegisterForm() {
                 type="password"
                 autoComplete="off"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
                 <Form.Text className="text-success">
@@ -97,7 +97,7 @@ function RegisterForm() {
                 type="password"
                 autoComplete="off"
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={e => setConfirmPassword(e.target.value)}
               />
               {!isPasswordSame && (
                 <Form.Text className="text-success">
@@ -112,7 +112,7 @@ function RegisterForm() {
                 type="text"
                 autoComplete="off"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
               />
               {!isNameValid && (
                 <Form.Text className="text-success">
@@ -131,7 +131,7 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
+                <Button variant="light" onClick={() => navigate('/login')}>
                   로그인하기
                 </Button>
               </Col>
