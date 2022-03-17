@@ -12,9 +12,9 @@ awardRouter.post('/award/create', async (req, res, next) => {
     if (is.emptyObject(req.body)) {
       throw new Error('Content-Type을 application/json으로 설정해주세요.');
     }
-    const { user_id, title, description } = req.body;
+    const { userId, title, description } = req.body;
     const newAward = await AwardService.createAward({
-      user_id,
+      userId,
       title,
       description,
     });
@@ -62,7 +62,7 @@ awardRouter.get('/awards/:id', async (req, res, next) => {
 });
 
 // Find Award By User ID
-awardRouter.get('/awardlist/:user_id', async (req, res, next) => {
+awardRouter.get('/awardlist/:userId', async (req, res, next) => {
   try {
     const userId = req.params.userId;
     const awardList = await AwardService.getAwardListByUserId({ userId });

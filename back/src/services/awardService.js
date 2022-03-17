@@ -8,7 +8,7 @@ class AwardService {
 
     const awardData = { id: awardId, userId, title, description };
     const newAward = await Award.create({ awardData });
-    return newAwawrd;
+    return newAward;
   }
 
   // Update Award
