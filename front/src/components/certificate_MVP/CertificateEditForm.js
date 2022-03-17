@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import * as Api from "../../api";
-import Certificate from "./Certificate";
+// import Certificate from "./Certificate";
+// import CertificateAddForm from "./CertificateAddForm";
 
 function CertificateEditForm({
   currentCertificate,
