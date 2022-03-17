@@ -12,7 +12,14 @@ module.exports = {
         extensions: ['.js', '.jsx'],
       },
     ],
-
+    'react/prop-types': [
+      'enabled',
+      {
+        ignore: 'ignore',
+        customValidators: 'customValidator',
+        skipUndeclared: 'skipUndeclared',
+      },
+    ],
     'no-console': 0,
   },
 };
