@@ -61,4 +61,15 @@ awardRouter.get('/awards/:id', async (req, res, next) => {
   }
 });
 
+// Find Award By User ID
+awardRouter.get('/awardlist/:user_id', async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const awardList = await AwardService.getAwardListByUserId({ userId });
+    res.status(200).json(awardList);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export { awardRouter };
