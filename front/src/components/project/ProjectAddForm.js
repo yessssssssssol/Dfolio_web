@@ -23,7 +23,7 @@ const ProjectAddForm = ({ portfolioOwnerId, setProjects, setIsAdding }) => {
     // portfolioOwnerId를 user_id 변수에 할당함.
     const user_id = portfolioOwnerId;
 
-    // "award/create" 엔드포인트로 post요청함.
+    // "project/create" 엔드포인트로 post요청함.
     await Api.post('project/create', {
       user_id: portfolioOwnerId,
       title,
