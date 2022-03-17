@@ -47,7 +47,7 @@ projectAuthRouter.get(
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const currentProjectInfo = await projectAuthService.getProjectInfo({
+      const currentProjectInfo = await projectAuthService.getprojectInfo({
         id,
       });
 
@@ -62,27 +62,27 @@ projectAuthRouter.get(
   },
 );
 projectAuthRouter.get(
-  '/Projectlist/:userId',
+  '/projectlist/:userId',
   loginRequired,
   async (req, res, next) => {
     try {
       const userId = req.params.userId;
       // 사용자의 전체 자격증 목록을 가져옴
-      const Projects = await projectAuthService.getProjects({
+      const projects = await projectAuthService.getProjects({
         userId,
       });
 
-      if (Projects.errorMessage) {
-        throw new Error(Projects.errorMessage);
+      if (projects.errorMessage) {
+        throw new Error(projects.errorMessage);
       }
-      res.status(200).send(Projects);
+      res.status(200).send(projects);
     } catch (error) {
       next(error);
     }
   },
 );
 projectAuthRouter.put(
-  '/Projects/:id',
+  '/projects/:id',
   loginRequired,
   async (req, res, next) => {
     try {
