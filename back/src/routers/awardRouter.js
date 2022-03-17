@@ -10,7 +10,7 @@ awardRouter.use(login_required);
 awardRouter.post('/award/create', async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
-      throw new Error('Content-Type');
+      throw new Error('Content-Type을 application/json으로 설정해주세요.');
     }
     const { user_id, title, description } = req.body;
     const newAward = await AwardService.createAward({
