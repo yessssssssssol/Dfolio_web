@@ -13,7 +13,7 @@ function Certificate({ certificate, setCertificates, isEditable }) {
     <>
       {isEditing ? (
         <CertificateEditForm
-          currentCertificate={Certificate}
+          currentCertificate={certificate}
           setCertificates={setCertificates}
           setIsEditing={setIsEditing}
         />
