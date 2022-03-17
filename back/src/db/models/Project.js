@@ -1,4 +1,5 @@
-import { ProjectModel } from '../schemas/Project';
+//Project.js
+import { ProjectModel } from '../schemas/project';
 
 class Project {
   static async create({ newProject }) {
@@ -6,12 +7,12 @@ class Project {
     return createdNewProject;
   }
   static async findById({ id }) {
-    const Project = await ProjectModel.findOne({ id });
-    return Project;
+    const project = await ProjectModel.findOne({ id });
+    return project;
   }
   static async findAll({ userId }) {
-    const Projects = await ProjectModel.find({ userId });
-    return Projects;
+    const projects = await ProjectModel.find({ userId });
+    return projects;
   }
   static async update({ id, fieldToUpdate, newValue }) {
     const filter = { id };
