@@ -6,7 +6,7 @@ class AwardService {
   static async createAward({ userId, title, description }) {
     const awardId = uuidv4();
 
-    const awardData = { id: awardId, userId, title, descripttion };
+    const awardData = { id: awardId, userId, title, description };
     const newAward = await Award.create({ awardData });
     return newAwawrd;
   }
@@ -43,6 +43,7 @@ class AwardService {
     }
     return award;
   }
+  //
 }
 
 export { AwardService };
