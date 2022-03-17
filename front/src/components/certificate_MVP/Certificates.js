@@ -12,13 +12,15 @@ function Certificates({ portfolioOwnerId, isEditable }) {
 
   useEffect(() => {
     // "certificatelist/유저id"로 GET 요청하고, response의 data로 certificates를 세팅함.
-    Api.get("certificatelist", portfolioOwnerId).then((res) => setCertificates(res.data));
+    Api.get("certificatelist", portfolioOwnerId).then((res) =>
+      setCertificates(res.data)
+    );
   }, [portfolioOwnerId]);
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
+        <Card.Title>자격증</Card.Title>
         {certificates.map((certificate) => (
           <Certificate
             key={certificate.id}

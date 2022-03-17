@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "api";
 
-function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing }) {
+function CertificateEditForm({
+  currentCertificate,
+  setCertificates,
+  setIsEditing,
+}) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
   //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(currentCertificate.description);
+  const [description, setDescription] = useState(
+    currentCertificate.description
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +41,7 @@ function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="수상내역"
+          placeholder="자격증목록"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
