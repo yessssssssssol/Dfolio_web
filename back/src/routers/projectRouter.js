@@ -91,9 +91,10 @@ projectAuthRouter.put(
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const title = req.body.title ?? null;
       const description = req.body.description ?? null;
-      const whenDate = req.body.whenDate ?? null;
+      const fromDate = req.body.whenDate ?? null;
+      const toDate = req.body.whenDate ?? null;
 
-      const toUpdate = { title, description, whenDate };
+      const toUpdate = { title, description, fromDate, toDate };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedProject = await projectAuthService.setProject({
