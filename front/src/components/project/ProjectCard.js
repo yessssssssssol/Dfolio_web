@@ -11,7 +11,7 @@ const ProjectCard = ({ project, isEditable, setIsEditing }) => {
           <span className="text-muted">{project.description}</span>
           <br />
           <span className="text-muted">
-            {`${project.fromDate}~${project.toDate}`}
+            {`${project.fromDate} ~ ${project.toDate}`}
           </span>
         </Col>
         {/* isEditable === true 인 경우 편집버튼 노출 */}
