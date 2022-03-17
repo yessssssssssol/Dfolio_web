@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
-import * as Api from '../..api';
+import * as Api from '../../api';
 
 import Project from './Project';
 import ProjectAddForm from './ProjectAddForm';
