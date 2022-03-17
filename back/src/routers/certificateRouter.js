@@ -15,10 +15,6 @@ certificateAuthRouter.post(
           'headers의 Content-Type을 application/json으로 설정해주세요',
         );
       }
-
-      //jwt 토큰에서 추출된 사용자 id를 가지고 비교
-      const currentUserId = req.currentUserId;
-
       //req 에서 데이터 가져오기
       const userId = req.body.userId;
       const title = req.body.title;
@@ -27,7 +23,6 @@ certificateAuthRouter.post(
 
       //데이터 자격증 db에 추가하기
       const newCertificate = await certificateAuthService.addCertificate({
-        currentUserId,
         userId,
         title,
         description,
@@ -38,6 +33,26 @@ certificateAuthRouter.post(
         throw new Error(newCertificate.errorMessage);
       }
       res.status(201).json(newCertificate);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+certificateAuthRouter.get(
+  '/certificates/:id',
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      const userId = req.params.id;
+      const currentCertificateInfo =
+        await certificateAuthService.getcertificateInfo({ userId });
+
+      if (currentCertificateInfo.errorMessage) {
+        throw new Error(currentCertificateInfo.errorMessage);
+      }
+
+      res.status(200).send(currentCertificateInfo);
     } catch (error) {
       next(error);
     }
