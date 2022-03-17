@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
-function ProjectCard({ project, isEditable, setIsEditing }) {
+const ProjectCard = ({ project, isEditable, setIsEditing }) => {
   return (
     <Card.Text>
       <Row className="align-items-center">
@@ -11,7 +11,7 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
           <span className="text-muted">{project.description}</span>
           <br />
           <span className="text-muted">
-            {project.form_date}~{project.to_date}
+            {project.from_date}~{project.to_date}
           </span>
         </Col>
         {/* isEditable === true 인 경우 편집버튼 노출 */}
@@ -20,7 +20,6 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
             <Button
               variant="outline-info"
               size="sm"
-              a
               onClick={() => setIsEditing(prev => !prev)}
               className="mr-3"
             >
@@ -31,6 +30,6 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
       </Row>
     </Card.Text>
   );
-}
+};
 
 export default ProjectCard;

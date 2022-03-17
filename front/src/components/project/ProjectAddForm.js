@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 
 import * as Api from '../../api';
 
-function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
+const ProjectAddForm = ({ portfolioOwnerId, setProjects, setIsAdding }) => {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState('');
   //useState로 description 상태를 생성함.
@@ -84,6 +84,6 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       </Form.Group>
     </Form>
   );
-}
+};
 
 export default ProjectAddForm;
