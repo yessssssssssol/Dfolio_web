@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "api";
 
-function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) {
+function CertificateAddForm({
+  portfolioOwnerId,
+  setCertificates,
+  setIsAdding,
+}) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
@@ -20,6 +24,7 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       user_id: portfolioOwnerId,
       title,
       description,
+      when_date,
     });
 
     // "certificatelist/유저id" 엔드포인트로 get요청함.
@@ -35,12 +40,11 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="수상내역"
+          placeholder="자격증 제목"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
-
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
@@ -49,7 +53,15 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
+      //when_date 날짜 선택으로 넣어야함..
+      <Form.Group controlId="formBasicDescription" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="날짜"
+          value={when_date}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </Form.Group>
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">

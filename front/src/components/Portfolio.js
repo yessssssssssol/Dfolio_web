@@ -4,7 +4,7 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
-import Awards from "./award/Awards";
+// import Awards from "./award/Awards";
 import Certificates from "./certificate_MVP/Certificates";
 import User from "./user/User";
 
@@ -62,12 +62,14 @@ function Portfolio() {
             isEditable={portfolioOwner.id === userState.user?.id}
           />
         </Col>
-        <Col>
+
+        {/* <Col>
           <Awards
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
-        </Col>
+        </Col> */}
+
         <Col>
           <Certificates
             portfolioOwnerId={portfolioOwner.id}

@@ -21,11 +21,12 @@ function CertificateEditForm({
     // currentCertificate의 user_id를 user_id 변수에 할당함.
     const user_id = currentCertificate.user_id;
 
-    // "certificates/수상 id" 엔드포인트로 PUT 요청함.
+    // "certificates/자격증 id" 엔드포인트로 PUT 요청함.
     await Api.put(`certificates/${currentCertificate.id}`, {
       user_id,
       title,
       description,
+      when_date,
     });
 
     // "certificatelist/유저id" 엔드포인트로 GET 요청함.
@@ -52,6 +53,15 @@ function CertificateEditForm({
           type="text"
           placeholder="상세내역"
           value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicDescription" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="날짜"
+          value={when_date}
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
