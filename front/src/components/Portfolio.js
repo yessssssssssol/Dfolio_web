@@ -4,7 +4,7 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
-
+import Award from "./award/Award";
 import User from "./user/User";
 
 function Portfolio() {
