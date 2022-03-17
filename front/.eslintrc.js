@@ -12,14 +12,8 @@ module.exports = {
         extensions: ['.js', '.jsx'],
       },
     ],
-    'react/prop-types': [
-      'enabled',
-      {
-        ignore: 'ignore',
-        customValidators: 'customValidator',
-        skipUndeclared: 'skipUndeclared',
-      },
-    ],
+    'react/prop-types': 0,
     'no-console': 0,
+    root: 0,
   },
 };
