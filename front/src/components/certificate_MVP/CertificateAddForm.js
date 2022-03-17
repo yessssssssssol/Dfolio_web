@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+
+import * as Api from "../../api";
 
 function CertificateAddForm({
   portfolioOwnerId,
@@ -24,7 +25,7 @@ function CertificateAddForm({
       user_id: portfolioOwnerId,
       title,
       description,
-      when_date,
+      // when_date,
     });
 
     // "certificatelist/유저id" 엔드포인트로 get요청함.
@@ -54,14 +55,14 @@ function CertificateAddForm({
         />
       </Form.Group>
       //when_date 날짜 선택으로 넣어야함..
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      {/* <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
           placeholder="날짜"
           value={when_date}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">

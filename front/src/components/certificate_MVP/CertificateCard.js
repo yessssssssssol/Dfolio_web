@@ -1,4 +1,6 @@
+import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+// import * as Api from "../../api";
 
 function CertificateCard({ certificate, isEditable, setIsEditing }) {
   return (

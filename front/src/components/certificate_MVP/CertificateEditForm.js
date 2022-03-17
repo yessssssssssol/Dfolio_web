@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+
+import * as Api from "../../api";
 
 function CertificateEditForm({
   currentCertificate,
@@ -26,7 +27,7 @@ function CertificateEditForm({
       user_id,
       title,
       description,
-      when_date,
+      // when_date,
     });
 
     // "certificatelist/유저id" 엔드포인트로 GET 요청함.
@@ -56,7 +57,7 @@ function CertificateEditForm({
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
+      {/* 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
@@ -64,7 +65,7 @@ function CertificateEditForm({
           value={when_date}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
