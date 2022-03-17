@@ -59,16 +59,50 @@ certificateAuthRouter.get(
   },
 );
 certificateAuthRouter.get(
-  '/certificatelist/:id',
+  '/certificatelist/:userId',
   loginRequired,
   async (req, res, next) => {
     try {
-      const userId = req.params.id;
+      const userId = req.params.userId;
       // 사용자의 전체 자격증 목록을 가져옴
       const certificates = await certificateAuthService.getCertificates({
         userId,
       });
+
+      if (certificates.errorMessage) {
+        throw new Error(certificates.errorMessage);
+      }
       res.status(200).send(certificates);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+certificateAuthRouter.put(
+  '/certificates/:id',
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      // URI로부터 자격증 id를 추출함.
+      const id = req.params.id;
+      // body data 로부터 업데이트할 사용자 정보를 추출함.
+      const title = req.body.title ?? null;
+      const description = req.body.description ?? null;
+      const whenDate = req.body.whenDate ?? null;
+
+      const toUpdate = { title, description, whenDate };
+
+      // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+      const updatedCertificate = await certificateAuthService.setCertificate({
+        id,
+        toUpdate,
+      });
+
+      if (updatedCertificate.errorMessage) {
+        throw new Error(updatedCertificate.errorMessage);
+      }
+
+      res.status(200).json(updatedCertificate);
     } catch (error) {
       next(error);
     }
