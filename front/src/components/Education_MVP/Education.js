@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
-import * as Api from "../../api";
-
 import EducationCard from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
 
-function Education({ Education, setEducations, isEditable }) {
+function Education({ education, setEducations, isEditable }) {
   //useState로 isEditing 상태를 생성함.import React, { useState } from "react";
   const [isEditing, setIsEditing] = useState(false);
 
@@ -13,13 +11,13 @@ function Education({ Education, setEducations, isEditable }) {
     <>
       {isEditing ? (
         <EducationEditForm
-          currentEducation={Education}
+          currentEducation={education}
           setEducations={setEducations}
           setIsEditing={setIsEditing}
         />
       ) : (
         <EducationCard
-          Education={Education}
+          Education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
         />

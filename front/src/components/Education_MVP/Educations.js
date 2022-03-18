@@ -6,13 +6,13 @@ import EducationAddForm from "./EducationAddForm";
 
 function Educations({ portfolioOwnerId, isEditable }) {
   //useState로 Educations 상태를 생성함.
-  const [Educations, setEducations] = useState([]);
+  const [educations, setEducations] = useState([]);
   //useState로 isAdding 상태를 생성함.
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     // "Educationlist/유저id"로 GET 요청하고, response의 data로 Educations를 세팅함.
-    Api.get("Educationlist", portfolioOwnerId).then((res) =>
+    Api.get("educationlist", portfolioOwnerId).then((res) =>
       setEducations(res.data)
     );
   }, [portfolioOwnerId]);
@@ -20,11 +20,11 @@ function Educations({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>자격증</Card.Title>
-        {Educations.map((Education) => (
+        <Card.Title>학력</Card.Title>
+        { educations.map((education) => (
           <Education
-            key={Education.id}
-            Education={Education}
+            key={education.id}
+            Education={education}
             setEducations={setEducations}
             isEditable={isEditable}
           />

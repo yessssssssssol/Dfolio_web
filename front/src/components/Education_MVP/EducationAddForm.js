@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import * as Api from "../../api";
 
 function EducationAddForm({
@@ -8,12 +7,13 @@ function EducationAddForm({
   setEducations,
   setIsAdding,
 }) {
-  //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState("");
-  //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState("");
+  //school로 description 상태를 생성함.
+  const [school, setSchool] = useState("");
+  //major로 description 상태를 생성함.
+  const [major, setMajor] = useState("");
+  //position로 description 상태를 생성함.
+  const [position, setPosition] = useState("");
 
-  const [whenDate, setWhenDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,15 +23,15 @@ function EducationAddForm({
     const userId = portfolioOwnerId;
 
     // "Education/create" 엔드포인트로 post요청함.
-    await Api.post("Education/create", {
+    await Api.post("education/create", {
       userId: portfolioOwnerId,
-      title,
-      description,
-      whenDate,
+      school,
+      major,
+      position,
     });
 
     // "Educationlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("Educationlist", userId);
+    const res = await Api.get("educationlist", userId);
     // Educations를 response의 data로 세팅함.
     setEducations(res.data);
     // Education를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
@@ -43,28 +43,29 @@ function EducationAddForm({
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="자격증 제목"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="학교 이름"
+          value={school}
+          onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="전공"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="formBasicDescription" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="현재 상태 체크박스로 구현 필요"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group as={Row}>
-        <Col xs="auto">
-          <DatePicker
-            selected={whenDate}
-            onChange={(date) => setWhenDate(date)}
-          />
-        </Col>
-      </Form.Group>
+      
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
