@@ -91,8 +91,8 @@ projectAuthRouter.put(
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const title = req.body.title ?? null;
       const description = req.body.description ?? null;
-      const fromDate = req.body.whenDate ?? null;
-      const toDate = req.body.whenDate ?? null;
+      const fromDate = req.body.fromDate ?? null;
+      const toDate = req.body.toDate ?? null;
 
       const toUpdate = { title, description, fromDate, toDate };
 
