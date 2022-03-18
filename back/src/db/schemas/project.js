@@ -1,27 +1,32 @@
 import { Schema, model } from 'mongoose';
 
-const UserSchema = new Schema(
+const ProjectSchema = new Schema(
   {
     id: {
       type: String,
       required: true,
     },
-    email: {
+    userId: {
       type: String,
       required: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
-    password: {
+    title: {
       type: String,
       required: true,
     },
     description: {
       type: String,
+      required: true,
+    },
+    fromDate: {
+      type: Date,
       required: false,
-      default: '설명이 아직 없습니다. 추가해 주세요.',
+      default: new Date(),
+    },
+    toDate: {
+      type: Date,
+      required: false,
+      default: new Date(),
     },
   },
   {
@@ -29,6 +34,6 @@ const UserSchema = new Schema(
   },
 );
 
-const UserModel = model('User', UserSchema);
+const ProjectModel = model('Project', ProjectSchema);
 
-export { UserModel };
+export { ProjectModel };

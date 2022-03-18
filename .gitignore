@@ -1,2 +1,7 @@
 # dependencies
 node_modules
+back/.env
+front/.env
+.env
+front/src/api.js
+*.js
