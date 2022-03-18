@@ -2,16 +2,16 @@ import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 // import * as Api from "../../api";
 
-function EducationCard({ Education, isEditable, setIsEditing }) {
+function EducationCard({ education, isEditable, setIsEditing }) {
   return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{Education.title}</span>
+          <span>{education.school}</span>
           <br />
-          <span className="text-muted">{Education.description}</span>
+          <span className="text-muted">{education.major}</span>
           <br />
-          <span>{Education.whenDate}</span>
+          <span>{education.position}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">

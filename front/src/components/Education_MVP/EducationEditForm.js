@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import * as Api from "../../api";
 // import Education from "./Education";
 // import EducationAddForm from "./EducationAddForm";
-import Education from "./Education";
+// import Education from "./Education";
 
 function EducationEditForm({
   currentEducation,
   setEducations,
   setIsEditing,
 }) {
-  //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState(currentEducation.title);
-  //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(
-    currentEducation.description
-  );
-
-  const [whenDate, setWhenDate] = useState(new Date());
+  //useState로 school 상태를 생성함.
+  const [school, setSchool] = useState(currentEducation.school);
+  //useState로 school 상태를 생성함.
+  const [major, setMajor] = useState(currentEducation.major);
+  //useState로 school 상태를 생성함.
+  const [position, setPosition] = useState(currentEducation.position);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,9 +27,9 @@ function EducationEditForm({
     // "Educations/자격증 id" 엔드포인트로 PUT 요청함.
     await Api.put(`Educations/${currentEducation.id}`, {
       userId,
-      title,
-      description,
-      whenDate,
+      school,
+      major,
+      position,
     });
 
     // "Educationlist/유저id" 엔드포인트로 GET 요청함.
@@ -48,28 +45,26 @@ function EducationEditForm({
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="자격증목록"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="학교 이름"
+          value={school}
+          onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
-
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="전공"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
-
-      <Form.Group as={Row}>
-        <Col xs="auto">
-          <DatePicker
-            selected={whenDate}
-            onChange={(date) => setWhenDate(date)}
-          />
-        </Col>
+      <Form.Group controlId="formBasicDescription" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="현재 상태 체크박스로 구현 필요"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
       </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
