@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { educationAuthService } from '../services/educationService';
 
+
 const educationAuthRouter = Router();
 
 educationAuthRouter.post(
