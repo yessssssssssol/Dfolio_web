@@ -1,5 +1,6 @@
 import { Certificate } from '../db';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
@@ -58,7 +59,7 @@ class certificateAuthService {
     }
     if (toUpdate.whenDate) {
       const fieldToUpdate = 'whenDate';
-      const newValue = toUpdate.whenDate;
+      const newValue = moment(toUpdate.whenDate).format('YYYY-MM-DD');
       certificate = await Certificate.update({ id, fieldToUpdate, newValue });
     }
 

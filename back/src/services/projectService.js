@@ -73,7 +73,7 @@ class projectAuthService {
     return project;
   }
 
-  static async deletePoject({ id }) {
+  static async deleteProject({ id }) {
     const isDataDeleted = await Project.deleteById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
