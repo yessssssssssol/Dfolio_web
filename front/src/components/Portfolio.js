@@ -9,7 +9,7 @@ import * as Api from '../api';
 import User from './user/User';
 import Projects from './project/Projects';
 import Certificates from "./certificate_MVP/Certificates";
-import Educations from "./Education_MVP/Educations"
+import Educations from "./education_MVP/Educations"
 
 function Portfolio() {
   const navigate = useNavigate();
