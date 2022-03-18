@@ -2,10 +2,10 @@ import { Project } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 
 class projectAuthService {
-  static async addProject({ userId, title, description, whenDate }) {
+  static async addProject({ userId, title, description, fromDate, toDate }) {
     // id는 유니크 값 부여
     const id = uuidv4();
-    const newProject = { id, userId, title, description, whenDate };
+    const newProject = { id, userId, title, description, fromDate, toDate };
 
     //db에 저장
     const createdNewProject = await Project.create({ newProject });

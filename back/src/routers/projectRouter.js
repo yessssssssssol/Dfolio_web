@@ -42,7 +42,7 @@ projectAuthRouter.post(
 );
 
 projectAuthRouter.get(
-  '/Projects/:id',
+  '/projects/:id',
   loginRequired,
   async (req, res, next) => {
     try {
