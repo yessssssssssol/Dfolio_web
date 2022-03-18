@@ -5,3 +5,6 @@ front/src/api.js
 *.lock
 back/yarn.lock
 front/yarn.lock
+back/.env
+front/.env
+front/src/api.js
