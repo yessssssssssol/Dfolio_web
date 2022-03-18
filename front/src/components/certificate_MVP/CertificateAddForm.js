@@ -43,7 +43,7 @@ function CertificateAddForm({
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="자격증 제목"
+          placeholder="Certificate Name"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -51,7 +51,7 @@ function CertificateAddForm({
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
+          placeholder="Certificate Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -68,10 +68,10 @@ function CertificateAddForm({
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
-            확인
+            Save
           </Button>
           <Button variant="secondary" onClick={() => setIsAdding(false)}>
-            취소
+            Cancel
           </Button>
         </Col>
       </Form.Group>

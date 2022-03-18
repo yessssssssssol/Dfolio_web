@@ -21,7 +21,7 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
               onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
-              편집
+              Edit
             </Button>
           </Col>
         )}

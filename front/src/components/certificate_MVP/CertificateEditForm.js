@@ -48,7 +48,7 @@ function CertificateEditForm({
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="자격증목록"
+          placeholder="Certificate"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -57,7 +57,7 @@ function CertificateEditForm({
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
+          placeholder="Certificate Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -75,10 +75,10 @@ function CertificateEditForm({
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
-            확인
+            Save
           </Button>
           <Button variant="secondary" onClick={() => setIsEditing(false)}>
-            취소
+            Cancel
           </Button>
         </Col>
       </Form.Group>
