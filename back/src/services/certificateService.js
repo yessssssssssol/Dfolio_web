@@ -1,6 +1,6 @@
-import { Certificate } from '../db';
-import { v4 as uuidv4 } from 'uuid';
-import moment from 'moment';
+import { Certificate } from "../db";
+import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
@@ -20,7 +20,7 @@ class certificateAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!certificate) {
       const errorMessage =
-        '올바른 자격증id를 입력해 주세요. 자격증 내역이 없습니다.';
+        "올바른 자격증id를 입력해 주세요. 자격증 내역이 없습니다.";
       return { errorMessage };
     }
 
@@ -31,7 +31,7 @@ class certificateAuthService {
 
     if (!certificates) {
       const errorMessage =
-        '해당 작성자의 자격증 내역이 없습니다. 다시 한번 확인해 주세요.';
+        "해당 작성자의 자격증 내역이 없습니다. 다시 한번 확인해 주세요.";
     }
     return certificates;
   }
@@ -42,24 +42,24 @@ class certificateAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!certificate) {
       const errorMessage =
-        '올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.';
+        "올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.";
       return { errorMessage };
     }
 
     // 업데이트 대상에 title이 있다면, 즉 title 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.title) {
-      const fieldToUpdate = 'title';
+      const fieldToUpdate = "title";
       const newValue = toUpdate.title;
       certificate = await Certificate.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.description) {
-      const fieldToUpdate = 'description';
+      const fieldToUpdate = "description";
       const newValue = toUpdate.description;
       certificate = await Certificate.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.whenDate) {
-      const fieldToUpdate = 'whenDate';
-      const newValue = moment(toUpdate.whenDate).format('YYYY-MM-DD');
+      const fieldToUpdate = "whenDate";
+      const newValue = moment(toUpdate.whenDate).format("YYYY-MM-DD");
       certificate = await Certificate.update({ id, fieldToUpdate, newValue });
     }
 
@@ -72,11 +72,11 @@ class certificateAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        '해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.';
+        "해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
-    return { status: 'ok' };
+    return { status: "ok" };
   }
 }
 
