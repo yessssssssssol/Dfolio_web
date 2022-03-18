@@ -46,7 +46,6 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
-
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
@@ -56,45 +55,38 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         />
       </Form.Group>
 
-      <div key={"inline-radio"} className="mb-3">
-        <Form.Check
-          inline
-          label="재학중"
-          name="position"
-          type={"radio"}
-          id={`inline-radio-1`}
-        />
-        <Form.Check
-          inline
-          label="학사졸업"
-          name="position"
-          type={"radio"}
-          id={`inline-radio-2`}
-        />
-        <Form.Check
-          inline
-          label="석사졸업"
-          name="position"
-          type={"radio"}
-          id={`inline-radio-3`}
-        />
-        <Form.Check
-          inline
-          label="박사졸업"
-          name="position"
-          type={"radio"}
-          id={`inline-radio-4`}
-        />
-      </div>
-
-      {/* <Form.Group  controlId="formBasicTitle">
-        <Form.Control
-          type="text"
-          placeholder="현재 상태 체크박스로 구현 필요"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-      </Form.Group> */}
+      <Form.Group>
+        <div key={"inline-radio"} className="mb-3">
+          <Form.Check
+            inline
+            label="재학중"
+            name="position"
+            type={"radio"}
+            id={`inline-radio-1`}
+          />
+          <Form.Check
+            inline
+            label="학사졸업"
+            name="position"
+            type={"radio"}
+            id={`inline-radio-2`}
+          />
+          <Form.Check
+            inline
+            label="석사졸업"
+            name="position"
+            type={"radio"}
+            id={`inline-radio-3`}
+          />
+          <Form.Check
+            inline
+            label="박사졸업"
+            name="position"
+            type={"radio"}
+            id={`inline-radio-4`}
+          />
+        </div>
+      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
