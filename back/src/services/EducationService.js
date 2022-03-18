@@ -1,7 +1,6 @@
 import { Education } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 
-
 class educationAuthService {
   static async addEducation({ userId, school, major, position }) {
     // id는 유니크 값 부여
