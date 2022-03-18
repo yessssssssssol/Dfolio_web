@@ -35,7 +35,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
 
     // "projectlist/:userId" 엔드포인트로 GET 요청함.
     const res = await Api.get('projectlist', userId);
-    // awards를 response의 data로 세팅함.
+    // projects를 response의 data로 세팅함.
     setProjects(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
