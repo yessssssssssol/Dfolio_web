@@ -25,6 +25,11 @@ class Certificate {
     );
     return updatedCertificate;
   }
+  static async deleteById({ id }) {
+    const deleteResult = await CertificateModel.deleteOne({ id });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
+  }
 }
 
 export { Certificate };

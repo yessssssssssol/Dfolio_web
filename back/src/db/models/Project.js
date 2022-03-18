@@ -26,6 +26,11 @@ class Project {
     );
     return updatedProject;
   }
+  static async deleteById({ id }) {
+    const deleteResult = await ProjectModel.deleteOne({ id });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
+  }
 }
 
 export { Project };
