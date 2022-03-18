@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+import moment from "moment";
 // import * as Api from "../../api";
 
 function CertificateCard({ certificate, isEditable, setIsEditing }) {
@@ -11,7 +12,7 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
           <br />
           <span className="text-muted">{certificate.description}</span>
           <br />
-          <span>{certificate.whenDate}</span>
+          <span>{moment(certificate.whenDate).format("YYYY-MM-DD")}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">

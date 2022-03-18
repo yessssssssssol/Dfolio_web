@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import { Button, Form, Col, Row } from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
+import React, { useState } from "react";
+import { Button, Form, Col, Row } from "react-bootstrap";
+import DatePicker from "react-datepicker";
 
-import * as Api from '../../api';
+import * as Api from "../../api";
 
 // import Project from '.Project';
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
-  console.log(currentProject.fromDate);
-  console.log(currentProject.toDate);
-
   // useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
   // useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
-  const [fromDate, setFromDate] = useState();
-  const [toDate, setToDate] = useState();
+  const [fromDate, setFromDate] = useState(new Date(currentProject.fromDate));
+  const [toDate, setToDate] = useState(new Date(currentProject.toDate));
 
-  const handleSubmit = async e => {
+  console.log(typeof currentProject.fromDate);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -34,7 +33,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     });
 
     // "projectlist/:userId" 엔드포인트로 GET 요청함.
-    const res = await Api.get('projectlist', userId);
+    const res = await Api.get("projectlist", userId);
     // projects를 response의 data로 세팅함.
     setProjects(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
@@ -48,7 +47,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
           type="text"
           placeholder="Project Name"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
 
@@ -57,7 +56,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
           type="text"
           placeholder="Project Description"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
 
@@ -65,11 +64,16 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         <Col xs="auto">
           <DatePicker
             selected={fromDate}
-            onChange={date => setFromDate(date)}
+            dateFormat="yyyy년 MM월 dd일"
+            onChange={(date) => setFromDate(date)}
           />
         </Col>
         <Col xs="auto">
-          <DatePicker selected={toDate} onChange={date => setToDate(date)} />
+          <DatePicker
+            selected={toDate}
+            dateFormat="yyyy년 MM월 dd일"
+            onChange={(date) => setToDate(date)}
+          />
         </Col>
       </Form.Group>
 

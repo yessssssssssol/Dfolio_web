@@ -1,10 +1,9 @@
-import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
-
-import * as Api from '../../api';
+import React from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
+import moment from "moment";
+import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
-
   const handleDelete = async (e) => {
     //  페이지가 리프레쉬 되는 고유의 브라우저 동작을 preventDefault()로 막아줌
     e.preventDefault();
@@ -17,12 +16,12 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
     await Api.delete(`projects/${project.id}`);
 
     // "projectlist/:userId" 엔드포인트로 GET 요청함.
-    const res = await Api.get('projectlist', userId);
+    const res = await Api.get("projectlist", userId);
     // projects를 response의 data로 세팅함.
     setProjects(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
-  }
+  };
 
   return (
     <Card.Text>
@@ -33,7 +32,9 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
           <span className="text-muted">{project.description}</span>
           <br />
           <span className="text-muted">
-            {`${project.fromDate} ~ ${project.toDate}`}
+            {`${moment(project.fromDate).format("YYYY-MM-DD")} ~ ${moment(
+              project.toDate
+            ).format("YYYY-MM-DD")}`}
           </span>
         </Col>
         {/* isEditable === true 인 경우 편집버튼 노출 */}
@@ -42,7 +43,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing(prev => !prev)}
+              onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
               Edit

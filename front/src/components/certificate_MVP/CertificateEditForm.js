@@ -18,7 +18,7 @@ function CertificateEditForm({
     currentCertificate.description
   );
 
-  const [whenDate, setWhenDate] = useState(new Date());
+  const [whenDate, setWhenDate] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

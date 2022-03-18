@@ -6,7 +6,8 @@ class projectAuthService {
   static async addProject({ userId, title, description, fromDate, toDate }) {
     // id는 유니크 값 부여
     const id = uuidv4();
-
+    fromDate = moment(fromDate).format("YYYY-MM-DD");
+    toDate = moment(toDate).format("YYYY-MM-DD");
     const newProject = { id, userId, title, description, fromDate, toDate };
 
     //db에 저장
@@ -25,9 +26,6 @@ class projectAuthService {
       return { errorMessage };
     }
 
-    project.fromDate = moment(project.fromDate).format("YYYY-MM-DD");
-    project.toDate = moment(project.toDate).format("YYYY-MM-DD");
-
     return project;
   }
   static async getProjects({ userId }) {
@@ -38,8 +36,8 @@ class projectAuthService {
         "해당 작성자의 프로젝트 내역이 없습니다. 다시 한번 확인해 주세요.";
     }
 
-    projects.fromDate = moment(projects.fromDate).format("YYYY-MM-DD");
-    projects.toDate = moment(projects.toDate).format("YYYY-MM-DD");
+    // projects.fromDate = moment(projects.fromDate).format("YYYY-MM-DD");
+    // projects.toDate = moment(projects.toDate).format("YYYY-MM-DD");
 
     return projects;
   }
@@ -86,7 +84,7 @@ class projectAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

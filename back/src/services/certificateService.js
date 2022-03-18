@@ -6,6 +6,7 @@ class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
     // id는 유니크 값 부여
     const id = uuidv4();
+    whenDate = moment(whenDate).format("YYYY-MM-DD");
     const newCertificate = { id, userId, title, description, whenDate };
 
     //db에 저장
