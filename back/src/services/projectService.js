@@ -1,6 +1,6 @@
-import { Project } from '../db';
-import { v4 as uuidv4 } from 'uuid';
-import moment from 'moment';
+import { Project } from "../db";
+import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class projectAuthService {
   static async addProject({ userId, title, description, fromDate, toDate }) {
@@ -16,24 +16,31 @@ class projectAuthService {
     return createdNewProject;
   }
   static async getprojectInfo({ id }) {
-    const project = await Project.findById({ id });
+    let project = await Project.findById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!project) {
       const errorMessage =
-        '올바른 자격증id를 입력해 주세요. 자격증 내역이 없습니다.';
+        "올바른 프로젝트id를 입력해 주세요. 자격증 내역이 없습니다.";
       return { errorMessage };
     }
+
+    project.fromDate = moment(project.fromDate).format("YYYY-MM-DD");
+    project.toDate = moment(project.toDate).format("YYYY-MM-DD");
 
     return project;
   }
   static async getProjects({ userId }) {
-    const projects = await Project.findAll({ userId });
+    let projects = await Project.findAll({ userId });
 
     if (!projects) {
       const errorMessage =
-        '해당 작성자의 자격증 내역이 없습니다. 다시 한번 확인해 주세요.';
+        "해당 작성자의 프로젝트 내역이 없습니다. 다시 한번 확인해 주세요.";
     }
+
+    projects.fromDate = moment(projects.fromDate).format("YYYY-MM-DD");
+    projects.toDate = moment(projects.toDate).format("YYYY-MM-DD");
+
     return projects;
   }
   static async setProject({ id, toUpdate }) {
@@ -42,31 +49,31 @@ class projectAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!project) {
       const errorMessage =
-        '올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.';
+        "올바른 프로젝트 id를 입력해 주세요. 자격증 내역이 없습니다.";
       return { errorMessage };
     }
 
     // 업데이트 대상에 title이 있다면, 즉 title 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.title) {
-      const fieldToUpdate = 'title';
+      const fieldToUpdate = "title";
       const newValue = toUpdate.title;
       project = await Project.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.description) {
-      const fieldToUpdate = 'description';
+      const fieldToUpdate = "description";
       const newValue = toUpdate.description;
       project = await Project.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.fromDate) {
-      const fieldToUpdate = 'fromDate';
+      const fieldToUpdate = "fromDate";
 
-      const newValue = moment(toUpdate.fromDate).format('YYYY-MM-DD');
+      const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
       console.log(newValue);
       project = await Project.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.toDate) {
-      const fieldToUpdate = 'toDate';
-      const newValue = moment(toUpdate.toDate).format('YYYY-MM-DD');
+      const fieldToUpdate = "toDate";
+      const newValue = moment(toUpdate.toDate).format("YYYY-MM-DD");
       project = await Project.update({ id, fieldToUpdate, newValue });
     }
 
@@ -79,11 +86,11 @@ class projectAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        '해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.';
+        "해당 id를 가진 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
-    return { status: 'ok' };
+    return { status: "ok" };
   }
 }
 
