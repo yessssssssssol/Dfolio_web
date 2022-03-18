@@ -1,12 +1,12 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
-import { EducationAuthService } from '../services/EducationService';
+import { educationAuthService } from '../services/educationService';
 
-const EducationAuthRouter = Router();
+const educationAuthRouter = Router();
 
-EducationAuthRouter.post(
-  '/Education/create',
+educationAuthRouter.post(
+  '/education/create',
   loginRequired,
   async (req, res, next) => {
     try {
@@ -22,7 +22,7 @@ EducationAuthRouter.post(
       const position = req.body.position;
 
       //데이터 자격증 db에 추가하기
-      const newEducation = await EducationAuthService.addEducation({
+      const newEducation = await educationAuthService.addEducation({
         userId,
         school,
         major,
@@ -39,14 +39,14 @@ EducationAuthRouter.post(
   },
 );
 
-EducationAuthRouter.get(
-  '/Educations/:id',
+educationAuthRouter.get(
+  '/educations/:id',
   loginRequired,
   async (req, res, next) => {
     try {
       const id = req.params.id;
       const currentEducationInfo =
-        await EducationAuthService.getEducationInfo({ id });
+        await educationAuthService.geteducationInfo({ id });
 
       if (currentEducationInfo.errorMessage) {
         throw new Error(currentEducationInfo.errorMessage);
@@ -58,28 +58,28 @@ EducationAuthRouter.get(
     }
   },
 );
-EducationAuthRouter.get(
-  '/Educationlist/:userId',
+educationAuthRouter.get(
+  '/educationlist/:userId',
   loginRequired,
   async (req, res, next) => {
     try {
       const userId = req.params.userId;
       // 사용자의 전체 자격증 목록을 가져옴
-      const Educations = await EducationAuthService.getEducations({
+      const educations = await educationAuthService.getEducations({
         userId,
       });
 
-      if (Educations.errorMessage) {
-        throw new Error(Educations.errorMessage);
+      if (educations.errorMessage) {
+        throw new Error(educations.errorMessage);
       }
-      res.status(200).send(Educations);
+      res.status(200).send(educations);
     } catch (error) {
       next(error);
     }
   },
 );
-EducationAuthRouter.put(
-  '/Educations/:id',
+educationAuthRouter.put(
+  '/educations/:id',
   loginRequired,
   async (req, res, next) => {
     try {
@@ -93,7 +93,7 @@ EducationAuthRouter.put(
       const toUpdate = { school, major, position };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-      const updatedEducation = await EducationAuthService.setEducation({
+      const updatedEducation = await educationAuthService.setEducation({
         id,
         toUpdate,
       });
@@ -109,4 +109,4 @@ EducationAuthRouter.put(
   },
 );
 
-export { EducationAuthRouter };
+export { educationAuthRouter };

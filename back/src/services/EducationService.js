@@ -1,7 +1,7 @@
 import { Education } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 
-class EducationAuthService {
+class educationAuthService {
   static async addEducation({ userId, school, major, position }) {
     // id는 유니크 값 부여
     const id = uuidv4();
@@ -14,32 +14,32 @@ class EducationAuthService {
     return createdNewEducation;
   }
   static async getEducationInfo({ id }) {
-    const Education = await Education.findById({ id });
+    const education = await Education.findById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!Education) {
+    if (!education) {
       const errorMessage =
         '올바른 자격증id를 입력해 주세요. 자격증 내역이 없습니다.';
       return { errorMessage };
     }
 
-    return Education;
+    return education;
   }
   static async getEducations({ userId }) {
-    const Educations = await Education.findAll({ userId });
+    const educations = await Education.findAll({ userId });
 
-    if (!Educations) {
+    if (!educations) {
       const errorMessage =
         '해당 작성자의 자격증 내역이 없습니다. 다시 한번 확인해 주세요.';
     }
-    return Educations;
+    return educations;
   }
   static async setEducation({ id, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
-    let Education = await Education.findById({ id });
+    let education = await Education.findById({ id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!Education) {
+    if (!education) {
       const errorMessage =
         '올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.';
       return { errorMessage };
@@ -49,21 +49,21 @@ class EducationAuthService {
     if (toUpdate.school) {
       const fieldToUpdate = 'school';
       const newValue = toUpdate.school;
-      Education = await Education.update({ id, fieldToUpdate, newValue });
+      education = await Education.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.major) {
       const fieldToUpdate = 'major';
       const newValue = toUpdate.major;
-      Education = await Education.update({ id, fieldToUpdate, newValue });
+      education = await Education.update({ id, fieldToUpdate, newValue });
     }
     if (toUpdate.position) {
       const fieldToUpdate = 'position';
       const newValue = toUpdate.position;
-      Education = await Education.update({ id, fieldToUpdate, newValue });
+      education = await Education.update({ id, fieldToUpdate, newValue });
     }
 
-    return Education;
+    return education;
   }
 }
 
-export { EducationAuthService };
+export { educationAuthService };
