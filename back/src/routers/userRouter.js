@@ -67,9 +67,9 @@ userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
 userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
   try {
     // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-    const user_id = req.currentUserId;
+    const userId = req.currentUserId;
     const currentUserInfo = await userAuthService.getUserInfo({
-      user_id,
+      userId,
     });
 
       if (currentUserInfo.errorMessage) {
@@ -85,7 +85,7 @@ userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
 userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
   try {
     // URI로부터 사용자 id를 추출함.
-    const user_id = req.params.id;
+    const userId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
     const name = req.body.name ?? null;
     const email = req.body.email ?? null;
@@ -109,8 +109,8 @@ userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
 
 userAuthRouter.get('/users/:id', loginRequired, async (req, res, next) => {
   try {
-    const user_id = req.params.id;
-    const currentUserInfo = await userAuthService.getUserInfo({ user_id });
+    const userId = req.params.id;
+    const currentUserInfo = await userAuthService.getUserInfo({ userId });
 
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
