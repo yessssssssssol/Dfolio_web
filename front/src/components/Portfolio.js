@@ -8,6 +8,7 @@ import * as Api from "../api";
 
 import User from "./user/User";
 import Certificates from "./certificate_MVP/Certificates";
+import Educations from "./Education_MVP/Educations";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -73,6 +74,10 @@ function Portfolio() {
 
         <Col>
           <Certificates
+            portfolioOwnerId={portfolioOwner.id}
+            isEditable={portfolioOwner.id === userState.user?.id}
+          />
+          <Educations
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
