@@ -7,8 +7,9 @@ import * as Api from '../api';
 // import Awards from "./award/Awards";
 
 import User from './user/User';
-import Certificates from './certificate_MVP/Certificates';
 import Projects from './project/Projects';
+import Certificates from "./certificate_MVP/Certificates";
+import Educations from "./Education_MVP/Educations"
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -78,6 +79,10 @@ function Portfolio() {
             isEditable={portfolioOwner.id === userState.user?.id}
           />
           <Projects
+            portfolioOwnerId={portfolioOwner.id}
+            isEditable={portfolioOwner.id === userState.user?.id}
+          />
+          <Educations
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
