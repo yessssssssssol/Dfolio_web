@@ -50,7 +50,7 @@ function EducationEditForm({
           onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group  controlId="formBasicTitle">
         <Form.Control
           type="text"
           placeholder="전공"
@@ -58,7 +58,7 @@ function EducationEditForm({
           onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group  controlId="formBasicTitle">
         <Form.Control
           type="text"
           placeholder="현재 상태 체크박스로 구현 필요"

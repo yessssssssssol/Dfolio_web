@@ -8,11 +8,11 @@ function EducationAddForm({
   setIsAdding,
 }) {
   //school로 description 상태를 생성함.
-  const [school, setSchool] = useState("");
+  const [school, setSchool] = useState('');
   //major로 description 상태를 생성함.
-  const [major, setMajor] = useState("");
+  const [major, setMajor] = useState('');
   //position로 description 상태를 생성함.
-  const [position, setPosition] = useState("");
+  const [position, setPosition] = useState('');
 
 
   const handleSubmit = async (e) => {
@@ -21,7 +21,7 @@ function EducationAddForm({
 
     // portfolioOwnerId를 user_id 변수에 할당함.
     const userId = portfolioOwnerId;
-
+    
     // "Education/create" 엔드포인트로 post요청함.
     await Api.post("education/create", {
       userId: portfolioOwnerId,
@@ -48,7 +48,7 @@ function EducationAddForm({
           onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
           placeholder="전공"
@@ -56,7 +56,7 @@ function EducationAddForm({
           onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
           placeholder="현재 상태 체크박스로 구현 필요"
@@ -65,7 +65,6 @@ function EducationAddForm({
         />
       </Form.Group>
 
-      
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
