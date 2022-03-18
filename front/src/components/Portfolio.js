@@ -8,6 +8,7 @@ import * as Api from "../api";
 
 import User from "./user/User";
 import Certificates from "./certificate_MVP/Certificates";
+import Awards from "./Award/Awards";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -64,12 +65,12 @@ function Portfolio() {
           />
         </Col>
 
-        {/* <Col>
+        <Col>
           <Awards
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
-        </Col> */}
+        </Col>
 
         <Col>
           <Certificates
