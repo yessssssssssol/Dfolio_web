@@ -1,10 +1,10 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
-import { login_required } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { AwardService } from '../services/awardService';
 
 const awardRouter = Router();
-awardRouter.use(login_required);
+awardRouter.use(loginRequired);
 
 // Create Award
 awardRouter.post('/award/create', async (req, res, next) => {

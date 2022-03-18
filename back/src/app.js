@@ -7,7 +7,6 @@ import { errorMiddleware } from './middlewares/errorMiddleware';
 import { application } from 'express';
 import { awardRouter } from './routers/awardRouter';
 
-
 const app = express();
 
 // CORS 에러 방지
