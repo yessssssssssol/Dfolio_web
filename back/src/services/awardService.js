@@ -28,14 +28,14 @@ class AwardService {
     if (updateValue.description) {
       const fieldToUpdate = 'description';
       const value = updateValue.description;
-      award = await Award.update({ award_id, fieldToUpdate, value });
+      award = await Award.update({ awardId, fieldToUpdate, value });
     }
     return award;
   }
 
   // Get Award
   static async getAwardById({ awardId }) {
-    const award = await Award.findById({ award_id });
+    const award = await Award.findById({ awardId });
 
     if (!award) {
       const errorMessage = '일치하는 awardId가 없습니다.';
