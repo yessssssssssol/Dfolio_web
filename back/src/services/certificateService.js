@@ -1,5 +1,6 @@
 import { Certificate } from '../db';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment';
 
 class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
@@ -58,11 +59,24 @@ class certificateAuthService {
     }
     if (toUpdate.whenDate) {
       const fieldToUpdate = 'whenDate';
-      const newValue = toUpdate.whenDate;
+      const newValue = moment(toUpdate.whenDate).format('YYYY-MM-DD');
       certificate = await Certificate.update({ id, fieldToUpdate, newValue });
     }
 
     return certificate;
+  }
+
+  static async deleteCertificate({ id }) {
+    const isDataDeleted = await Certificate.deleteById({ id });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!isDataDeleted) {
+      const errorMessage =
+        '해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.';
+      return { errorMessage };
+    }
+
+    return { status: 'ok' };
   }
 }
 

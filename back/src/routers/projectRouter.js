@@ -91,8 +91,8 @@ projectAuthRouter.put(
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const title = req.body.title ?? null;
       const description = req.body.description ?? null;
-      const fromDate = req.body.whenDate ?? null;
-      const toDate = req.body.whenDate ?? null;
+      const fromDate = req.body.fromDate ?? null;
+      const toDate = req.body.toDate ?? null;
 
       const toUpdate = { title, description, fromDate, toDate };
 
@@ -107,6 +107,28 @@ projectAuthRouter.put(
       }
 
       res.status(200).json(updatedProject);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+projectAuthRouter.delete(
+  '/projects/:id',
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      // req (request) 에서 id 가져오기
+      const id = req.params.id;
+
+      // 위 id를 이용하여 db에서 데이터 삭제하기
+      const result = await projectAuthService.deleteProject({ id });
+
+      if (result.errorMessage) {
+        throw new Error(result.errorMessage);
+      }
+
+      res.status(200).send(result);
     } catch (error) {
       next(error);
     }
