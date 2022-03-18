@@ -13,7 +13,7 @@ function CertificateAddForm({
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
 
-  const [whenDate, setWhenDate] = useState("");
+  const [whenDate, setWhenDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
