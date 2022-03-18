@@ -14,22 +14,11 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   // useState로 toDate 상태를 생성함.
   const [toDate, setToDate] = useState(new Date());
 
-  console.log(fromDate);
-
-  // const toISOStringFromDate = fromDate.toISOString();
-  // console.log('toISOString: ', fromDate.toISOString());
-  // console.log(typeof toISOStringFromDate);
-
   const handleSubmit = async e => {
     //  페이지가 리프레쉬 되는 고유의 브라우저 동작을 preventDefault()로 막아줌
     e.preventDefault();
     // 부모 엘리먼트에게 이벤트 전달을 중단해야 할 때 쓰이는 함수
     e.stopPropagation();
-
-    const splitFromDate = fromDate.toISOString().split('T')[0];
-    const splitToDate = toDate.toISOString().split('T')[0];
-
-    // console.log('splitToDate: ', splitToDate, 'type: ', typeof splitToDate);
 
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
@@ -39,8 +28,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       userId: portfolioOwnerId,
       title,
       description,
-      splitFromDate,
-      splitToDate,
+      fromDate,
+      toDate,
     });
 
     // "projectlist/유저id" 엔드포인트로 get요청함.
