@@ -31,6 +31,7 @@ function Project({ project, setProjects, isEditable }) {
           project={project}
           setIsEditing={setIsEditing}
           isEditable={isEditable}
+          setProjects={setProjects}
         />
       )}
     </>
