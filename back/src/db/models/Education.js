@@ -1,4 +1,4 @@
-import { EducationModel } from '../schemas/Education';
+import { EducationModel } from '../schemas/education';
 
 class Education {
   static async create({ newEducation }) {
@@ -6,12 +6,12 @@ class Education {
     return createdNewEducation;
   }
   static async findById({ id }) {
-    const Education = await EducationModel.findOne({ id });
-    return Education;
+    const education = await EducationModel.findOne({ id });
+    return education;
   }
   static async findAll({ userId }) {
-    const Educations = await EducationModel.find({ userId });
-    return Educations;
+    const educations = await EducationModel.find({ userId });
+    return educations;
   }
   static async update({ id, fieldToUpdate, newValue }) {
     const filter = { id };
