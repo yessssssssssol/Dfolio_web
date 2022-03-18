@@ -1,0 +1,5 @@
+
+back/.env
+front/.env
+front/src/api.js
+*.lock
