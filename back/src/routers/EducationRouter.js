@@ -46,7 +46,7 @@ educationAuthRouter.get(
     try {
       const id = req.params.id;
       const currentEducationInfo =
-        await educationAuthService.geteducationInfo({ id });
+        await educationAuthService.getEducationInfo({ id });
 
       if (currentEducationInfo.errorMessage) {
         throw new Error(currentEducationInfo.errorMessage);
