@@ -17,16 +17,16 @@ EducationAuthRouter.post(
       }
       //req 에서 데이터 가져오기
       const userId = req.body.userId;
-      const title = req.body.title;
-      const description = req.body.description;
-      const whenDate = req.body.whenDate;
+      const school = req.body.school;
+      const major = req.body.major;
+      const position = req.body.position;
 
       //데이터 자격증 db에 추가하기
       const newEducation = await EducationAuthService.addEducation({
         userId,
-        title,
-        description,
-        whenDate,
+        school,
+        major,
+        position,
       });
 
       if (newEducation.errorMessage) {
@@ -86,11 +86,11 @@ EducationAuthRouter.put(
       // URI로부터 자격증 id를 추출함.
       const id = req.params.id;
       // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const title = req.body.title ?? null;
-      const description = req.body.description ?? null;
-      const whenDate = req.body.whenDate ?? null;
+      const school = req.body.school ?? null;
+      const major = req.body.major ?? null;
+      const position = req.body.position ?? null;
 
-      const toUpdate = { title, description, whenDate };
+      const toUpdate = { school, major, position };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedEducation = await EducationAuthService.setEducation({

@@ -10,18 +10,17 @@ const EducationSchema = new Schema(
       type: String,
       required: true,
     },
-    title: {
+    school: {
       type: String,
       required: true,
     },
-    description: {
+    major: {
       type: String,
       required: true,
     },
-    whenDate: {
-      type: Date,
-      required: false,
-      default: new Date(),
+    position: {
+      type: String,
+      required: true,
     },
   },
   {

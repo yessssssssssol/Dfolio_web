@@ -2,10 +2,10 @@ import { Education } from '../db';
 import { v4 as uuidv4 } from 'uuid';
 
 class EducationAuthService {
-  static async addEducation({ userId, title, description, whenDate }) {
+  static async addEducation({ userId, school, major, position }) {
     // id는 유니크 값 부여
     const id = uuidv4();
-    const newEducation = { id, userId, title, description, whenDate };
+    const newEducation = { id, userId, school, major, position };
 
     //db에 저장
     const createdNewEducation = await Education.create({ newEducation });
@@ -45,20 +45,20 @@ class EducationAuthService {
       return { errorMessage };
     }
 
-    // 업데이트 대상에 title이 있다면, 즉 title 값이 null 이 아니라면 업데이트 진행
-    if (toUpdate.title) {
-      const fieldToUpdate = 'title';
-      const newValue = toUpdate.title;
+    // 업데이트 대상에 school이 있다면, 즉 school 값이 null 이 아니라면 업데이트 진행
+    if (toUpdate.school) {
+      const fieldToUpdate = 'school';
+      const newValue = toUpdate.school;
       Education = await Education.update({ id, fieldToUpdate, newValue });
     }
-    if (toUpdate.description) {
-      const fieldToUpdate = 'description';
-      const newValue = toUpdate.description;
+    if (toUpdate.major) {
+      const fieldToUpdate = 'major';
+      const newValue = toUpdate.major;
       Education = await Education.update({ id, fieldToUpdate, newValue });
     }
-    if (toUpdate.whenDate) {
-      const fieldToUpdate = 'whenDate';
-      const newValue = toUpdate.whenDate;
+    if (toUpdate.position) {
+      const fieldToUpdate = 'position';
+      const newValue = toUpdate.position;
       Education = await Education.update({ id, fieldToUpdate, newValue });
     }
 
