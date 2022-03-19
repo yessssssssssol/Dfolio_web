@@ -73,7 +73,7 @@ awardRouter.get('/awardlist/:userId', async (req, res, next) => {
 });
 
 // Delete Award
-awardAuthRouter.delete('/awards/:id', loginRequired, async (req, res, next) => {
+awardRouter.delete('/awards/:id', loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const id = req.params.id;
