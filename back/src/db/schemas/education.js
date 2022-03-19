@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-
+import { Schema, model } from "mongoose";
+import moment from "moment";
 
 const EducationSchema = new Schema(
   {
@@ -23,12 +23,22 @@ const EducationSchema = new Schema(
       type: String,
       required: true,
     },
+    fromDate: {
+      type: Date,
+      required: false,
+      default: moment().format("YYYY-MM-DD"),
+    },
+    toDate: {
+      type: Date,
+      required: false,
+      default: moment().format("YYYY-MM-DD"),
+    },
   },
   {
     timestamps: true,
-  },
+  }
 );
 
-const EducationModel = model('Education', EducationSchema);
+const EducationModel = model("Education", EducationSchema);
 
 export { EducationModel };
