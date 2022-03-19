@@ -1,19 +1,18 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { educationAuthService } from '../services/educationService';
-
+import is from "@sindresorhus/is";
+import { Router } from "express";
+import { loginRequired } from "../middlewares/loginRequired";
+import { educationAuthService } from "../services/educationService";
 
 const educationAuthRouter = Router();
 
 educationAuthRouter.post(
-  '/education/create',
+  "/education/create",
   loginRequired,
   async (req, res, next) => {
     try {
       if (is.emptyObject(req.body)) {
         throw new Error(
-          'headers의 Content-Type을 application/json으로 설정해주세요',
+          "headers의 Content-Type을 application/json으로 설정해주세요"
         );
       }
       //req 에서 데이터 가져오기
@@ -21,6 +20,8 @@ educationAuthRouter.post(
       const school = req.body.school;
       const major = req.body.major;
       const position = req.body.position;
+      const fromDate = req.body.fromDate;
+      const toDate = req.body.toDate;
 
       //데이터 자격증 db에 추가하기
       const newEducation = await educationAuthService.addEducation({
@@ -28,6 +29,8 @@ educationAuthRouter.post(
         school,
         major,
         position,
+        fromDate,
+        toDate,
       });
 
       if (newEducation.errorMessage) {
@@ -37,17 +40,18 @@ educationAuthRouter.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 educationAuthRouter.get(
-  '/educations/:id',
+  "/educations/:id",
   loginRequired,
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const currentEducationInfo =
-        await educationAuthService.getEducationInfo({ id });
+      const currentEducationInfo = await educationAuthService.getEducationInfo({
+        id,
+      });
 
       if (currentEducationInfo.errorMessage) {
         throw new Error(currentEducationInfo.errorMessage);
@@ -57,10 +61,10 @@ educationAuthRouter.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 educationAuthRouter.get(
-  '/educationlist/:userId',
+  "/educationlist/:userId",
   loginRequired,
   async (req, res, next) => {
     try {
@@ -77,10 +81,10 @@ educationAuthRouter.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 educationAuthRouter.put(
-  '/educations/:id',
+  "/educations/:id",
   loginRequired,
   async (req, res, next) => {
     try {
@@ -90,8 +94,10 @@ educationAuthRouter.put(
       const school = req.body.school ?? null;
       const major = req.body.major ?? null;
       const position = req.body.position ?? null;
+      const fromDate = req.body.fromDate ?? null;
+      const toDate = req.body.toDate ?? null;
 
-      const toUpdate = { school, major, position };
+      const toUpdate = { school, major, position, fromDate, toDate };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedEducation = await educationAuthService.setEducation({
@@ -107,7 +113,29 @@ educationAuthRouter.put(
     } catch (error) {
       next(error);
     }
-  },
+  }
+);
+
+educationAuthRouter.delete(
+  "/educations/:id",
+  loginRequired,
+  async (req, res, next) => {
+    try {
+      // req (request) 에서 id 가져오기
+      const id = req.params.id;
+
+      // 위 id를 이용하여 db에서 데이터 삭제하기
+      const result = await educationAuthService.deleteEducation({ id });
+
+      if (result.errorMessage) {
+        throw new Error(result.errorMessage);
+      }
+
+      res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
 );
 
 export { educationAuthRouter };
