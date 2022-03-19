@@ -1,10 +1,10 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
-import { login_required } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { AwardService } from '../services/awardService';
 
 const awardRouter = Router();
-awardRouter.use(login_required);
+awardRouter.use(loginRequired);
 
 // Create Award
 awardRouter.post('/award/create', async (req, res, next) => {
@@ -69,6 +69,24 @@ awardRouter.get('/awardlist/:userId', async (req, res, next) => {
     res.status(200).json(awardList);
   } catch (err) {
     next(err);
+  }
+});
+
+// Delete Award
+awardAuthRouter.delete('/awards/:id', loginRequired, async (req, res, next) => {
+  try {
+    // req (request) 에서 id 가져오기
+    const id = req.params.id;
+
+    // 위 id를 이용하여 db에서 데이터 삭제하기
+    const result = await awardAuthService.deleteAward({ id });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    next(error);
   }
 });
 
