@@ -10,7 +10,7 @@ import User from "./user/User";
 import Certificates from "./certificate_MVP/Certificates";
 import Projects from "./project/Projects";
 import Awards from "./Award/Awards";
-import Educations from "./education_MVP/Educations"
+import Educations from "./Education_MVP/Educations"
 
 function Portfolio() {
   const navigate = useNavigate();
