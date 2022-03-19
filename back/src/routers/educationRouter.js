@@ -18,6 +18,8 @@ educationAuthRouter.post("/education/create", async (req, res, next) => {
     const school = req.body.school;
     const major = req.body.major;
     const position = req.body.position;
+    const fromDate = req.body.fromDate;
+    const toDate = req.body.toDate;
 
     //데이터 자격증 db에 추가하기
     const newEducation = await educationAuthService.addEducation({
@@ -25,6 +27,8 @@ educationAuthRouter.post("/education/create", async (req, res, next) => {
       school,
       major,
       position,
+      fromDate,
+      toDate,
     });
 
     if (newEducation.errorMessage) {
@@ -76,6 +80,8 @@ educationAuthRouter.put("/educations/:id", async (req, res, next) => {
     const school = req.body.school ?? null;
     const major = req.body.major ?? null;
     const position = req.body.position ?? null;
+    const fromDate = req.body.fromDate ?? null;
+    const toDate = req.body.toDate ?? null;
 
     const toUpdate = { school, major, position };
 
@@ -90,6 +96,24 @@ educationAuthRouter.put("/educations/:id", async (req, res, next) => {
     }
 
     res.status(200).json(updatedEducation);
+  } catch (error) {
+    next(error);
+  }
+});
+
+educationAuthRouter.delete("/educations/:id", async (req, res, next) => {
+  try {
+    // req (request) 에서 id 가져오기
+    const educationId = req.params.id;
+
+    // 위 id를 이용하여 db에서 데이터 삭제하기
+    const result = await educationAuthService.deleteEducation({ educationId });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(200).send(result);
   } catch (error) {
     next(error);
   }
