@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Button, Form, Card, Col, Row } from 'react-bootstrap';
-import * as Api from '../../api';
+import React, { useState } from "react";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -10,7 +10,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
@@ -37,7 +37,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="text"
               placeholder="이름"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
@@ -47,7 +47,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="이메일"
               defaultValue={email}
               readOnly
-              //onChange={e => setEmail(e.target.value)}
+              //onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
@@ -56,7 +56,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="text"
               placeholder="정보, 인사말"
               value={description}
-              onChange={e => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
 

@@ -84,9 +84,8 @@ class userAuthService {
       const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-
-    //db에 동일한 이메일이 존재한 경우 , 에러 메시지 반환
-    if (equalEmailUser) {
+    //원래 사용하던 email과 동일하지 않은 경우 && db에 동일한 이메일이 존재한 경우 , 에러 메시지 반환
+    if (user.email !== toUpdate.email && equalEmailUser) {
       const errorMessage =
         "이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.";
       return { errorMessage };
