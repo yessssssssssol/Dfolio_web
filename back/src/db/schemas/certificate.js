@@ -25,9 +25,7 @@ const CertificateSchema = new Schema(
       default: moment().format("YYYY-MM-DD"),
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
 const CertificateModel = model("Certificate", CertificateSchema);

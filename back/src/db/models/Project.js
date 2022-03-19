@@ -6,16 +6,16 @@ class Project {
     const createdNewProject = await ProjectModel.create(newProject);
     return createdNewProject;
   }
-  static async findById({ id }) {
-    const project = await ProjectModel.findOne({ id });
+  static async findById({ projectId }) {
+    const project = await ProjectModel.findOne({ id: projectId });
     return project;
   }
   static async findAll({ userId }) {
     const projects = await ProjectModel.find({ userId });
     return projects;
   }
-  static async update({ id, fieldToUpdate, newValue }) {
-    const filter = { id };
+  static async update({ projectId, fieldToUpdate, newValue }) {
+    const filter = { id: projectId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
@@ -26,8 +26,8 @@ class Project {
     );
     return updatedProject;
   }
-  static async deleteById({ id }) {
-    const deleteResult = await ProjectModel.deleteOne({ id });
+  static async deleteById({ projectId }) {
+    const deleteResult = await ProjectModel.deleteOne({ id: projectId });
     const isDataDeleted = deleteResult.deletedCount === 1;
     return isDataDeleted;
   }
