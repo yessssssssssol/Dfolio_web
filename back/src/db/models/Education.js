@@ -1,5 +1,4 @@
-import { EducationModel } from '../schemas/education';
-
+import { EducationModel } from "../schemas/education";
 
 class Education {
   static async create({ newEducation }) {
@@ -22,7 +21,7 @@ class Education {
     const updatedEducation = await EducationModel.findOneAndUpdate(
       filter,
       update,
-      option,
+      option
     );
     return updatedEducation;
   }

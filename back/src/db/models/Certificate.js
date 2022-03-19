@@ -1,4 +1,4 @@
-import { CertificateModel } from '../schemas/certificate';
+import { CertificateModel } from "../schemas/certificate";
 
 class Certificate {
   static async create({ newCertificate }) {
@@ -21,7 +21,7 @@ class Certificate {
     const updatedCertificate = await CertificateModel.findOneAndUpdate(
       filter,
       update,
-      option,
+      option
     );
     return updatedCertificate;
   }

@@ -1,5 +1,5 @@
 //Project.js
-import { ProjectModel } from '../schemas/project';
+import { ProjectModel } from "../schemas/project";
 
 class Project {
   static async create({ newProject }) {
@@ -22,7 +22,7 @@ class Project {
     const updatedProject = await ProjectModel.findOneAndUpdate(
       filter,
       update,
-      option,
+      option
     );
     return updatedProject;
   }

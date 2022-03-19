@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import moment from 'moment';
+import { Schema, model } from "mongoose";
+import moment from "moment";
 
 const CertificateSchema = new Schema(
   {
@@ -22,14 +22,14 @@ const CertificateSchema = new Schema(
     whenDate: {
       type: Date,
       required: false,
-      default: moment().format('YYYY-MM-DD'),
+      default: moment().format("YYYY-MM-DD"),
     },
   },
   {
     timestamps: true,
-  },
+  }
 );
 
-const CertificateModel = model('Certificate', CertificateSchema);
+const CertificateModel = model("Certificate", CertificateSchema);
 
 export { CertificateModel };

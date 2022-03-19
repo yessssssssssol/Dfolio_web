@@ -1,18 +1,18 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { projectAuthService } from '../services/projectService';
+import is from "@sindresorhus/is";
+import { Router } from "express";
+import { loginRequired } from "../middlewares/loginRequired";
+import { projectAuthService } from "../services/projectService";
 
 const projectAuthRouter = Router();
 
 projectAuthRouter.post(
-  '/project/create',
+  "/project/create",
   loginRequired,
   async (req, res, next) => {
     try {
       if (is.emptyObject(req.body)) {
         throw new Error(
-          'headers의 Content-Type을 application/json으로 설정해주세요',
+          "headers의 Content-Type을 application/json으로 설정해주세요"
         );
       }
       //req 에서 데이터 가져오기
@@ -22,7 +22,7 @@ projectAuthRouter.post(
       const fromDate = req.body.fromDate;
       const toDate = req.body.toDate;
 
-      //데이터 자격증 db에 추가하기
+      //데이터 프로젝트 db에 추가하기
       const newProject = await projectAuthService.addProject({
         userId,
         title,
@@ -38,11 +38,11 @@ projectAuthRouter.post(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 projectAuthRouter.get(
-  '/projects/:id',
+  "/projects/:id",
   loginRequired,
   async (req, res, next) => {
     try {
@@ -59,15 +59,15 @@ projectAuthRouter.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 projectAuthRouter.get(
-  '/projectlist/:userId',
+  "/projectlist/:userId",
   loginRequired,
   async (req, res, next) => {
     try {
       const userId = req.params.userId;
-      // 사용자의 전체 자격증 목록을 가져옴
+      // 사용자의 전체 프로젝트 목록을 가져옴
       const projects = await projectAuthService.getProjects({
         userId,
       });
@@ -79,14 +79,14 @@ projectAuthRouter.get(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 projectAuthRouter.put(
-  '/projects/:id',
+  "/projects/:id",
   loginRequired,
   async (req, res, next) => {
     try {
-      // URI로부터 자격증 id를 추출함.
+      // URI로부터 프로젝트 id를 추출함.
       const id = req.params.id;
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const title = req.body.title ?? null;
@@ -110,11 +110,11 @@ projectAuthRouter.put(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 projectAuthRouter.delete(
-  '/projects/:id',
+  "/projects/:id",
   loginRequired,
   async (req, res, next) => {
     try {
@@ -132,7 +132,7 @@ projectAuthRouter.delete(
     } catch (error) {
       next(error);
     }
-  },
+  }
 );
 
 export { projectAuthRouter };
