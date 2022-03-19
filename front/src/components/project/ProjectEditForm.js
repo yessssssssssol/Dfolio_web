@@ -4,8 +4,6 @@ import DatePicker from "react-datepicker";
 
 import * as Api from "../../api";
 
-// import Project from '.Project';
-
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   // useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
@@ -21,7 +19,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     e.stopPropagation();
 
     // currentProject의 userId를 userId 변수에 할당함.
-    const { userId } = currentProject;
+    const { userId } = currentProject.userId;
 
     // "projects/:id" 엔드포인트로 PUT 요청함.
     await Api.put(`projects/${currentProject.id}`, {
