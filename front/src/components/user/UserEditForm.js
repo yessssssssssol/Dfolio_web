@@ -45,8 +45,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             <Form.Control
               type="email"
               placeholder="이메일"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              defaultValue={email}
+              readOnly
+              //onChange={e => setEmail(e.target.value)}
             />
           </Form.Group>
 
