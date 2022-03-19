@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import * as Api from "../../api";
 // import Certificate from "./Certificate";
 // import CertificateAddForm from "./CertificateAddForm";
-import Certificate from "./Certificate";
+// import Certificate from "./Certificate";
 
 function CertificateEditForm({
   currentCertificate,
@@ -18,7 +18,7 @@ function CertificateEditForm({
     currentCertificate.description
   );
 
-  const [whenDate, setWhenDate] = useState();
+  const [whenDate, setWhenDate] = useState(new Date(currentCertificate.whenDate));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
