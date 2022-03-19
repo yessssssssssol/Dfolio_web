@@ -24,7 +24,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   };
 
   return (
-    <Card.Text>
+    <Card.Body>
       <Row className="align-items-center">
         <Col>
           <span>{project.title}</span>
@@ -59,7 +59,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
           </Col>
         )}
       </Row>
-    </Card.Text>
+    </Card.Body>
   );
 }
 

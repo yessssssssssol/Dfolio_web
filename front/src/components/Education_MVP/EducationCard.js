@@ -3,7 +3,7 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 
 const EducationCard = ({ education, isEditable, setIsEditing }) => {
   return (
-    <Card.Text>
+    <Card.Body>
       <Row className="align-items-center">
         <Col>
           <span>{education.school}</span>
@@ -25,7 +25,7 @@ const EducationCard = ({ education, isEditable, setIsEditing }) => {
           </Col>
         )}
       </Row>
-    </Card.Text>
+    </Card.Body>
   );
 }
 export default EducationCard;

@@ -30,7 +30,7 @@ function CertificateCard({
   };
 
   return (
-    <Card.Text>
+    <Card.Body>
       <Row className="align-items-center">
         <Col>
           <span>{certificate.title}</span>
@@ -60,7 +60,7 @@ function CertificateCard({
           </Col>
         )}
       </Row>
-    </Card.Text>
+    </Card.Body>
   );
 }
 
