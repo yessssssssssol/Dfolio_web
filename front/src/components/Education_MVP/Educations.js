@@ -18,7 +18,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
       setEducations(res.data)
     );
   }, [portfolioOwnerId]);
-
+  
   return (
     <Card>
       <Card.Body>
@@ -26,7 +26,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
         {educations.map((education) => (
           <Education
             key={education.id}
-            Education={education}
+            education={education}
             setEducations={setEducations}
             isEditable={isEditable}
           />
@@ -49,5 +49,4 @@ function Educations({ portfolioOwnerId, isEditable }) {
     </Card>
   );
 }
-
 export default Educations;

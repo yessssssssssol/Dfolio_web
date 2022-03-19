@@ -44,7 +44,7 @@ class educationAuthService {
         '올바른 자격증 id를 입력해 주세요. 자격증 내역이 없습니다.';
       return { errorMessage };
     }
-
+    
     // 업데이트 대상에 school이 있다면, 즉 school 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.school) {
       const fieldToUpdate = 'school';

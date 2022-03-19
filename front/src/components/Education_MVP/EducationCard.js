@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-// import * as Api from "../../api";
 
 const EducationCard = ({ education, isEditable, setIsEditing }) => {
   return (
@@ -29,5 +28,4 @@ const EducationCard = ({ education, isEditable, setIsEditing }) => {
     </Card.Text>
   );
 }
-
 export default EducationCard;

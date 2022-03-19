@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-
 import EducationCard from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
 
 function Education({ education, setEducations, isEditable }) {
   //useState로 isEditing 상태를 생성함.import React, { useState } from "react";
   const [isEditing, setIsEditing] = useState(false);
+  
+  // console.log({education});
+  // education = {
+  //   school: "test",
+  //   major: "test",
+  //   position: "재학중",
+  // };
 
   return (
     <>
@@ -17,7 +23,7 @@ function Education({ education, setEducations, isEditable }) {
         />
       ) : (
         <EducationCard
-          Education={education}
+          education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
         />
@@ -25,5 +31,4 @@ function Education({ education, setEducations, isEditable }) {
     </>
   );
 }
-
 export default Education;
