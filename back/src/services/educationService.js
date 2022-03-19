@@ -1,5 +1,6 @@
 import { Education } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class educationAuthService {
   static async addEducation({ userId, school, major, position, fromDate, toDate }) {

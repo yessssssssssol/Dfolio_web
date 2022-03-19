@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import moment from "moment";
 import * as Api from "../../api";
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
