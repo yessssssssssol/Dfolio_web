@@ -82,8 +82,8 @@ educationAuthRouter.put("/educations/:id", async (req, res, next) => {
     const position = req.body.position ?? null;
     const fromDate = req.body.fromDate ?? null;
     const toDate = req.body.toDate ?? null;
-
-    const toUpdate = { school, major, position };
+  
+    const toUpdate = { school, major, position, fromDate, toDate, };
 
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
     const updatedEducation = await educationAuthService.setEducation({

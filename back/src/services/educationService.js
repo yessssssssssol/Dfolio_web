@@ -84,6 +84,26 @@ class educationAuthService {
         newValue,
       });
     }
+    if (toUpdate.fromDate) {
+      const fieldToUpdate = "fromDate";
+
+      const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
+      console.log(newValue);
+      education = await Education.update({ 
+        educationId,
+        fieldToUpdate,
+        newValue, 
+      });
+    }
+    if (toUpdate.toDate) {
+      const fieldToUpdate = "toDate";
+      const newValue = moment(toUpdate.toDate).format("YYYY-MM-DD");
+      education = await Education.update({ 
+        educationId,
+        fieldToUpdate,
+        newValue
+      });
+    }
 
     return education;
   }
