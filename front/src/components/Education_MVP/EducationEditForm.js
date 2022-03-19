@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-
+import DatePicker from "react-datepicker";
+import moment from "moment";
 import * as Api from "../../api";
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 school 상태를 생성함.
   const [school, setSchool] = useState(currentEducation.school);
-  //useState로 school 상태를 생성함.
   const [major, setMajor] = useState(currentEducation.major);
-  //useState로 school 상태를 생성함.
   const [position, setPosition] = useState(currentEducation.position);
+  const [fromDate, setFromDate] = useState(new Date(currentEducation.fromDate));
+  const [toDate, setToDate] = useState(new Date(currentEducation.toDate));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       school,
       major,
       position,
+      fromDate,
+      toDate,
     });
     // "Educationlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("educationlist", userId);
@@ -38,7 +41,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           type="text"
           placeholder="학교 이름"
           value={school}
-          onChange={e => setSchool(e.target.value)}
+          onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
       <Form.Group controlId="formBasicTitle">
@@ -46,60 +49,79 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           type="text"
           placeholder="전공"
           value={major}
-          onChange={e => setMajor(e.target.value)}
+          onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
+
       <Form.Group>
-      <div key={`inline-radio`} className="mb-3 mt-3">
-        <Form.Check
-          inline
-          label="재학중"
-          id="radio1"
-          type="radio"
-          name="position"
-          value="재학중"
-          checked={position === "재학중"}
-          onChange={e => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="학사졸업"
-          id="radio2"
-          type="radio"
-          name="position"
-          value="학사졸업"
-          checked={position === "학사졸업"}
-          onChange={e => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="석사졸업"
-          id="radio3"
-          type="radio"
-          name="position"
-          value="석사졸업"
-          checked={position === "석사졸업"}
-          onChange={e => setPosition(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="박사졸업"
-          id="radio4"
-          type="radio"
-          name="position"
-          value="박사졸업"
-          checked={position === "박사졸업"}
-          onChange={e => setPosition(e.target.value)}
-        />
-      </div>
+        <div key={`inline-radio`} className="mb-3 mt-3">
+          <Form.Check
+            inline
+            label="재학중"
+            id="radio1"
+            type="radio"
+            name="position"
+            value="재학중"
+            checked={position === "재학중"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="학사졸업"
+            id="radio2"
+            type="radio"
+            name="position"
+            value="학사졸업"
+            checked={position === "학사졸업"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="석사졸업"
+            id="radio3"
+            type="radio"
+            name="position"
+            value="석사졸업"
+            checked={position === "석사졸업"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="박사졸업"
+            id="radio4"
+            type="radio"
+            name="position"
+            value="박사졸업"
+            checked={position === "박사졸업"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+        </div>
       </Form.Group>
+      
+      <Form.Group as={Row}>
+        <Col xs="auto">
+          <DatePicker
+            selected={fromDate}
+            dateFormat="yyyy년 MM월 dd일"
+            onChange={(date) => setFromDate(date)}
+          />
+        </Col>
+        <Col xs="auto">
+          <DatePicker
+            selected={toDate}
+            dateFormat="yyyy년 MM월 dd일"
+            onChange={(date) => setToDate(date)}
+          />
+        </Col>
+      </Form.Group>
+
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
-            확인
+            Save
           </Button>
           <Button variant="secondary" onClick={() => setIsEditing(false)}>
-            취소
+            Cancel
           </Button>
         </Col>
       </Form.Group>

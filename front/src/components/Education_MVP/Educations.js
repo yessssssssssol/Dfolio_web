@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
 import * as Api from "../../api";
-
+import moment from "moment";
 import Education from "./Education";
 import EducationAddForm from "./EducationAddForm";
 
@@ -18,7 +18,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
       setEducations(res.data)
     );
   }, [portfolioOwnerId]);
-  
+
   return (
     <Card>
       <Card.Body>

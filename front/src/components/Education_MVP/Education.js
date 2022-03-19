@@ -5,7 +5,7 @@ import EducationEditForm from "./EducationEditForm";
 function Education({ education, setEducations, isEditable }) {
   //useState로 isEditing 상태를 생성함.import React, { useState } from "react";
   const [isEditing, setIsEditing] = useState(false);
-  
+
   // console.log({education});
   // education = {
   //   school: "test",
@@ -26,6 +26,7 @@ function Education({ education, setEducations, isEditable }) {
           education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
+          setEducations={setEducations}
         />
       )}
     </>
