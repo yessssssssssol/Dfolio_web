@@ -44,7 +44,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       } else {
         //업로드 취소/실패할 시
         setImage(
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          "http://placekitten.com/200/200"
         );
         return;
       }

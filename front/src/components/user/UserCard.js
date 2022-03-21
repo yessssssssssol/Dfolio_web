@@ -11,7 +11,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Img
             style={{ width: "10rem", height: "8rem", borderRadius:"70%"}}
             className="mb-3"
-            src={user?.image}
+            src={((user?.image)? user?.image : "http://placekitten.com/200/200")}
             alt="사용자 프로필 이미지입니다."
           />
         </Row>

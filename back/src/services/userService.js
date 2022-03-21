@@ -18,7 +18,7 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword, image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" };
+    const newUser = { id, name, email, password: hashedPassword, image: "http://placekitten.com/200/200" };
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
