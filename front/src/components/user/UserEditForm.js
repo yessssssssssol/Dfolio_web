@@ -10,9 +10,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
 
-  const [image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+  const [image, setImage] = useState(user.image);
   // useRef 함수로 current 속성을 가지고 있는 객체 반환 재랜더링 하지 않기 위해 사용
-  const fileInput = useRef(null)
+  const fileInput = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,30 +37,36 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     //화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
-      if(reader.readyState === 2){  // readyState === 2 -> DONE 작업 완료
-        setImage(reader.result)
-        console.log(reader.result)
-      }else{ //업로드 취소/실패할 시
-        setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-        return
+      if (reader.readyState === 2) {
+        // readyState === 2 -> DONE 작업 완료
+        setImage(reader.result);
+        console.log(reader.result);
+      } else {
+        //업로드 취소/실패할 시
+        setImage(
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        );
+        return;
       }
-    }
-    reader.readAsDataURL(e.target.files[0])
-  }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
         <Row className="justify-content-md-center">
           <div className="justify-content-md-center row">
-              <img 
-                className="card-img mb-3"
-                src={image}
-                style={{ width: "10rem", height: "8rem", borderRadius:"70%"}}
-                onClick={()=>{fileInput.current.click()}}
-              />
+            <img
+              className="card-img mb-3"
+              src={image}
+              style={{ width: "10rem", height: "8rem", borderRadius: "70%" }}
+              onClick={() => {
+                fileInput.current.click();
+              }}
+            />
           </div>
-          <input 
-            type="file" 
+          <input
+            type="file"
             name="imageFile"
             accept="image/*"
             // style={{ display: "none" }}
