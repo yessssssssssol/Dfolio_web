@@ -3,10 +3,7 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
-
-  // 임시 이미지
-  const image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
-
+  
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
@@ -14,7 +11,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Img
             style={{ width: "10rem", height: "8rem", borderRadius:"70%"}}
             className="mb-3"
-            src={image}
+            src={user?.image}
             alt="사용자 프로필 이미지입니다."
           />
         </Row>
