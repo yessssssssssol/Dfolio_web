@@ -18,7 +18,7 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword };
+    const newUser = { id, name, email, password: hashedPassword, image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" };
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
@@ -113,6 +113,12 @@ class userAuthService {
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 

@@ -17,12 +17,14 @@ userAuthRouter.post('/user/register', async (req, res, next) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+    const image = req.body.image;
 
     // 데이터를 유저 db에 추가하기
     const newUser = await userAuthService.addUser({
       name,
       email,
       password,
+      image,
     });
 
     if (newUser.errorMessage) {
@@ -91,8 +93,9 @@ userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
     const email = req.body.email ?? null;
     const password = req.body.password ?? null;
     const description = req.body.description ?? null;
+    const image = req.body.image ?? null;
 
-      const toUpdate = { name, email, password, description };
+      const toUpdate = { name, email, password, description, image };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedUser = await userAuthService.setUser({ userId, toUpdate });
