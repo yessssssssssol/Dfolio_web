@@ -15,7 +15,18 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           />
         </Row>
         <Card.Title>{user?.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">{user?.email}
+          <a href={user?.profilelink}>
+            <Card.Img
+              style={{ width: "1rem", height: "1rem" }}
+              className="mb-3"
+              src="https://w7.pngwing.com/pngs/981/939/png-transparent-hyperlink-computer-icons-direct-link-others-miscellaneous-text-logo.png"
+              alt="하이퍼링크 아이콘"
+              >
+              </Card.Img>
+          </a>
+        </Card.Subtitle>
+        
         <Card.Text>{user?.description}</Card.Text>
 
         {isEditable && (
