@@ -23,9 +23,17 @@ const UserSchema = new Schema(
       required: false,
       default: "설명이 아직 없습니다. 추가해 주세요.",
     },
-     image: {
+    image: {
       type: String,
-      required: true,
+      required: false,
+      default:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    },
+
+    likeCount: {
+      type: Number,
+      required: false,
+      default: 0,
     },
   },
   { timestamps: true }
