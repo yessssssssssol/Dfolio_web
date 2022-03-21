@@ -15,6 +15,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   // useState로 toDate 상태를 생성함.
   const [toDate, setToDate] = useState(new Date());
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -40,6 +41,12 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     // Education를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
+
+  const handleNameChange = React.useCallback((e) => {
+    const target = e.currentTarget;
+    setSchool(target.value);
+  }, [])
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicTitle">
@@ -47,7 +54,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           type="text"
           placeholder="학교 이름"
           value={school}
-          onChange={(e) => setSchool(e.target.value)}
+          onChange={handleNameChange}
         />
       </Form.Group>
       <Form.Group controlId="formBasicTitle" className="mt-3">
