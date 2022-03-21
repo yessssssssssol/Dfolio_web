@@ -43,6 +43,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const imageOnChange = (e) => {
      e.preventDefault();
     const fileReader = new FileReader();
+
+    console.log(e.target.files[0])
     
     if(e.target.files[0]){
       setLoaded("loading")
@@ -65,15 +67,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       <Card.Body>
         <Row className="justify-content-md-center">
           <div className="justify-content-md-center row">
-            {loaded === false || loaded === true ? (
               <img 
                 className="card-img mb-3"
                 src={image.previewUrl}
                 style={{ width: "10rem", height: "8rem", borderRadius:"70%"}}
               />
-            ) : (
-              <Spinner className="img-spinner" tip = "이미지 불러오는중"/>
-            )}
           </div>
           <input 
             type="file" 
@@ -100,7 +98,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             <Form.Control
               type="email"
               placeholder="이메일"
-              defaultValue={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
