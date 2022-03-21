@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Button, Form, Card, Col, Row, Spinner } from "react-bootstrap";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
@@ -44,7 +44,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       } else {
         //업로드 취소/실패할 시
         setImage(
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          "http://placekitten.com/200/200"
         );
         return;
       }
@@ -91,6 +91,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="이메일"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              readOnly
             />
           </Form.Group>
 
