@@ -18,7 +18,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
       setEducations(res.data)
     );
   }, [portfolioOwnerId]);
-  
+
   return (
     <Card>
       <Card.Body>

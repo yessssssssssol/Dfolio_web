@@ -5,9 +5,15 @@ import moment from "moment";
 class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
     // id는 유니크 값 부여
-    const id = uuidv4();
+    const certificateId = uuidv4();
     whenDate = moment(whenDate).format("YYYY-MM-DD");
-    const newCertificate = { id, userId, title, description, whenDate };
+    const newCertificate = {
+      id: certificateId,
+      userId,
+      title,
+      description,
+      whenDate,
+    };
 
     //db에 저장
     const createdNewCertificate = await Certificate.create({ newCertificate });
@@ -15,8 +21,8 @@ class certificateAuthService {
 
     return createdNewCertificate;
   }
-  static async getcertificateInfo({ id }) {
-    const certificate = await Certificate.findById({ id });
+  static async getcertificateInfo({ certificateId }) {
+    const certificate = await Certificate.findById({ certificateId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!certificate) {
@@ -36,9 +42,9 @@ class certificateAuthService {
     }
     return certificates;
   }
-  static async setCertificate({ id, toUpdate }) {
+  static async setCertificate({ certificateId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
-    let certificate = await Certificate.findById({ id });
+    let certificate = await Certificate.findById({ certificateId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!certificate) {
@@ -51,24 +57,36 @@ class certificateAuthService {
     if (toUpdate.title) {
       const fieldToUpdate = "title";
       const newValue = toUpdate.title;
-      certificate = await Certificate.update({ id, fieldToUpdate, newValue });
+      certificate = await Certificate.update({
+        certificateId,
+        fieldToUpdate,
+        newValue,
+      });
     }
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
-      certificate = await Certificate.update({ id, fieldToUpdate, newValue });
+      certificate = await Certificate.update({
+        certificateId,
+        fieldToUpdate,
+        newValue,
+      });
     }
     if (toUpdate.whenDate) {
       const fieldToUpdate = "whenDate";
       const newValue = moment(toUpdate.whenDate).format("YYYY-MM-DD");
-      certificate = await Certificate.update({ id, fieldToUpdate, newValue });
+      certificate = await Certificate.update({
+        certificateId,
+        fieldToUpdate,
+        newValue,
+      });
     }
 
     return certificate;
   }
 
-  static async deleteCertificate({ id }) {
-    const isDataDeleted = await Certificate.deleteById({ id });
+  static async deleteCertificate({ certificateId }) {
+    const isDataDeleted = await Certificate.deleteById({ certificateId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {

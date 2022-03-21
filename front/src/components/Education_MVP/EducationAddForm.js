@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
-
+import { Button, Form, Col, Row, FormGroup } from "react-bootstrap";
+import DatePicker from "react-datepicker";
 import * as Api from "../../api";
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
@@ -10,6 +10,10 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [major, setMajor] = useState("");
   //position로 description 상태를 생성함.
   const [position, setPosition] = useState("");
+
+  const [fromDate, setFromDate] = useState(new Date());
+  // useState로 toDate 상태를 생성함.
+  const [toDate, setToDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +30,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       school,
       major,
       position,
+      fromDate,
+      toDate,
     });
     // "Educationlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("educationlist", userId);
@@ -41,7 +47,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           type="text"
           placeholder="학교 이름"
           value={school}
-          onChange={e => setSchool(e.target.value)}
+          onChange={(e) => setSchool(e.target.value)}
         />
       </Form.Group>
       <Form.Group controlId="formBasicTitle" className="mt-3">
@@ -49,9 +55,23 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           type="text"
           placeholder="전공"
           value={major}
-          onChange={e => setMajor(e.target.value)}
+          onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
+
+      <FormGroup as={Row}>
+        <Col xs="auto">
+          <DatePicker
+            selected={fromDate}
+            // dateFormat="yyyy년 MM월 dd일"
+            onChange={(date) => setFromDate(date)}
+          />
+        </Col>
+        <Col xs="auto">
+          <DatePicker selected={toDate} onChange={(date) => setToDate(date)} />
+        </Col>
+      </FormGroup>
+
       <Form.Group>
         <div key={`inline-radio`} className="mb-3 mt-3">
           <Form.Check
@@ -62,7 +82,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
             name="position"
             value="재학중"
             checked={position === "재학중"}
-            onChange={e => setPosition(e.target.value)}
+            onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
@@ -72,7 +92,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
             name="position"
             value="학사졸업"
             checked={position === "학사졸업"}
-            onChange={e => setPosition(e.target.value)}
+            onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
@@ -82,7 +102,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
             name="position"
             value="석사졸업"
             checked={position === "석사졸업"}
-            onChange={e => setPosition(e.target.value)}
+            onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
@@ -92,17 +112,19 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
             name="position"
             value="박사졸업"
             checked={position === "박사졸업"}
-            onChange={e => setPosition(e.target.value)}
+            onChange={(e) => setPosition(e.target.value)}
           />
         </div>
       </Form.Group>
+      
+
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
-            확인
+            Save
           </Button>
           <Button variant="secondary" onClick={() => setIsAdding(false)}>
-            취소
+            Cancel
           </Button>
         </Col>
       </Form.Group>
