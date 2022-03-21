@@ -3,21 +3,28 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class educationAuthService {
-  static async addEducation({ userId, school, major, position, fromDate, toDate }) {
+  static async addEducation({
+    userId,
+    school,
+    major,
+    position,
+    fromDate,
+    toDate,
+  }) {
     // id는 유니크 값 부여
     const educationId = uuidv4();
     fromDate = moment(fromDate).format("YYYY-MM-DD");
     toDate = moment(toDate).format("YYYY-MM-DD");
     const newEducation = {
-      id: educationId, 
-      userId, 
-      school, 
-      major, 
+      id: educationId,
+      userId,
+      school,
+      major,
       position,
       fromDate,
       toDate,
     };
-    
+
     //db에 저장
     const createdNewEducation = await Education.create({ newEducation });
     createdNewEducation.errorMessage = null;
@@ -88,20 +95,19 @@ class educationAuthService {
       const fieldToUpdate = "fromDate";
 
       const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
-      console.log(newValue);
-      education = await Education.update({ 
+      education = await Education.update({
         educationId,
         fieldToUpdate,
-        newValue, 
+        newValue,
       });
     }
     if (toUpdate.toDate) {
       const fieldToUpdate = "toDate";
       const newValue = moment(toUpdate.toDate).format("YYYY-MM-DD");
-      education = await Education.update({ 
+      education = await Education.update({
         educationId,
         fieldToUpdate,
-        newValue
+        newValue,
       });
     }
 

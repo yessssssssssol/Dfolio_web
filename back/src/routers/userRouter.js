@@ -138,7 +138,6 @@ userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
     // URI로부터 사용자 id를 추출함.
     const currentUserId = req.params.id;
     const otherUserId = req.body.otherUserId;
-    console.log(otherUserId);
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
     const updatedLike = await userAuthService.setLike({
       currentUserId,

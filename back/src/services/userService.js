@@ -152,9 +152,7 @@ class userAuthService {
 
     const isLiked = await Like.findByUser({ currentUser, otherUser });
     let updatedLike = {};
-    console.log("isLiked", isLiked);
-    console.log("otherUser.likeCoiunt", otherUser.likeCount);
-    console.log(otherUser);
+
     if (isLiked) {
       const newValue = otherUser.likeCount - 1;
       const user = await User.update({
