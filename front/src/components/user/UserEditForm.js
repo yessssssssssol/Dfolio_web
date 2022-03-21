@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Button, Form, Card, Col, Row, Spinner } from "react-bootstrap";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
