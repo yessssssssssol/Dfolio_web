@@ -5,6 +5,9 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
+import Kakao from "./Kakao";
+
+
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
@@ -117,7 +120,7 @@ function LoginForm() {
             color: "gray"
           }} >
             ---------------------    SNS 간편 로그인    ---------------------
-            </div>
+          </div>
           <div className="snsLoginContainer">
             <div style={{ textAlign: "center" }}>
               <img 
@@ -128,13 +131,8 @@ function LoginForm() {
                   width: "50px", 
                   margin: "25px 20px" 
                 }}/>
-              <img
-                className="kakaoLogo" 
-                src="img/kakao.png" 
-                alt="kakao 간편 로그인 로고" 
-                style={{ width: "50px",
-                 margin: "25px 20px" 
-                }}/>
+              <Kakao />  
+
               <img 
                 className="facebookLogo"
                 src="img/facebook.png"
@@ -143,6 +141,7 @@ function LoginForm() {
                   width: "50px",
                   margin: "25px 20px"
                 }}/>
+
               <img 
                 className="appleLogo" 
                 src="img/apple.png" 
@@ -152,6 +151,7 @@ function LoginForm() {
                   margin: "25px 20px" 
                 }}/>
             </div>
+            <script src="https://developers.kakao.com/sdk.js.kakao.js"></script>
           </div>
         </Col>
       </Row>
