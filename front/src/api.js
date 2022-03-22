@@ -1,6 +1,10 @@
 import axios from "axios";
 
+<<<<<<< Updated upstream
 const backendPortNumber = 5007;
+=======
+const backendPortNumber = "5200";
+>>>>>>> Stashed changes
 
 const serverUrl =
   "http://" + window.location.hostname + ":" + backendPortNumber + "/";

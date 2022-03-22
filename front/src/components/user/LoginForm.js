@@ -4,6 +4,7 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import { KAKAO_AUTH_URL } from "./OAuth";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -110,47 +111,55 @@ function LoginForm() {
               </Col>
             </Form.Group>
           </Form>
-          <div style={{
-            fontSize: 13,
-            textAlign: "center",
-            marginTop: 40,
-            color: "gray"
-          }} >
-            ---------------------    SNS 간편 로그인    ---------------------
-            </div>
+          <div
+            style={{
+              fontSize: 13,
+              textAlign: "center",
+              marginTop: 40,
+              color: "gray",
+            }}
+          >
+            --------------------- SNS 간편 로그인 ---------------------
+          </div>
           <div className="snsLoginContainer">
             <div style={{ textAlign: "center" }}>
-              <img 
-                className="naverLogo" 
-                src="img/naver.png" 
-                alt="naver 간편 로그인 로고" 
-                style={{ 
-                  width: "50px", 
-                  margin: "25px 20px" 
-                }}/>
               <img
-                className="kakaoLogo" 
-                src="img/kakao.png" 
-                alt="kakao 간편 로그인 로고" 
-                style={{ width: "50px",
-                 margin: "25px 20px" 
-                }}/>
-              <img 
+                className="naverLogo"
+                src="img/naver.png"
+                alt="naver 간편 로그인 로고"
+                style={{
+                  width: "50px",
+                  margin: "25px 20px",
+                }}
+              />
+
+              <a href={KAKAO_AUTH_URL}>
+                <img
+                  className="kakaoLogo"
+                  src="img/kakao.png"
+                  alt="kakao 간편 로그인 로고"
+                  style={{ width: "50px", margin: "25px 20px" }}
+                ></img>
+              </a>
+
+              <img
                 className="facebookLogo"
                 src="img/facebook.png"
                 alt="facebook 간편 로그인 로고"
-                style={{ 
+                style={{
                   width: "50px",
-                  margin: "25px 20px"
-                }}/>
-              <img 
-                className="appleLogo" 
-                src="img/apple.png" 
+                  margin: "25px 20px",
+                }}
+              />
+              <img
+                className="appleLogo"
+                src="img/apple.png"
                 alt="apple 간편 로그인 로고"
-                style={{ 
-                  width: "50px", 
-                  margin: "25px 20px" 
-                }}/>
+                style={{
+                  width: "50px",
+                  margin: "25px 20px",
+                }}
+              />
             </div>
           </div>
         </Col>

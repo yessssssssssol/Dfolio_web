@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useReducer, createContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect, useReducer, createContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import * as Api from './api';
-import { loginReducer } from './reducer';
+import * as Api from "./api";
+import { loginReducer } from "./reducer";
 
-import Header from './components/Header';
-import LoginForm from './components/user/LoginForm';
-import Network from './components/user/Network';
-import RegisterForm from './components/user/RegisterForm';
-import Portfolio from './components/Portfolio';
-
+import Header from "./components/Header";
+import LoginForm from "./components/user/LoginForm";
+import Network from "./components/user/Network";
+import RegisterForm from "./components/user/RegisterForm";
+import Portfolio from "./components/Portfolio";
+import OAuth2RedirectHandler from "./components/user/KakaoLogin";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -27,18 +27,18 @@ function App() {
   const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get('user/current');
+      const res = await Api.get("user/current");
       const currentUser = res.data;
 
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: "LOGIN_SUCCESS",
         payload: currentUser,
       });
 
-      console.log('%c sessionStorage에 토큰 있음.', 'color: #d93d1a;');
+      console.log("%c sessionStorage에 토큰 있음.", "color: #d93d1a;");
     } catch {
-      console.log('%c SessionStorage에 토큰 없음.', 'color: #d93d1a;');
+      console.log("%c SessionStorage에 토큰 없음.", "color: #d93d1a;");
     }
     // fetchCurrentUser 과정이 끝났으므로, isFetchCompleted 상태를 true로 바꿔줌
     setIsFetchCompleted(true);
@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   if (!isFetchCompleted) {
-    return 'loading...';
+    return "loading...";
   }
 
   return (
@@ -65,6 +65,10 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
+            <Route
+              path="/oauth/callback/kakao"
+              component={OAuth2RedirectHandler}
+            ></Route>
           </Routes>
         </Router>
       </UserStateContext.Provider>
