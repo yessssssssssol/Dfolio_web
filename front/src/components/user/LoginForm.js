@@ -5,9 +5,6 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
-import Kakao from "./Kakao";
-
-
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
@@ -131,8 +128,15 @@ function LoginForm() {
                   width: "50px", 
                   margin: "25px 20px" 
                 }}/>
-              <Kakao />  
-
+              <img
+                className="kakaoLogo" 
+                src="img/kakao.png" 
+                alt="kakao 간편 로그인 로고" 
+                style={{ 
+                  width: "50px",
+                  margin: "25px 20px" 
+                }}
+              />
               <img 
                 className="facebookLogo"
                 src="img/facebook.png"
