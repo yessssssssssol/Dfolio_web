@@ -73,7 +73,6 @@ class projectAuthService {
       const fieldToUpdate = "fromDate";
 
       const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
-      console.log(newValue);
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
     if (toUpdate.toDate) {

@@ -28,6 +28,18 @@ const UserSchema = new Schema(
       required: false,
       default: "",
     },
+    
+    image: {
+      type: String,
+      required: false,
+      default: "http://placekitten.com/200/200",
+    },
+
+    likeCount: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

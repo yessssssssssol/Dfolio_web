@@ -24,7 +24,7 @@ function App() {
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
 
-  const fetchCurrentUser = async () => {
+  const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
       const res = await Api.get('user/current');
@@ -42,7 +42,7 @@ function App() {
     }
     // fetchCurrentUser 과정이 끝났으므로, isFetchCompleted 상태를 true로 바꿔줌
     setIsFetchCompleted(true);
-  };
+  }, []);
 
   // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
   useEffect(() => {

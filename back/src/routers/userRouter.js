@@ -1,15 +1,15 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { userAuthService } from '../services/userService';
+import is from "@sindresorhus/is";
+import { Router } from "express";
+import { loginRequired } from "../middlewares/loginRequired";
+import { userAuthService } from "../services/userService";
 
 const userAuthRouter = Router();
 
-userAuthRouter.post('/user/register', async (req, res, next) => {
+userAuthRouter.post("/user/register", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
-        'headers의 Content-Type을 application/json으로 설정해주세요',
+        "headers의 Content-Type을 application/json으로 설정해주세요"
       );
     }
 
@@ -35,7 +35,7 @@ userAuthRouter.post('/user/register', async (req, res, next) => {
   }
 });
 
-userAuthRouter.post('/user/login', async function (req, res, next) {
+userAuthRouter.post("/user/login", async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
     const email = req.body.email;
@@ -54,7 +54,7 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
   }
 });
 
-userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
+userAuthRouter.get("/userlist", loginRequired, async (req, res, next) => {
   try {
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers();
@@ -64,7 +64,7 @@ userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
   }
 });
 
-userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
+userAuthRouter.get("/user/current", loginRequired, async (req, res, next) => {
   try {
     // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
     const userId = req.currentUserId;
@@ -72,17 +72,17 @@ userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
       userId,
     });
 
-      if (currentUserInfo.errorMessage) {
-        throw new Error(currentUserInfo.errorMessage);
-      }
+    if (currentUserInfo.errorMessage) {
+      throw new Error(currentUserInfo.errorMessage);
+    }
 
     res.status(200).send(currentUserInfo);
-    } catch (error) {
-      next(error);
-    }
+  } catch (error) {
+    next(error);
+  }
 });
 
-userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
+userAuthRouter.put("/users/:id", loginRequired, async (req, res, next) => {
   try {
     // URI로부터 사용자 id를 추출함.
     const userId = req.params.id;
@@ -93,43 +93,68 @@ userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
     const description = req.body.description ?? null;
     const profilelink = req.body.profilelink ?? null;
 
-      const toUpdate = { name, email, password, description, profilelink };
+    // const toUpdate = { name, email, password, description, profilelink };
+    const image = req.body.image ?? null;
+    //const likeCount = req.body.likeCount ?? null;
 
-      // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-      const updatedUser = await userAuthService.setUser({ userId, toUpdate });
+    const toUpdate = { name, email, password, description, image, profilelink };
 
-      if (updatedUser.errorMessage) {
-        throw new Error(updatedUser.errorMessage);
-      }
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
-      res.status(200).json(updatedUser);
-    } catch (error) {
-      next(error);
+    if (updatedUser.errorMessage) {
+      throw new Error(updatedUser.errorMessage);
     }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 });
 
-userAuthRouter.get('/users/:id', loginRequired, async (req, res, next) => {
+userAuthRouter.get("/users/:id", loginRequired, async (req, res, next) => {
   try {
     const userId = req.params.id;
     const currentUserInfo = await userAuthService.getUserInfo({ userId });
 
-      if (currentUserInfo.errorMessage) {
-        throw new Error(currentUserInfo.errorMessage);
-      }
-
-      res.status(200).send(currentUserInfo);
-    } catch (error) {
-      next(error);
+    if (currentUserInfo.errorMessage) {
+      throw new Error(currentUserInfo.errorMessage);
     }
+
+    res.status(200).send(currentUserInfo);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get('/afterlogin', loginRequired, (req, res, next) => {
+userAuthRouter.get("/afterlogin", loginRequired, (req, res, next) => {
   res
     .status(200)
     .send(
-      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`,
+      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
     );
+});
+
+userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
+  try {
+    // URI로부터 사용자 id를 추출함.
+    const currentUserId = req.params.id;
+    const otherUserId = req.body.otherUserId;
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedLike = await userAuthService.setLike({
+      currentUserId,
+      otherUserId,
+    });
+
+    if (updatedLike.errorMessage) {
+      throw new Error(updatedLike.errorMessage);
+    }
+
+    res.status(200).json(updatedLike);
+  } catch (error) {
+    next(error);
+  }
 });
 
 export { userAuthRouter };

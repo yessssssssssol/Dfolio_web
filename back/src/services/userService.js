@@ -1,4 +1,4 @@
-import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { User, Like } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
@@ -18,7 +18,12 @@ class userAuthService {
 
     // id 는 유니크 값 부여
     const id = uuidv4();
-    const newUser = { id, name, email, password: hashedPassword };
+    const newUser = {
+      id,
+      name,
+      email,
+      password: hashedPassword,
+    };
 
     // db에 저장
     const createdNewUser = await User.create({ newUser });
@@ -119,6 +124,11 @@ class userAuthService {
     if (toUpdate.profilelink) {
       const fieldToUpdate = "profilelink";
       const newValue = toUpdate.profilelink;
+    }
+
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
@@ -136,6 +146,39 @@ class userAuthService {
     }
 
     return user;
+  }
+
+  static async setLike({ currentUserId, otherUserId }) {
+    // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
+    const currentUser = await User.findById({ userId: currentUserId });
+    const otherUser = await User.findById({ userId: otherUserId });
+
+    const fieldToUpdate = "likeCount";
+
+    const isLiked = await Like.findByUser({ currentUser, otherUser });
+    let updatedLike = {};
+
+    if (isLiked) {
+      const newValue = otherUser.likeCount - 1;
+      const user = await User.update({
+        userId: otherUser.id,
+        fieldToUpdate,
+        newValue,
+      });
+      await Like.deleteById({ isLiked });
+      updatedLike = { data: false };
+    } else {
+      const newValue = otherUser.likeCount + 1;
+      const user = await User.update({
+        userId: otherUser.id,
+        fieldToUpdate,
+        newValue,
+      });
+      await Like.create({ currentUser, otherUser });
+      updatedLike = { data: true };
+    }
+
+    return updatedLike;
   }
 }
 
