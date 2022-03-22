@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import moment from "moment";
 
 const CertificateSchema = new Schema(
   {
@@ -22,7 +21,7 @@ const CertificateSchema = new Schema(
     whenDate: {
       type: Date,
       required: false,
-      default: moment().format("YYYY-MM-DD"),
+      default: Date.now(),
     },
   },
   { timestamps: true }

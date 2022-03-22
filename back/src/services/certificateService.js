@@ -1,12 +1,10 @@
 import { Certificate } from "../db";
 import { v4 as uuidv4 } from "uuid";
-import moment from "moment";
 
 class certificateAuthService {
   static async addCertificate({ userId, title, description, whenDate }) {
     // id는 유니크 값 부여
     const certificateId = uuidv4();
-    whenDate = moment(whenDate).format("YYYY-MM-DD");
     const newCertificate = {
       id: certificateId,
       userId,
@@ -74,7 +72,7 @@ class certificateAuthService {
     }
     if (toUpdate.whenDate) {
       const fieldToUpdate = "whenDate";
-      const newValue = moment(toUpdate.whenDate).format("YYYY-MM-DD");
+      const newValue = toUpdate.whenDate;
       certificate = await Certificate.update({
         certificateId,
         fieldToUpdate,

@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import moment from "moment";
 
 const ProjectSchema = new Schema(
   {
@@ -22,12 +21,12 @@ const ProjectSchema = new Schema(
     fromDate: {
       type: Date,
       required: false,
-      default: moment().format("YYYY-MM-DD"),
+      default: Date.now(),
     },
     toDate: {
       type: Date,
       required: false,
-      default: moment().format("YYYY-MM-DD"),
+      default: Date.now(),
     },
   },
   { timestamps: true }

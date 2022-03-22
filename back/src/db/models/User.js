@@ -16,8 +16,8 @@ class User {
     return user;
   }
 
-  static async findAll() {
-    const users = await UserModel.find({});
+  static async findAll(sortBy) {
+    const users = await UserModel.find({}).sort({ [sortBy]: -1 });
     return users;
   }
 
@@ -25,7 +25,7 @@ class User {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
-    
+
     const updatedUser = await UserModel.findOneAndUpdate(
       filter,
       update,

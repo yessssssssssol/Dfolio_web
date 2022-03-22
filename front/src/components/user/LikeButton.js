@@ -13,14 +13,17 @@ function LikeButton() {
      */
     // const { likeCount } = await api.post();
     // setLike(likeCount);
-  }, [])
+  }, []);
 
   return (
     <Card.Footer className="mt-3 text-center">
-        <Button variant="outline-warning" type="submit" onClick={handleButtonClick}>
-          LIKE 👍 {like}
-        </Button>
-      
+      <Button
+        variant="outline-warning"
+        type="submit"
+        onClick={handleButtonClick}
+      >
+        LIKE 👍 {like}
+      </Button>
     </Card.Footer>
   );
 }
