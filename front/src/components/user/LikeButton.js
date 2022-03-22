@@ -4,19 +4,23 @@ import { Card, Button } from "react-bootstrap";
 // import * as Api from "../../api";
 
 function LikeButton() {
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log("You clicked submit.");
-  }
   const [like, setLike] = useState(0);
+
+  const handleButtonClick = React.useCallback((e) => {
+    e.stopPropagation();
+    /**
+     * api like
+     */
+    // const { likeCount } = await api.post();
+    // setLike(likeCount);
+  }, [])
 
   return (
     <Card.Footer className="mt-3 text-center">
-      <form onSubmit={handleSubmit}>
-        <Button variant="outline-warning" type="submit">
+        <Button variant="outline-warning" type="submit" onClick={handleButtonClick}>
           LIKE 👍 {like}
         </Button>
-      </form>
+      
     </Card.Footer>
   );
 }

@@ -62,6 +62,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           </Card.Link>
         )}
       </Card.Body>
+      
       <LikeButton />
     </Card>
   );
