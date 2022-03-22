@@ -9,6 +9,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  //useState로 profilelink 상태를 생성함.
+  const [profilelink, setProfilelink] = useState(user.profilelink);
 
   const [image, setImage] = useState(user.image);
   // useRef 함수로 current 속성을 가지고 있는 객체 반환 재랜더링 하지 않기 위해 사용
@@ -22,6 +24,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       name,
       email,
       description,
+      profilelink,
       image,
     });
     // 유저 정보는 response의 data임.
@@ -101,6 +104,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="정보, 인사말"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditProfilelink">
+            <Form.Control
+              type="text"
+              placeholder="깃 주소"
+              value={profilelink}
+              onChange={(e) => setProfilelink(e.target.value)}
             />
           </Form.Group>
 
