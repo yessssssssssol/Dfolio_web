@@ -8,6 +8,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   return (
     <Card
       className="mb-2 ms-3 mr-5"
+      border="light"
       style={{ width: "18rem" }}
       onClick={() => navigate(`/users/${user.id}`)}
     >
@@ -57,13 +58,11 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             href="#"
             onClick={() => navigate(`/users/${user.id}`)}
           >
-            Portfolio
+            <Button variant="outline-light">Portfolio</Button>
           </Card.Link>
         )}
       </Card.Body>
-      <Card.footer>
-        <LikeButton />
-      </Card.footer>
+      <LikeButton />
     </Card>
   );
 }
