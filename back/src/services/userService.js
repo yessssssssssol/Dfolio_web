@@ -55,7 +55,8 @@ class userAuthService {
 
     // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-    const token = jwt.sign({ userId: user.id }, secretKey);
+    //jwt default는 24시간 -> 1시간으로 변경
+    const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: "1h" });
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = user.id;
