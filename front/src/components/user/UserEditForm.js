@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import LikeButton from "./LikeButton";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -46,9 +47,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         console.log(reader.result);
       } else {
         //업로드 취소/실패할 시
-        setImage(
-          "http://placekitten.com/200/200"
-        );
+        setImage("http://placekitten.com/200/200");
         return;
       }
     };
@@ -128,6 +127,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
         </Form>
       </Card.Body>
+      <LikeButton />
     </Card>
   );
 }
