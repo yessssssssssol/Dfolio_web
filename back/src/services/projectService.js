@@ -1,13 +1,12 @@
 import { Project } from "../db";
 import { v4 as uuidv4 } from "uuid";
-import moment from "moment";
 
 class projectAuthService {
   static async addProject({ userId, title, description, fromDate, toDate }) {
     // id는 유니크 값 부여
     const projectId = uuidv4();
-    fromDate = moment(fromDate).format("YYYY-MM-DD");
-    toDate = moment(toDate).format("YYYY-MM-DD");
+    fromDate = fromDate;
+    toDate = toDate;
     const newProject = {
       id: projectId,
       userId,
@@ -43,9 +42,6 @@ class projectAuthService {
         "해당 작성자의 프로젝트 내역이 없습니다. 다시 한번 확인해 주세요.";
     }
 
-    // projects.fromDate = moment(projects.fromDate).format("YYYY-MM-DD");
-    // projects.toDate = moment(projects.toDate).format("YYYY-MM-DD");
-
     return projects;
   }
   static async setProject({ projectId, toUpdate }) {
@@ -72,12 +68,12 @@ class projectAuthService {
     if (toUpdate.fromDate) {
       const fieldToUpdate = "fromDate";
 
-      const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
+      const newValue = toUpdate.fromDate;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
     if (toUpdate.toDate) {
       const fieldToUpdate = "toDate";
-      const newValue = moment(toUpdate.toDate).format("YYYY-MM-DD");
+      const newValue = toUpdate.toDate;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
 

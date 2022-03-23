@@ -1,6 +1,5 @@
 import { Education } from "../db";
 import { v4 as uuidv4 } from "uuid";
-import moment from "moment";
 
 class educationAuthService {
   static async addEducation({
@@ -13,8 +12,6 @@ class educationAuthService {
   }) {
     // id는 유니크 값 부여
     const educationId = uuidv4();
-    fromDate = moment(fromDate).format("YYYY-MM-DD");
-    toDate = moment(toDate).format("YYYY-MM-DD");
     const newEducation = {
       id: educationId,
       userId,
@@ -94,7 +91,7 @@ class educationAuthService {
     if (toUpdate.fromDate) {
       const fieldToUpdate = "fromDate";
 
-      const newValue = moment(toUpdate.fromDate).format("YYYY-MM-DD");
+      const newValue = toUpdate.fromDate;
       education = await Education.update({
         educationId,
         fieldToUpdate,
@@ -103,7 +100,7 @@ class educationAuthService {
     }
     if (toUpdate.toDate) {
       const fieldToUpdate = "toDate";
-      const newValue = moment(toUpdate.toDate).format("YYYY-MM-DD");
+      const newValue = toUpdate.toDate;
       education = await Education.update({
         educationId,
         fieldToUpdate,
