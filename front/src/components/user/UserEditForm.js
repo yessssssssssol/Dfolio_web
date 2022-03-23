@@ -46,9 +46,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         console.log(reader.result);
       } else {
         //업로드 취소/실패할 시
-        setImage(
-          "http://placekitten.com/200/200"
-        );
+        setImage("http://placekitten.com/200/200");
         return;
       }
     };

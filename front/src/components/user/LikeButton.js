@@ -1,16 +1,26 @@
 import React, { useState, useForm } from "react";
 import { Card, Button } from "react-bootstrap";
 
-// import * as Api from "../../api";
+import * as Api from "../../api";
 
-function LikeButton() {
-  const [like, setLike] = useState(0);
+function LikeButton({ user }) {
+  const [like, setLike] = useState(user.likeCount);
 
-  const handleButtonClick = React.useCallback((e) => {
+  console.log(user);
+  const handleButtonClick = React.useCallback(async (e) => {
     e.stopPropagation();
-    /**
-     * api like
-     */
+    const resUser = await Api.get("user/current");
+    const currentUser = resUser.data;
+    const res = await Api.put(
+      `like/${currentUser.id}`,
+      {
+        otherUserId: user.id,
+      },
+      [currentUser]
+    );
+
+    const updatedLike = res.data.likeCount;
+    setLike(updatedLike);
     // const { likeCount } = await api.post();
     // setLike(likeCount);
   }, []);

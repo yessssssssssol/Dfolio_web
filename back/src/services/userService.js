@@ -167,7 +167,7 @@ class userAuthService {
         newValue,
       });
       await Like.deleteById({ isLiked });
-      updatedLike = { data: false };
+      updatedLike = { data: false, likeCount: newValue };
     } else {
       const newValue = otherUser.likeCount + 1;
       const user = await User.update({
@@ -176,7 +176,7 @@ class userAuthService {
         newValue,
       });
       await Like.create({ currentUser, otherUser });
-      updatedLike = { data: true };
+      updatedLike = { data: true, likeCount: newValue };
     }
 
     return updatedLike;

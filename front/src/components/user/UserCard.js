@@ -4,13 +4,14 @@ import LikeButton from "./LikeButton";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
-
   return (
     <Card
       className="mb-2 ms-3 mr-5"
-      border="light"
       style={{ width: "18rem" }}
-      onClick={() => navigate(`/users/${user.id}`)}
+      // className="mb-2 ms-3 mr-5"
+      // border="light"
+      // style={{ width: "18rem" }}
+      // onClick={() => navigate(`/users/${user.id}`)}
     >
       <Card.Body>
         <Row className="justify-content-md-center">
@@ -35,7 +36,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         </Card.Subtitle>
 
         <Card.Text>{user?.description}</Card.Text>
-
+        <LikeButton user={user} />
         {isEditable && (
           <Col>
             <Row className="mt-3 text-center text-info">
@@ -62,8 +63,6 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           </Card.Link>
         )}
       </Card.Body>
-
-      <LikeButton />
     </Card>
   );
 }
