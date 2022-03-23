@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
@@ -60,8 +61,6 @@ function LoginForm() {
     }
   };
 
-  console.log(email);
-
   return (
 
     <div className="login-container">
@@ -72,7 +71,7 @@ function LoginForm() {
         </div>
       </div>
 
-		  <form className="login-right-container" >
+		  <div className="login-right-container">
 			  <form className="right-top-wrap">
           <span>Don't have an account?</span>
           <button className="create-account-btn shadow-light" onClick={()=> navigate("/register")}
@@ -80,21 +79,24 @@ function LoginForm() {
             Register
           </button>
         </form>
+        <div id="rigth-logo">
+          Dfolio
+        </div>
 
-			  <form className="login-input-container" onSubmit={handleSubmit}>
+			  <div className="login-input-container" onSubmit={handleSubmit}>
           <div>
-            <i className="far fa-envelope"></i>
-            <div>
-              <form 
+            <div id="eamil-container">
+              <Form.Control
                 className="login-input-wrap input-id"
-                type="email" 
+                id="input-id"
                 placeholder="Email" 
-                value={email} 
-                autoComplete="on" 
+                type="email"
+                autoComplete="on"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <p className="text-success" style={{ fontSize: "12px" }}>
+                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
                   이메일 형식이 올바르지 않습니다.
                 </p>
                 )}
@@ -102,18 +104,18 @@ function LoginForm() {
           </div>
 
           <div>
-            <i className="fas fa-key"></i>
-            <div>
-              <form
+            <div id="password-container">
+              <Form.Control
                 className="login-input-wrap input-password"
+                id="input-password"
                 placeholder="Password" 
-                type="password" 
-                autoComplete="on" 
-                value={password} 
+                type="password"
+                autoComplete="on"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
                 {!isPasswordValid && (
-                <p className="text-success" style={{ fontSize: "12px", marginBottom: 0}}>
+                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
                   비밀번호는 4글자 이상입니다.
                 </p>
                 )}
@@ -124,9 +126,9 @@ function LoginForm() {
           <form className="login-btn-wrap">
             <button className="login-btn" type="submit" disabled={!isFormValid}>Login</button>
           </form>
-			  </form>
+			  </div>
 
-			<form className="sns-login-container">
+			<div className="sns-login-container">
 				<form className="sns-login-text hr-sect">
 					SNS Login
 				</form>
@@ -136,8 +138,8 @@ function LoginForm() {
 					<img src="../img/facebook.png" alt="FACRBOOK Login" />
 					<img src="../img/apple.png" alt="APPLE Login" />
 				</form>
-			</form>
-      </form>
+			</div>
+      </div>
 	</div>
   );
 }

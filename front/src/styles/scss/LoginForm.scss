@@ -41,6 +41,7 @@
     text-align: center;
     font-weight: 900;
     font-size: 40px;
+		font-style: italic;
 }
 .login-left-wrap p {
 	padding-top: 30px;
@@ -58,13 +59,26 @@
 	flex-direction: column;
   align-items: center;
 	background: #fff;
-	font-family: 'Noto Sans', sans-serif;
 }
+
+#rigth-logo{
+	position: absolute;
+	top: 125px;
+	text-align: center;
+	font-weight: 900;
+	font-size: 27px;
+	font-style: italic;
+	font-family: 'IBM Plex Mono', monospace;
+	color: #382E89;
+	display: none;
+}
+
 .login-right-container .right-top-wrap{
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	width:100%;
+	font-family: 'Noto Sans', sans-serif;
 }
 .login-right-container .right-top-wrap span{
 	color: gray;
@@ -78,31 +92,32 @@
 	width:85px;
 	height: 35px;
 	font-size: 11px;
-	color: #2178ff;
+	color: #455494;
 	border-radius: 3px;
 }
 .login-input-container{
 	padding-top:120px;
 	width:300px;
+	font-family: 'Noto Sans', sans-serif;
 }
-.login-input-container .login-input-wrap{
-	width:300px;
-	border-bottom: solid 2px #2178ff;
-}
-.login-input-container .login-input-wrap i{
-	color: #2178ff;
-	line-height: 45px;
-}
-.login-input-container .login-input-wrap input{
-	background: none;
+#input-id {
+	font-size: 15px;
+	background: #F7F7F7;
 	border: none;
 	line-height: 20px;
 	padding-left:10px;
-	width:267px;
+	width:300px;
 }
-.login-input-container .login-input-wrap form:focus{
-	outline: none;
+
+#input-password {
+	font-size: 15px;
+	background: #F7F7F7;
+	border: none;
+	line-height: 20px;
+	padding-left:10px;
+	width:300px;
 }
+
 .login-input-wrap .password-find {
 	margin-top:10px;
 	text-decoration: none;
@@ -122,8 +137,17 @@
 	color:white;
 	border: 0;
 	border-radius: 4px;
-	background: rgb(105,163,255);
-	background: linear-gradient(162deg, rgba(105,163,255,1) 0%, rgba(43,125,254,1) 50%, rgba(43,125,254,1) 100%);
+	background: #5C6EA7;
+}
+
+#eamil-container {
+	width: 300px;
+	height: 65px;
+}
+
+#password-container {
+	width: 300px;
+	height: 50px;
 }
 
 
@@ -131,6 +155,7 @@
 
 .sns-login-container {
 	padding-top: 40px;
+	font-family: 'Noto Sans', sans-serif;
 }
 .sns-login-text {
 	margin-top:10px;
@@ -173,10 +198,5 @@
 	.login-right-container  {
 			border-radius: 10px;
 	}
-}
-
-input {
-	font-size: 15px;
-  border: 0;
-	background-color: #fff;
+	#rigth-logo	{display: block;}
 }
