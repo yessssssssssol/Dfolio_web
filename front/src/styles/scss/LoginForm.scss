@@ -1,0 +1,182 @@
+
+/* 전체 */
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.login-container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #F0F1F3;
+}
+
+/* login-left-container */
+
+.login-left-container {
+	width:430px;
+  height: 540px;
+	border-radius: 10px 0px 0px 10px;
+	left: 75px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	background-image: 
+    radial-gradient(ellipse farthest-corner at 0 140%, #7486BA 0%, #455494 70%, #5C6EA7 70%);
+}
+.login-left-wrap {
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: 'IBM Plex Mono', monospace;
+}
+.login-left-wrap h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 40px;
+}
+.login-left-wrap p {
+	padding-top: 30px;
+	font-size:13px;
+}
+
+/* login-right-container */
+
+.login-right-container {
+	width:430px;
+  height: 540px;
+	border-radius: 0px 10px 10px 0px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+  align-items: center;
+	background: #fff;
+	font-family: 'Noto Sans', sans-serif;
+}
+.login-right-container .right-top-wrap{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width:100%;
+}
+.login-right-container .right-top-wrap span{
+	color: gray;
+	font-size: 11px;
+	padding-right:20px;
+}
+.login-right-container .right-top-wrap .create-account-btn {
+	background: #F7F7F7;
+	border: 0;
+	margin-right: 20px;
+	width:85px;
+	height: 35px;
+	font-size: 11px;
+	color: #2178ff;
+	border-radius: 3px;
+}
+.login-input-container{
+	padding-top:120px;
+	width:300px;
+}
+.login-input-container .login-input-wrap{
+	width:300px;
+	border-bottom: solid 2px #2178ff;
+}
+.login-input-container .login-input-wrap i{
+	color: #2178ff;
+	line-height: 45px;
+}
+.login-input-container .login-input-wrap input{
+	background: none;
+	border: none;
+	line-height: 20px;
+	padding-left:10px;
+	width:267px;
+}
+.login-input-container .login-input-wrap form:focus{
+	outline: none;
+}
+.login-input-wrap .password-find {
+	margin-top:10px;
+	text-decoration: none;
+	font-size: 9px;
+	color: gray;
+	text-align: right;
+}
+.login-btn-wrap{
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;;
+}
+.login-btn-wrap .login-btn{
+	width:95px;
+	height:35px;
+	color:white;
+	border: 0;
+	border-radius: 4px;
+	background: rgb(105,163,255);
+	background: linear-gradient(162deg, rgba(105,163,255,1) 0%, rgba(43,125,254,1) 50%, rgba(43,125,254,1) 100%);
+}
+
+
+/* sns 간편 로그인 */
+
+.sns-login-container {
+	padding-top: 40px;
+}
+.sns-login-text {
+	margin-top:10px;
+	text-decoration: none;
+	font-size: 11px;
+	color: gray;
+	text-align: center;
+}
+.sns-login-container img {
+	width: 40px;
+	margin: 15px 10px;
+	flex: 1;
+	flex-direction: row;
+}
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.25);
+	font-size: 12px;
+	margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.25);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
+
+/* 반응형 */
+
+@media ( max-width: 880px ) {
+	.login-left-container {
+		display: none;
+	}
+	.login-right-container  {
+			border-radius: 10px;
+	}
+}
+
+input {
+	font-size: 15px;
+  border: 0;
+	background-color: #fff;
+}
