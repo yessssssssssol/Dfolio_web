@@ -9,3 +9,4 @@ back/yarn.lock
 front/yarn.lock
 back/package-lock.json
 front/package-lock.json
+back/src/utils/sendMail.js
