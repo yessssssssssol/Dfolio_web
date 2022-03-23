@@ -5,6 +5,7 @@ import { Container, Row } from 'react-bootstrap';
 import * as Api from '../../api';
 import UserCard from './UserCard';
 import { UserStateContext } from '../../App';
+import UserCardSort from './UserCardSort';
 
 function Network() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function Network() {
 
   return (
     <Container fluid>
+      <UserCardSort/>
       <Row xs="auto" className="jusify-content-center">
         {users.map(user => (
           <UserCard key={user.id} user={user} isNetwork />
