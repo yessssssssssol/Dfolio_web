@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const CertificateSchema = new Schema(
+const EducationSchema = new Schema(
   {
     id: {
       type: String,
@@ -10,15 +10,24 @@ const CertificateSchema = new Schema(
       type: String,
       required: true,
     },
-    title: {
+    school: {
       type: String,
       required: true,
     },
-    description: {
+    major: {
       type: String,
       required: true,
     },
-    whenDate: {
+    position: {
+      type: String,
+      required: true,
+    },
+    fromDate: {
+      type: Date,
+      required: false,
+      default: Date.now(),
+    },
+    toDate: {
       type: Date,
       required: false,
       default: Date.now(),
@@ -27,6 +36,6 @@ const CertificateSchema = new Schema(
   { timestamps: true }
 );
 
-const CertificateModel = model("Certificate", CertificateSchema);
+const EducationModel = model("Education", EducationSchema);
 
-export { CertificateModel };
+export { EducationModel };

@@ -36,7 +36,11 @@ userAuthRouter.post("/user/register", async (req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
 userAuthRouter.post("/user/login", async (req, res, next) => {
+=======
+userAuthRouter.post("/user/login", async function (req, res, next) {
+>>>>>>> 3c1d4727475e839bdfd7ed9b185abae0e44f01bf
   try {
     // req (request) 에서 데이터 가져오기
     const email = req.body.email;
@@ -57,8 +61,9 @@ userAuthRouter.post("/user/login", async (req, res, next) => {
 
 userAuthRouter.get("/userlist", loginRequired, async (req, res, next) => {
   try {
+    const sortBy = req.body.sortBy;
     // 전체 사용자 목록을 얻음
-    const users = await userAuthService.getUsers();
+    const users = await userAuthService.getUsers(sortBy);
     res.status(200).send(users);
   } catch (error) {
     next(error);
@@ -92,12 +97,25 @@ userAuthRouter.put("/users/:id", loginRequired, async (req, res, next) => {
     const email = req.body.email ?? null;
     const password = req.body.password ?? null;
     const description = req.body.description ?? null;
+    const profilelink = req.body.profilelink ?? null;
 
+<<<<<<< HEAD
     const toUpdate = { name, email, password, description };
 
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
     const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
+=======
+    // const toUpdate = { name, email, password, description, profilelink };
+    const image = req.body.image ?? null;
+    //const likeCount = req.body.likeCount ?? null;
+
+    const toUpdate = { name, email, password, description, image, profilelink };
+
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedUser = await userAuthService.setUser({ userId, toUpdate });
+
+>>>>>>> 3c1d4727475e839bdfd7ed9b185abae0e44f01bf
     if (updatedUser.errorMessage) {
       throw new Error(updatedUser.errorMessage);
     }
@@ -132,6 +150,7 @@ userAuthRouter.get("/afterlogin", loginRequired, (req, res, next) => {
     );
 });
 
+<<<<<<< HEAD
 userAuthRouter.put("/users/upload", upload, async (req, res, next) => {
   try {
     const userId = req.body.userId;
@@ -146,6 +165,24 @@ userAuthRouter.put("/users/upload", upload, async (req, res, next) => {
     });
 
     res.status(200).send(storedImage);
+=======
+userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
+  try {
+    // URI로부터 사용자 id를 추출함.
+    const currentUserId = req.params.id;
+    const otherUserId = req.body.otherUserId;
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedLike = await userAuthService.setLike({
+      currentUserId,
+      otherUserId,
+    });
+
+    if (updatedLike.errorMessage) {
+      throw new Error(updatedLike.errorMessage);
+    }
+
+    res.status(200).json(updatedLike);
+>>>>>>> 3c1d4727475e839bdfd7ed9b185abae0e44f01bf
   } catch (error) {
     next(error);
   }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import * as Api from "../../api";
+// import * as Api from "../../api";
 
 import CertificateCard from "./CertificateCard";
 import CertificateEditForm from "./CertificateEditForm";
@@ -22,6 +22,7 @@ function Certificate({ certificate, setCertificates, isEditable }) {
           certificate={certificate}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
+          setCertificates={setCertificates}
         />
       )}
     </>

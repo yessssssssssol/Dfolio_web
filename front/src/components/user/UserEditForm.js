@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Button, Form, Card, Col, Row } from 'react-bootstrap';
-import * as Api from '../../api';
+import React, { useState, useRef } from "react";
+import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import * as Api from "../../api";
+import LikeButton from "./LikeButton";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -9,8 +10,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(user.description);
+  //useState로 profilelink 상태를 생성함.
+  const [profilelink, setProfilelink] = useState(user.profilelink);
 
-  const handleSubmit = async e => {
+  const [image, setImage] = useState(user.image);
+  // useRef 함수로 current 속성을 가지고 있는 객체 반환 재랜더링 하지 않기 위해 사용
+  const fileInput = useRef(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
@@ -18,6 +25,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       name,
       email,
       description,
+      profilelink,
+      image,
     });
     // 유저 정보는 response의 data임.
     const updatedUser = res.data;
@@ -28,16 +37,53 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     setIsEditing(false);
   };
 
+  const onChange = (e) => {
+    //화면에 프로필 사진 표시
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        // readyState === 2 -> DONE 작업 완료
+        setImage(reader.result);
+        console.log(reader.result);
+      } else {
+        //업로드 취소/실패할 시
+        setImage("http://placekitten.com/200/200");
+        return;
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
   return (
-    <Card className="mb-2">
+    <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
+        <Row className="justify-content-md-center">
+          <div className="justify-content-md-center row">
+            <img
+              className="card-img mb-3"
+              src={image}
+              style={{ width: "10rem", height: "8rem", borderRadius: "70%" }}
+              onClick={() => {
+                fileInput.current.click();
+              }}
+            />
+          </div>
+          <input
+            type="file"
+            name="imageFile"
+            accept="image/*"
+            // style={{ display: "none" }}
+            ref={fileInput}
+            onChange={onChange}
+          />
+          <br />
+        </Row>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"
               placeholder="이름"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
@@ -46,7 +92,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="email"
               placeholder="이메일"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
+              readOnly
             />
           </Form.Group>
 
@@ -55,7 +102,16 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="text"
               placeholder="정보, 인사말"
               value={description}
-              onChange={e => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditProfilelink">
+            <Form.Control
+              type="text"
+              placeholder="깃 주소"
+              value={profilelink}
+              onChange={(e) => setProfilelink(e.target.value)}
             />
           </Form.Group>
 
@@ -71,6 +127,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
         </Form>
       </Card.Body>
+      <LikeButton />
     </Card>
   );
 }

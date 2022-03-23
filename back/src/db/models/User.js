@@ -1,4 +1,4 @@
-import { UserModel } from '../schemas/user';
+import { UserModel } from "../schemas/user";
 
 class User {
   static async create({ newUser }) {
@@ -16,8 +16,8 @@ class User {
     return user;
   }
 
-  static async findAll() {
-    const users = await UserModel.find({});
+  static async findAll(sortBy) {
+    const users = await UserModel.find({}).sort({ [sortBy]: -1 });
     return users;
   }
 
@@ -29,7 +29,7 @@ class User {
     const updatedUser = await UserModel.findOneAndUpdate(
       filter,
       update,
-      option,
+      option
     );
     return updatedUser;
   }
