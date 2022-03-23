@@ -25,6 +25,11 @@ class Award {
     );
     return updatedAward;
   }
+  static async deleteById({ id }) {
+    const deleteResult = await AwardModel.deleteOne({ id });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
+  }
 }
 
 export { Award };

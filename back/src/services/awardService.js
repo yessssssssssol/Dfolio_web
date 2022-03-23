@@ -45,6 +45,19 @@ class awardAuthService {
     const awardList = await Award.findAll({ userId });
     return awardList;
   }
+
+  // Delete Award
+  static async deleteAward({ id }) {
+    const isDataDeleted = await Award.deleteById({ id });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    return { status: "ok" };
+  }
 }
 
 export { awardAuthService };
