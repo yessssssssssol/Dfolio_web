@@ -1,6 +1,7 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
+import { upload } from "../middlewares/uploadMiddleware";
 import { userAuthService } from "../services/userService";
 
 const userAuthRouter = Router();
@@ -131,7 +132,7 @@ userAuthRouter.get("/afterlogin", loginRequired, (req, res, next) => {
     );
 });
 
-userAuthRouter.post("/users/upload", upload, async (req, res, next) => {
+userAuthRouter.put("/users/upload", upload, async (req, res, next) => {
   try {
     const userId = req.body.userId;
     const image = req.file;

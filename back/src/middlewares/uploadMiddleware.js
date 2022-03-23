@@ -1,5 +1,3 @@
-import { multer } from "multer";
-
 async function uploadMiddleware(req, res, next) {
   let storage = multer.diskStorage({
     destination: (req, file, callback) => {
