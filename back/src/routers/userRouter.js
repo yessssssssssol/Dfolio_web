@@ -54,11 +54,13 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
   }
 });
 
-userAuthRouter.get("/userlist", loginRequired, async (req, res, next) => {
+userAuthRouter.get("/userlist/:sortBy", loginRequired, async (req, res, next) => {
   try {
-    const sortBy = req.body.sortBy;
+    const sortBy = req.params.sortBy;
+    console.log(sortBy)
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers(sortBy);
+    
     res.status(200).send(users);
   } catch (error) {
     next(error);
