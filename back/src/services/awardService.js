@@ -47,8 +47,8 @@ class awardAuthService {
   }
 
   // Delete Award
-  static async deleteAward({ id }) {
-    const isDataDeleted = await Award.deleteById({ id });
+  static async deleteAward({ awardId }) {
+    const isDataDeleted = await Award.deleteById({ awardId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
