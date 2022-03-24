@@ -31,7 +31,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     });
 
     // 패스워드 발송하기
-    const result = await sendMail(
+    await sendMail(
       email,
       "비밀번호가 변경되었습니다.",
       `변경된 비밀번호는: ${password} 입니다`
