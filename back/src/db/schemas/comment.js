@@ -3,6 +3,10 @@ import { Schema, model } from "mongoose";
 
 const CommentSchema = new Schema(
   {
+    id: {
+      type: String,
+      required: true,
+    },
     host: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserModel",

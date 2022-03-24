@@ -1,12 +1,14 @@
 import { User, Comment } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { v4 as uuidv4 } from "uuid";
 
 class commentAuthService {
   static async addComment({ hostId, content, authorId }) {
     // // 이메일 중복 확인
     const host = await User.findById({ userId: hostId });
     const author = await User.findById({ userId: authorId });
-    console.log(hostId);
+    const id = uuidv4();
     const newComment = {
+      id,
       host,
       content,
       author,
@@ -18,7 +20,65 @@ class commentAuthService {
 
     return createdNewComment;
   }
+  static async getCommentInfo({ commentId }) {
+    const comment = await Comment.findById({ commentId });
 
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!comment) {
+      const errorMessage =
+        "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
+      return { errorMessage };
+    }
+
+    return comment;
+  }
+  static async getComments({ hostId }) {
+    const comments = await Comment.findAll({ hostId });
+
+    if (!comments) {
+      const errorMessage =
+        "해당 작성자의 댓글 내역이 없습니다. 다시 한번 확인해 주세요.";
+    }
+    return comments;
+  }
+  static async setComment({ commentId, toUpdate }) {
+    // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
+    let comment = await Comment.findById({ commentId });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!comment) {
+      const errorMessage =
+        "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
+      return { errorMessage };
+    }
+
+    // 업데이트 대상에 host가 있다면, 즉 host 값이 null 이 아니라면 업데이트 진행
+    if (toUpdate.content) {
+      const fieldToUpdate = "content";
+      const newValue = toUpdate.content;
+      console.log(newValue);
+      comment = await Comment.update({
+        commentId,
+        fieldToUpdate,
+        newValue,
+      });
+    }
+
+    return comment;
+  }
+
+  static async deleteComment({ commentId }) {
+    const isDataDeleted = await Comment.deleteById({ commentId });
+
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!isDataDeleted) {
+      const errorMessage =
+        "해당 id를 가진 댓글이 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return { status: "ok" };
+  }
   //   static async getUser({ email, password }) {
   //     // 이메일 db에 존재 여부 확인
   //     const user = await User.findByEmail({ email });
