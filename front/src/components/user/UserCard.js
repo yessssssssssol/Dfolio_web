@@ -15,15 +15,13 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
       otherUserId: user.id,
     });
     const updatedUser = res.data;
-    setUser(updatedUser);
 
-    if (isNetwork) {
+    if (!isNetwork) {
+      setUser(updatedUser);
     }
-
-    // const { likeCount } = await api.post();
-    // setLike(likeCount);
   };
-
+  // const { likeCount } = await api.post();
+  // setLike(likeCount);
   return (
     <Card
       className="mb-2 ms-3 mr-5"
