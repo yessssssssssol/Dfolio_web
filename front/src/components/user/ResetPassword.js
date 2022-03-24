@@ -56,7 +56,7 @@ const ResetPassword = () => {
             Register
           </button>
         </form>
-        <div id="rigth-logo">
+        <div id="reset-rigth-logo">
           Dfolio
         </div>
 				<div id="reset-text">
@@ -70,10 +70,10 @@ const ResetPassword = () => {
         </div>
 			  <div className="reset-input-container" onSubmit={handleSubmit}>
           <div>
-            <div id="eamil-container">
+            <div id="reset-eamil-container">
               <Form.Control
                 className="reset-input-wrap input-id"
-                id="input-id"
+                id="reset-input-id"
                 placeholder="Email" 
                 type="email"
                 autoComplete="on"

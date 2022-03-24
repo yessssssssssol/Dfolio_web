@@ -85,15 +85,15 @@ function LoginForm() {
             Register
           </button>
         </form>
-        <div id="rigth-logo">
+        <div id="login-rigth-logo">
           Dfolio
         </div>
 			  <div className="login-input-container" onSubmit={handleSubmit}>
           <div>
-            <div id="eamil-container">
+            <div id="login-eamil-container">
               <Form.Control
                 className="login-input-wrap input-id"
-                id="input-id"
+                id="login-input-id"
                 placeholder="Email" 
                 type="email"
                 autoComplete="on"
@@ -102,16 +102,16 @@ function LoginForm() {
               />
               {!isEmailValid && (
                 <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
-                  이메일 형식이 올바르지 않습니다.
+                  Email is invalid.
                 </p>
                 )}
             </div>
           </div>
           <div>
-            <div id="password-container">
+            <div id="login-password-container">
               <Form.Control
                 className="login-input-wrap input-password"
-                id="input-password"
+                id="login-input-password"
                 placeholder="Password" 
                 type="password"
                 autoComplete="on"
@@ -120,7 +120,7 @@ function LoginForm() {
               />
                 {!isPasswordValid && (
                 <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
-                  비밀번호는 4글자 이상입니다.
+                  Password is too short (minimum is 4 characters)
                 </p>
                 )}
             </div>

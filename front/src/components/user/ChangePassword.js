@@ -59,7 +59,7 @@ const ChangePassword = ( data ) => {
             Register
           </button>
         </form>
-        <div id="rigth-logo">
+        <div id="change-rigth-logo">
           Dfolio
         </div>
 				<div id="change-text">
@@ -70,7 +70,7 @@ const ChangePassword = ( data ) => {
 						<div id="change-password-container">
               <Form.Control
                 className="change-input-wrap input-password"
-                id="input-password"
+                id="change-input-password"
                 placeholder="Password" 
                 type="password"
                 autoComplete="on"
@@ -86,7 +86,7 @@ const ChangePassword = ( data ) => {
 						<div id="change-confirm-password-container">
 							<Form.Control
                 className="change-input-wrap input-password input-confirm-password"
-                id="input-confirm-password"
+                id="change-input-confirm-password"
                 placeholder="Confirm Password" 
                 type="password"
                 autoComplete="on"
