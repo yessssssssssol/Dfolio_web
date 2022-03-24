@@ -1,6 +1,3 @@
-// const sendMail = require("../utils/send-mail");
-// const generateRandomPassword = require('../utils/generate-random-password')
-// const hashPassword = require("../utils/hash-password");
 import { Router } from "express";
 import { passwordService } from "../services/passwordService";
 import { loginRequired } from "../middlewares/loginRequired";
