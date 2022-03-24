@@ -9,6 +9,7 @@ import LoginForm from './components/user/LoginForm';
 import Network from './components/user/Network';
 import RegisterForm from './components/user/RegisterForm';
 import Portfolio from './components/Portfolio';
+import ResetPassword from './components/user/ResetPassword';
 
 
 export const UserStateContext = createContext(null);
@@ -69,6 +70,7 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

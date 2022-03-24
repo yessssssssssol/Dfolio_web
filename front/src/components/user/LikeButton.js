@@ -1,5 +1,5 @@
 import React, { useState, useForm } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, ToggleButton } from "react-bootstrap";
 import * as Api from "../../api";
 
 function LikeButton() {
@@ -16,7 +16,7 @@ function LikeButton() {
   return (
     <Card.Footer className="mt-3 text-center">
       <Button variant="outline-warning" onClick={handleButtonClick}>
-        {isToggleOn ? "LIKE 👍" : "LIKED 👍"}
+        
         {likeCount}
       </Button>
     </Card.Footer>

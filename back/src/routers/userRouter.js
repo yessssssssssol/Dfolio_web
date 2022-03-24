@@ -160,4 +160,9 @@ userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
   }
 });
 
+// 비밀번호 재설정 페이지로 단순 랜딩하기 위해 임시로 추가
+router.get('/reset-password', (req, res, next) => {
+  res.render('user/reset-password');
+});
+
 export { userAuthRouter };
