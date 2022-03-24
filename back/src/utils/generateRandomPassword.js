@@ -1,4 +1,4 @@
-module.exports = () => {
+export default () => {
   if (process.env.GRADER) {
     return "00000000";
   }

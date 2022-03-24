@@ -1,4 +1,4 @@
-import { crypto } from ("crypto");
+import crypto from "crypto";
 
 module.exports = (password) => {
   const hash = crypto.createHash("sha1");
