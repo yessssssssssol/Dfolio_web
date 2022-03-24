@@ -17,11 +17,11 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     }
 
     // 랜덤 패스워드 생성하기
-    const newPassword = generateRandomPassword();
+    const password = generateRandomPassword();
 
     const updatedUser = await passwordService.setUser({
       email,
-      newPassword,
+      password,
       passwordReset: true,
     });
 
@@ -29,7 +29,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     await sendMail(
       email,
       "비밀번호가 변경되었습니다.",
-      `변경된 비밀번호는: ${newPassword} 입니다`
+      `변경된 비밀번호는: ${password} 입니다`
     );
     res.status(200).send(updatedUser);
   } catch (error) {
@@ -47,11 +47,14 @@ passwordRouter.post(
       const userId = req.currentUserId;
       const user = await userAuthService.getUserInfo({ userId });
 
-      await passwordService.correctPassword(currentPassword, user.password);
+      await passwordService.correctPassword({
+        password: currentPassword.toString(),
+        correctPasswordHash: user.password,
+      });
 
       const updatedUser = await passwordService.setUser({
         email: user.email,
-        password: password,
+        password,
         passwordReset: false,
       });
 

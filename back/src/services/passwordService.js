@@ -1,5 +1,5 @@
 import { User } from "../db";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 class passwordService {
   static async getUser({ email }) {
@@ -12,8 +12,8 @@ class passwordService {
 
     return user;
   }
-  static async setUser({ email, newPassword, passwordReset }) {
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+  static async setUser({ email, password, passwordReset }) {
+    const hashedPassword = await bcrypt.hash(password.toString(), 10);
 
     const user = await User.updatePassword({
       email,
@@ -29,9 +29,9 @@ class passwordService {
       correctPasswordHash
     );
     if (!isPasswordCorrect) {
-      const errorMessage =
-        "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
-      return { errorMessage };
+      throw new Error(
+        "임시 비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요."
+      );
     }
     return;
   }
