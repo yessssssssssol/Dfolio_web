@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import LikeButton from "./LikeButton";
+import swal from 'sweetalert';
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -39,21 +40,29 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   const onChange = (e) => {
-    //화면에 프로필 사진 표시
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        // readyState === 2 -> DONE 작업 완료
-        setImage(reader.result);
-        console.log(reader.result);
-      } else {
-        //업로드 취소/실패할 시
-        setImage("http://placekitten.com/200/200");
-        return;
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
+    // 화면에 프로필 사진 표시 && file 객체를 dataUrl을 통해 이미지로 변환
+    let file = e.target.files[0];
+    
+    if(file.size > 45000) {
+      swal ( "Oops" ,  "50KB 미만의 사진을 선택해주세요 😂" ,  "error" )
+    } else {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          const dataURL = reader.result;
+          // readyState === 2 -> DONE 작업 완료
+          setImage(dataURL);
+          // console.log("dataURL", dataURL);
+          return;
+        } else {
+          //업로드 취소/실패할 시
+          setImage("http://placekitten.com/200/200");
+          return;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };  
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
