@@ -56,7 +56,7 @@ const ResetPassword = () => {
             Register
           </button>
         </form>
-        <div id="reset-rigth-logo">
+        <div id="reset-right-logo">
           Dfolio
         </div>
 				<div id="reset-text">

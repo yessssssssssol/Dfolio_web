@@ -59,7 +59,7 @@ const ChangePassword = ( data ) => {
             Register
           </button>
         </form>
-        <div id="change-rigth-logo">
+        <div id="change-right-logo">
           Dfolio
         </div>
 				<div id="change-text">

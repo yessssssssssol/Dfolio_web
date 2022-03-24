@@ -85,7 +85,7 @@ function LoginForm() {
             Register
           </button>
         </form>
-        <div id="login-rigth-logo">
+        <div id="login-right-logo">
           Dfolio
         </div>
 			  <div className="login-input-container" onSubmit={handleSubmit}>
