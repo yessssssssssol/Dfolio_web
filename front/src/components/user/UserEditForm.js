@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import LikeButton from "./LikeButton";
-import swal from 'sweetalert';
+
+import swal from "sweetalert";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -42,9 +42,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const onChange = (e) => {
     // 화면에 프로필 사진 표시 && file 객체를 dataUrl을 통해 이미지로 변환
     let file = e.target.files[0];
-    
-    if(file.size > 45000) {
-      swal ( "Oops" ,  "50KB 미만의 사진을 선택해주세요 😂" ,  "error" )
+
+    if (file.size > 45000) {
+      swal("Oops", "50KB 미만의 사진을 선택해주세요 😂", "error");
     } else {
       const reader = new FileReader();
       reader.onload = () => {
@@ -62,7 +62,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       };
       reader.readAsDataURL(file);
     }
-  };  
+  };
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
       <Card.Body>
@@ -137,7 +137,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
         </Form>
       </Card.Body>
-      <LikeButton />
     </Card>
   );
 }
