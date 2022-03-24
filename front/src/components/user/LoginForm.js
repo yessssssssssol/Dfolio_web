@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+
+import '../../styles/scss/LoginForm.scss';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -60,102 +62,85 @@ function LoginForm() {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="loginEmail">
-              <Form.Label>이메일 주소</Form.Label>
+
+    <div className="login-container">
+      <div className="login-left-container">
+        <div className="login-left-wrap">
+          <h1>Dfolio</h1>
+          <p>Discover the world’s top developers</p>
+        </div>
+      </div>
+
+		  <div className="login-right-container">
+			  <form className="right-top-wrap">
+          <span>Don't have an account?</span>
+          <button className="create-account-btn shadow-light" onClick={()=> navigate("/register")}
+            >
+            Register
+          </button>
+        </form>
+        <div id="rigth-logo">
+          Dfolio
+        </div>
+
+			  <div className="login-input-container" onSubmit={handleSubmit}>
+          <div>
+            <div id="eamil-container">
               <Form.Control
+                className="login-input-wrap input-id"
+                id="input-id"
+                placeholder="Email" 
                 type="email"
                 autoComplete="on"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <Form.Text className="text-success">
+                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
                   이메일 형식이 올바르지 않습니다.
-                </Form.Text>
-              )}
-            </Form.Group>
+                </p>
+                )}
+            </div>
+          </div>
 
-            <Form.Group controlId="loginPassword" className="mt-3">
-              <Form.Label>비밀번호</Form.Label>
+          <div>
+            <div id="password-container">
               <Form.Control
+                className="login-input-wrap input-password"
+                id="input-password"
+                placeholder="Password" 
                 type="password"
                 autoComplete="on"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {!isPasswordValid && (
-                <Form.Text className="text-success">
+                {!isPasswordValid && (
+                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
                   비밀번호는 4글자 이상입니다.
-                </Form.Text>
-              )}
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
-                  Log In
-                </Button>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  Sign Up
-                </Button>
-              </Col>
-            </Form.Group>
-          </Form>
-          <div style={{
-            fontSize: 13,
-            textAlign: "center",
-            marginTop: 40,
-            color: "gray"
-          }} >
-            ---------------------    SNS 간편 로그인    ---------------------
+                </p>
+                )}
             </div>
-          <div className="snsLoginContainer">
-            <div style={{ textAlign: "center" }}>
-              <img 
-                className="naverLogo" 
-                src="img/naver.png" 
-                alt="naver 간편 로그인 로고" 
-                style={{ 
-                  width: "50px", 
-                  margin: "25px 20px" 
-                }}/>
-              <img
-                className="kakaoLogo" 
-                src="img/kakao.png" 
-                alt="kakao 간편 로그인 로고" 
-                style={{ width: "50px",
-                 margin: "25px 20px" 
-                }}/>
-              <img 
-                className="facebookLogo"
-                src="img/facebook.png"
-                alt="facebook 간편 로그인 로고"
-                style={{ 
-                  width: "50px",
-                  margin: "25px 20px"
-                }}/>
-              <img 
-                className="appleLogo" 
-                src="img/apple.png" 
-                alt="apple 간편 로그인 로고"
-                style={{ 
-                  width: "50px", 
-                  margin: "25px 20px" 
-                }}/>
-            </div>
+            <p className="password-find" style={{ fontSize: "12px", color: "gray", textAlign: "right"}}>Forgot password?</p>
           </div>
-        </Col>
-      </Row>
-    </Container>
+
+          <form className="login-btn-wrap">
+            <button className="login-btn" type="submit" disabled={!isFormValid}>Login</button>
+          </form>
+			  </div>
+
+			<div className="sns-login-container">
+				<form className="sns-login-text hr-sect">
+					SNS Login
+				</form>
+				<form className="sns-login-wrap">
+					<img src="../img/naver.png" alt="NAVER Login" />
+					<img src="../img/kakao.png" alt="KAKAO Login" />
+					<img src="../img/facebook.png" alt="FACRBOOK Login" />
+					<img src="../img/apple.png" alt="APPLE Login" />
+				</form>
+			</div>
+      </div>
+	</div>
   );
 }
 
