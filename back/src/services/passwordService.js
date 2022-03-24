@@ -23,6 +23,8 @@ class passwordService {
 
     return user;
   }
+  /*
+  // 이것도 loginRequired 를 사용하지 않아서? 사용 불가?? 
   static async correctPassword({ password, correctPasswordHash }) {
     const isPasswordCorrect = await bcrypt.compare(
       password,
@@ -35,6 +37,7 @@ class passwordService {
     }
     return;
   }
+  */
 }
 
 export { passwordService };

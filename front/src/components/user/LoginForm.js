@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
-import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import * as Api from "../../api";
+
 import '../../styles/scss/LoginForm.scss';
+
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
@@ -37,7 +39,8 @@ function LoginForm() {
 
       const emailData = res.data.email; // navigate 할 때, state: emailData를 사용하여 emailData를 함께 보내주고자 함
       const currentPassword = res.data.password; // passwordRouter 에서 필요하여 일단 보내보려고 함.
-  
+
+
       if(res.data.passwordReset === true) {
         navigate("/change-password", { 
           state: {
@@ -46,7 +49,7 @@ function LoginForm() {
           },
           replace: true
         });
-      } else if ((res.data.passwordReset === false) || (res.data.passwordReset === null)){
+      } else if ((res.data.passwordReset === false) || (res.data.passwordReset === null)) {
         // 유저 정보는 response의 data임.
         const user = res.data;
         // JWT 토큰은 유저 정보의 token임.
@@ -61,6 +64,7 @@ function LoginForm() {
         // 기본 페이지로 이동함.
         navigate("/", { replace: true });
       }
+  
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }

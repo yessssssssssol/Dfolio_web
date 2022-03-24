@@ -39,7 +39,8 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
 
 passwordRouter.post(
   "/change-password",
-  loginRequired,
+  // 로그인을 하지 않은 상태?에서 비밀번호 재설정을 진행하려고 합니다.
+  // loginRequired,
   async (req, res, next) => {
     try {
       const { currentPassword, password } = req.body;

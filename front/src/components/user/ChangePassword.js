@@ -36,9 +36,9 @@ const ChangePassword = ( data ) => {
       swal ( 
         "🔑", 
         "Password successfully updated.", 
-        "sucess" )
-      // 기본 페이지로 이동함.
-      navigate("/", { replace: true });
+        "success" )
+      // 로그인 페이지로 이동함.
+      navigate("/login", { replace: true });
     } catch (err) {
       console.log("Errrr 비밀번호 재설정 실패\n", err);
     }
