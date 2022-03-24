@@ -132,17 +132,6 @@ function LoginForm() {
             <button className="login-btn" type="submit" disabled={!isFormValid}>Login</button>
           </form>
 			  </div>
-			<div className="sns-login-container">
-				<form className="sns-login-text hr-sect">
-					SNS Login
-				</form>
-				<form className="sns-login-wrap">
-					<img src="../img/naver.png" alt="NAVER Login" />
-					<img src="../img/kakao.png" alt="KAKAO Login" />
-					<img src="../img/facebook.png" alt="FACRBOOK Login" />
-					<img src="../img/apple.png" alt="APPLE Login" />
-				</form>
-			</div>
       </div>
 	</div>
   );

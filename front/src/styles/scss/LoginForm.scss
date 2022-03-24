@@ -67,6 +67,7 @@
 	display: none;
 }
 .login-right-container .right-top-wrap{
+	padding-bottom: 450px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -89,7 +90,8 @@
 	border-radius: 3px;
 }
 .login-input-container{
-	padding-top:120px;
+	position: absolute;
+	padding-top: 50px;
 	width:300px;
 	font-family: 'Noto Sans', sans-serif;
 }
@@ -138,42 +140,7 @@
 	width: 300px;
 	height: 50px;
 }
-/* sns 간편 로그인 */
-.sns-login-container {
-	padding-top: 40px;
-	font-family: 'Noto Sans', sans-serif;
-}
-.sns-login-text {
-	margin-top:10px;
-	text-decoration: none;
-	font-size: 11px;
-	color: gray;
-	text-align: center;
-}
-.sns-login-container img {
-	width: 40px;
-	margin: 15px 10px;
-	flex: 1;
-	flex-direction: row;
-}
-.hr-sect {
-	display: flex;
-	flex-basis: 100%;
-	align-items: center;
-	color: rgba(0, 0, 0, 0.25);
-	font-size: 12px;
-	margin: 8px 0px;
-}
-.hr-sect::before,
-.hr-sect::after {
-	content: "";
-	flex-grow: 1;
-	background: rgba(0, 0, 0, 0.25);
-	height: 1px;
-	font-size: 0px;
-	line-height: 0px;
-	margin: 0px 16px;
-}
+
 /* 반응형 */
 @media ( max-width: 880px ) {
 	.login-left-container {
