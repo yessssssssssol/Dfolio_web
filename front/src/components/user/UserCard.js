@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
-import LikeButton from "./LikeButton";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
@@ -62,8 +61,6 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           </Card.Link>
         )}
       </Card.Body>
-      
-      <LikeButton />
     </Card>
   );
 }
