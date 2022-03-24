@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import '../../styles/scss/ResetPassword.scss';
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
@@ -60,14 +60,14 @@ const ResetPassword = () => {
           Dfolio
         </div>
 				<div id="reset-text">
-							<h4>Forgot Password?</h4>
-							<p>
-							Enter the email address you used when you joined and we’ll send you instructions to reset your password.
-								<br />
-								<br />
-								For security reasons, we do NOT store your password. So rest assured that we will never send your password via email.
-							</p>
-						</div>
+          <h5>Forgot Password?</h5>
+          <p>
+          Enter the email address you used when you joined and we’ll send you instructions to reset your password.
+            <br />
+            <br />
+            For security reasons, we do NOT store your password. So rest assured that we will never send your password via email.
+          </p>
+        </div>
 			  <div className="reset-input-container" onSubmit={handleSubmit}>
           <div>
             <div id="eamil-container">

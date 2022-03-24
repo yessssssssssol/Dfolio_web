@@ -35,9 +35,18 @@ function LoginForm() {
         password,
       });
 
+      const emailData = res.data.email; // navigate 할 때, state: emailData를 사용하여 emailData를 함께 보내주고자 함
+      const currentPassword = res.data.password; // passwordRouter 에서 필요하여 일단 보내보려고 함.
+  
       if(res.data.passwordReset === true) {
-        navigate("/change-password", { replace: true });
-      } else if ((res.data.passwordReset === false) && (res.data.passwordReset === null)){
+        navigate("/change-password", { 
+          state: {
+            email: emailData,
+            currentPassword: currentPassword
+          },
+          replace: true
+        });
+      } else if ((res.data.passwordReset === false) || (res.data.passwordReset === null)){
         // 유저 정보는 response의 data임.
         const user = res.data;
         // JWT 토큰은 유저 정보의 token임.
