@@ -27,6 +27,8 @@ const ResetPassword = () => {
     e.preventDefault();
 
     try {
+      console.log(setEmail);
+      console.log(email);
       // "reset-password" 엔드포인트로 post요청함.
       await Api.post("reset-password", {email});
 
