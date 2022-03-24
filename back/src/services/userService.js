@@ -157,29 +157,33 @@ class userAuthService {
     const fieldToUpdate = "likeCount";
 
     const isLiked = await Like.findByUser({ currentUser, otherUser });
-    let updatedLike = {};
+
+    let updatedUser = {};
 
     if (isLiked) {
       const newValue = otherUser.likeCount - 1;
-      const user = await User.update({
+      updatedUser = await User.update({
         userId: otherUser.id,
         fieldToUpdate,
         newValue,
       });
+
       await Like.deleteById({ isLiked });
-      updatedLike = { data: false };
+
+      //updatedLike = { data: false, likeCount: newValue };
     } else {
       const newValue = otherUser.likeCount + 1;
-      const user = await User.update({
+      updatedUser = await User.update({
         userId: otherUser.id,
         fieldToUpdate,
         newValue,
       });
       await Like.create({ currentUser, otherUser });
-      updatedLike = { data: true };
+
+      //updatedLike = { data: true, likeCount: newValue };
     }
 
-    return updatedLike;
+    return updatedUser;
   }
 }
 

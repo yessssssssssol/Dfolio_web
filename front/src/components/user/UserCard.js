@@ -1,16 +1,35 @@
 import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useContext } from "react";
 import { Card, Row, Button, Col } from "react-bootstrap";
-import LikeButton from "./LikeButton";
+import { UserStateContext } from "../../App";
+import * as Api from "../../api";
 
-function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
+function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
   const navigate = useNavigate();
+  const userState = useContext(UserStateContext);
 
+  const handleButtonClick = async (e) => {
+    e.stopPropagation();
+
+    const res = await Api.put(`like/${userState.user.id}`, {
+      otherUserId: user.id,
+    });
+    const updatedUser = res.data;
+
+    if (!isNetwork) {
+      setUser(updatedUser);
+    }
+  };
+  // const { likeCount } = await api.post();
+  // setLike(likeCount);
   return (
     <Card
       className="mb-2 ms-3 mr-5"
-      border="light"
       style={{ width: "18rem" }}
-      onClick={() => navigate(`/users/${user.id}`)}
+      // className="mb-2 ms-3 mr-5"
+      // border="light"
+      // style={{ width: "18rem" }}
+      // onClick={() => navigate(`/users/${user.id}`)}
     >
       <Card.Body>
         <Row className="justify-content-md-center">
@@ -62,7 +81,15 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           </Card.Link>
         )}
       </Card.Body>
-      <LikeButton />
+      <Card.Footer className="mt-3 text-center">
+        <Button
+          variant="outline-warning"
+          type="submit"
+          onClick={handleButtonClick}
+        >
+          LIKE 👍 {user?.likeCount}
+        </Button>
+      </Card.Footer>
     </Card>
   );
 }
