@@ -3,7 +3,6 @@ import { passwordService } from "../services/passwordService";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
 import generateRandomPassword from "../utils/generateRandomPassword";
-import hashPassword from "../utils/hashPassword";
 import sendMail from "../utils/sendMail";
 
 const passwordRouter = Router();
@@ -18,12 +17,11 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     }
 
     // 랜덤 패스워드 생성하기
-    const password = generateRandomPassword();
+    const newPassword = generateRandomPassword();
 
     const updatedUser = await passwordService.setUser({
       email,
-      // hashPassword 로 업데이트 하기
-      newPassword: hashPassword(password),
+      newPassword,
       passwordReset: true,
     });
 
@@ -31,7 +29,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     await sendMail(
       email,
       "비밀번호가 변경되었습니다.",
-      `변경된 비밀번호는: ${password} 입니다`
+      `변경된 비밀번호는: ${newPassword} 입니다`
     );
     res.status(200).send(updatedUser);
   } catch (error) {
@@ -49,14 +47,11 @@ passwordRouter.post(
       const userId = req.currentUserId;
       const user = await userAuthService.getUserInfo({ userId });
 
-      if (user.password !== hashPassword(currentPassword)) {
-        throw new Error("임시 비밀번호가 일치하지 않습니다.");
-      }
+      await passwordService.correctPassword(currentPassword, user.password);
 
       const updatedUser = await passwordService.setUser({
         email: user.email,
-        // hashPassword 로 업데이트 하기
-        password: hashPassword(password),
+        password: password,
         passwordReset: false,
       });
 
