@@ -4,7 +4,7 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 
-function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
+function UserCard({ user, users, setIsEditing, isEditable, isNetwork, setUser, setUsers }) {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
 
@@ -14,10 +14,21 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
     const res = await Api.put(`like/${userState.user.id}`, {
       otherUserId: user.id,
     });
-    const updatedUser = res.data;
-    setUser(updatedUser);
+    const updatedUser = res.data;    
 
     if (isNetwork) {
+      const newUsers = users.map((user) => {
+        if (user.id === updatedUser.id) {
+          return {
+            ...user,
+            likeCount: updatedUser.likeCount
+          }
+        }
+        return user;
+      })
+      setUsers(newUsers);
+    } else {
+      setUser(user);
     }
 
     // const { likeCount } = await api.post();
@@ -83,6 +94,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
           </Card.Link>
         )}
       </Card.Body>
+
       <Card.Footer className="mt-3 text-center">
         <Button
           variant="outline-warning"
