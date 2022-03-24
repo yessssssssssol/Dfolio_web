@@ -30,11 +30,10 @@ function UserCard({ user, users, setIsEditing, isEditable, isNetwork, setUser, s
     } else {
       setUser(user);
     }
-
-    // const { likeCount } = await api.post();
-    // setLike(likeCount);
+    
   };
-
+  // const { likeCount } = await api.post();
+  // setLike(likeCount);
   return (
     <Card
       className="mb-2 ms-3 mr-5"
