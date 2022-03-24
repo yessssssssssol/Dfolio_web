@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import '../../styles/scss/ResetPassword.scss';
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import swal from 'sweetalert';
 
 import * as Api from "../../api";
 
@@ -27,11 +28,12 @@ const ResetPassword = () => {
     e.preventDefault();
 
     try {
-      console.log(setEmail);
-      console.log(email);
       // "reset-password" 엔드포인트로 post요청함.
       await Api.post("reset-password", {email});
-
+      swal ( 
+        "💌", 
+        "If this email address was used to create an account, instructions to reset your password will be sent to you. Please check your email.", 
+        "info" )
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
