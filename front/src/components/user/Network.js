@@ -9,9 +9,9 @@ function Network() {
   const userState = useContext(UserStateContext);
   // useState 훅을 통해 users 상태를 생성함.
   const [users, setUsers] = useState([]);
-  const [sortBy, setSortBy] = useState("updateAt");
+  const [sortBy, setSortBy] = useState("updatedAt");
   const sort = [
-    { name: "Recently", value: "updateAt" },
+    { name: "Recently", value: "updatedAt" },
     { name: "Like", value: "likeCount" },
     { name: "View", value: "viweCount" },
   ];
@@ -22,10 +22,12 @@ function Network() {
       return;
     }
     // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
+
     Api.get("userlist", sortBy).then((res) => setUsers(res.data));
   }, [userState]);
-  const handelClickSortBtn = () => {
-    Api.get("userlist", sortBy).then((res) => setUsers(res.data));
+  const handelClickSortBtn = (e, value) => {
+    setSortBy(value);
+    Api.get("userlist", value).then((res) => setUsers(res.data));
   };
   //   Api.get("userlist").then((res) => setUsers(res.data));
   // }, [userState, navigate]);
@@ -40,10 +42,8 @@ function Network() {
             type="radio"
             variant="outline-secondary"
             name="radio"
-            value={radio.value}
             checked={sortBy === radio.value}
-            onChange={(e) => setSortBy(e.currentTarget.value)}
-            onClick={handelClickSortBtn}
+            onClick={(e) => handelClickSortBtn(e, radio.value)}
           >
             {radio.name}
           </ToggleButton>
@@ -51,7 +51,13 @@ function Network() {
       </ButtonGroup>
       <Row xs="auto" className="jusify-content-center">
         {users.map((user) => (
-          <UserCard key={user.id} user={user} isNetwork />
+          <UserCard
+            key={user.id}
+            user={user}
+            isNetwork
+            setUsers={setUsers}
+            users={users}
+          />
         ))}
       </Row>
     </Container>

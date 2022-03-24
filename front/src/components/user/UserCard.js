@@ -4,7 +4,15 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 
-function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
+function UserCard({
+  user,
+  users,
+  setIsEditing,
+  isEditable,
+  isNetwork,
+  setUser,
+  setUsers,
+}) {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
 
@@ -16,7 +24,18 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork, setUser }) {
     });
     const updatedUser = res.data;
 
-    if (!isNetwork) {
+    if (isNetwork) {
+      const newUsers = users.map((user) => {
+        if (user.id === updatedUser.id) {
+          return {
+            ...user,
+            likeCount: updatedUser.likeCount,
+          };
+        }
+        return user;
+      });
+      setUsers(newUsers);
+    } else {
       setUser(updatedUser);
     }
   };
