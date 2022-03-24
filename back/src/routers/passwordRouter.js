@@ -1,12 +1,10 @@
-// const sendMail = require("../utils/send-mail");
-// const generateRandomPassword = require('../utils/generate-random-password')
-// const hashPassword = require("../utils/hash-password");
-import { sendMail } from "../utils/sendMail";
-import { generateRandomPassword } from "../utils/generateRandomPassword";
-import { hashPassword } from "../utils/hashPassword";
+import { Router } from "express";
 import { passwordService } from "../services/passwordService";
 import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from "../services/userService";
+import generateRandomPassword from "../utils/generateRandomPassword";
+import hashPassword from "../utils/hashPassword";
+import sendMail from "../utils/sendMail";
 
 const passwordRouter = Router();
 
@@ -14,6 +12,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await passwordService.getUser({ email });
+    console.log(user);
     if (!user) {
       throw new Error("해당 메일로 가입된 사용자가 없습니다.");
     }
@@ -29,7 +28,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
     });
 
     // 패스워드 발송하기
-    const result = await sendMail(
+    await sendMail(
       email,
       "비밀번호가 변경되었습니다.",
       `변경된 비밀번호는: ${password} 입니다`
@@ -61,9 +60,11 @@ passwordRouter.post(
         passwordReset: false,
       });
 
-      res.status(200).json(updatedUser);
+      res.status(200).send(updatedUser);
     } catch (error) {
       next(error);
     }
   }
 );
+
+export { passwordRouter };
