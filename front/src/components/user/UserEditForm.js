@@ -113,6 +113,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="정보, 인사말"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              maxLength="40"
             />
           </Form.Group>
 
