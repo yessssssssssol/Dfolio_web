@@ -4,10 +4,14 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import { UserStateContext } from "../../App";
+import confirmModal from "./ConfirmWithdrawal";
 
 function Withdrawal() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
+
+  const userState = useContext(UserStateContext);
 
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -33,16 +37,23 @@ function Withdrawal() {
     e.preventDefault();
 
     try {
+      const check = confirmModal();
       // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
-      await Api.delete(`user/register/`, {
-        email,
-        password,
-      });
-
-      // 로그인 페이지로 이동함.//////////////////////////////////
-      navigate("/login");
+      if (check === 1) {
+        await Api.post(`withdrawal/${userState.user.id}`, {
+          email,
+          password,
+        });
+        window.alert("그동안 Dfolio를 이용해 주셔서 감사합니다.");
+        dispatch({ type: "LOGOUT" });
+        navigate("/login");
+        sessionStorage.removeItem("userToken");
+      } else if (check === 0) {
+        window.alert("회원탈퇴를 취소하셨습니다.");
+        navigate("/");
+      }
     } catch (err) {
-      console.log("회원탈퇴에 실패하였습니다.", err);
+      window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
     }
   };
 
@@ -83,16 +94,16 @@ function Withdrawal() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit">
-                  탈퇴하기
+                <Button variant="primary" onClick={() => navigate("/")}>
+                  뒤로가기
                 </Button>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
-                  취소해줘ㅠ
+                <Button variant="light" type="submit">
+                  탈퇴하기
                 </Button>
               </Col>
             </Form.Group>

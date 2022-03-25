@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
-import Withdrawal from "./user/Withdrawal";
 
 function Header() {
   const navigate = useNavigate();
@@ -40,14 +39,13 @@ function Header() {
       {isLogin && (
         <Nav.Item>
           <Nav.Link onClick={logout}>Logout</Nav.Link>
-          <Nav.Link onClick={() => navigate("/Withdrawal")}>탈퇴하기</Nav.Link>
         </Nav.Item>
       )}
-      {/* {isLogin && (
+      {isLogin && (
         <Nav.Item>
           <Nav.Link onClick={() => navigate("/Withdrawal")}>탈퇴하기</Nav.Link>
         </Nav.Item>
-      )} */}
+      )}
     </Nav>
   );
 }
