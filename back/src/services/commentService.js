@@ -13,7 +13,7 @@ class commentAuthService {
       content,
       author,
     };
-
+    console.log(newComment);
     // db에 저장
     const createdNewComment = await Comment.create({ newComment });
     createdNewComment.errorMessage = null; // 문제 없이 db 저장 완료되었으므로 에러가 없음.
@@ -25,8 +25,7 @@ class commentAuthService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
-      const errorMessage =
-        "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
+      const errorMessage = "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
       return { errorMessage };
     }
 
@@ -47,8 +46,7 @@ class commentAuthService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
-      const errorMessage =
-        "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
+      const errorMessage = "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
       return { errorMessage };
     }
 
