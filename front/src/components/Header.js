@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
+// import Nav from 'react-bootstrap/Nav';
 import { UserStateContext, DispatchContext } from '../App';
+
+import '../styles/scss/Header.scss';
 
 function Header() {
   const navigate = useNavigate();
@@ -24,24 +26,26 @@ function Header() {
   };
 
   return (
-    <Nav activeKey={location.pathname} id="Header-nav">
-      <Nav.Item className="me-auto mb-5">
-        <Nav.Link disabled>
-          🤡 Hello, it's a page for CRAZY DEVELOPERS 🤡
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate('/Portfolio')}>My page</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate('/network')}>Network</Nav.Link>
-      </Nav.Item>
-      {isLogin && (
-        <Nav.Item>
-          <Nav.Link onClick={logout}>Logout</Nav.Link>
-        </Nav.Item>
-      )}
-    </Nav>
+    <header activeKey={location.pathname}>
+      <h1 id="header-logo">Dfolio</h1>
+      <nav id="header-menu-container">
+        <div>
+          <span onClick={()=> navigate("/network")}>NetWork</span>
+        </div>
+        <div>
+          <span onClick={()=> navigate("/Portfolio")}>MyPortfolio</span>
+        </div>
+        <div class="header-dropdown-container" id="my-page-img">
+          <img id="header-dropdown-btn" src="img/profile.png" />
+          { isLogin && (
+          <div class="header-dropdown-content">
+            <div id="logout-btn" onClick={logout}>Logout</div>
+            <div id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Delete</div>
+          </div>
+          )}
+        </div>
+      </nav>
+    </header>
   );
 }
 
