@@ -25,6 +25,7 @@ function Comments({ portfolioOwnerId }) {
         />
         {comments.map((comment) => (
           <CommentCard
+            portfolioOwnerId={portfolioOwnerId}
             key={comment.id}
             comment={comment}
             setComments={setComments}

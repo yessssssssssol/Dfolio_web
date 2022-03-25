@@ -17,24 +17,15 @@ function CommentCard({ portfolioOwnerId, comment, setComments, comments }) {
 
     // "commentlist/:userId" 엔드포인트로 GET 요청함.
     const res = await Api.get("commentlist", userId);
-    // comments를 response의 data로 세팅함.
-    const newComments = comments.map((comment) => {
-      if (comment.id === res.data.id) {
-        return {
-          ...comment,
-          content: res.data.content,
-        };
-      }
-      return comment;
-    });
 
-    setComments(newComments);
+    setComments(res.data);
   };
 
   return (
     <Card.Body>
       <Row className=" mr-3 align-items-center">
         <Col>{comment.content}</Col>
+        <Col>{comment.author}</Col>
         <Col>
           <Button
             variant="light"
