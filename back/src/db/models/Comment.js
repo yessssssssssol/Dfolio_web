@@ -10,7 +10,7 @@ class Comment {
     return comment;
   }
   static async findAll({ hostId }) {
-    const comments = await CommentModel.find({ userId: hostId });
+    const comments = await CommentModel.find({ host: hostId });
     return comments;
   }
   static async update({ commentId, fieldToUpdate, newValue }) {

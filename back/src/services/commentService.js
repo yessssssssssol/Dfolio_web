@@ -7,11 +7,13 @@ class commentAuthService {
     const host = await User.findById({ userId: hostId });
     const author = await User.findById({ userId: authorId });
     const id = uuidv4();
+    const name = author.name;
     const newComment = {
       id,
       host,
       content,
       author,
+      name,
     };
     console.log(newComment);
     // db에 저장

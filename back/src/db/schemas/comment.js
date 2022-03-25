@@ -19,6 +19,10 @@ const CommentSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserModel",
     },
+    name: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
