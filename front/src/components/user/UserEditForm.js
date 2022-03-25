@@ -81,7 +81,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             type="file"
             name="imageFile"
             accept="image/*"
-            // style={{ display: "none" }}
             ref={fileInput}
             onChange={onChange}
           />
@@ -91,7 +90,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"
-              placeholder="이름"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -100,7 +99,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="userEditEmail" className="mb-3">
             <Form.Control
               type="email"
-              placeholder="이메일"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               readOnly
@@ -110,7 +109,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="userEditDescription">
             <Form.Control
               type="text"
-              placeholder="정보, 인사말"
+              placeholder="One-line introduction(maximum is 40 characters)"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               maxLength="40"
@@ -120,7 +119,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="userEditProfilelink">
             <Form.Control
               type="text"
-              placeholder="깃 주소"
+              placeholder="Git link"
               value={profilelink}
               onChange={(e) => setProfilelink(e.target.value)}
             />
@@ -129,10 +128,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
               <Button variant="primary" type="submit" className="me-3">
-                확인
+                Save
               </Button>
               <Button variant="secondary" onClick={() => setIsEditing(false)}>
-                취소
+                Back
               </Button>
             </Col>
           </Form.Group>

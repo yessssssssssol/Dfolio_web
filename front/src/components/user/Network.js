@@ -32,6 +32,7 @@ function Network() {
   // }, [userState, navigate]);
 
   return (
+    <body style={{ padding: "2rem", background: "#F3F3F4" }}>
     <Container fluid style={{ background: "#F3F3F4" }}>
       <ButtonGroup style={{ marginTop: "100px", marginBottom: "20px" }}>
         {sort.map((radio, idx) => (
@@ -60,6 +61,7 @@ function Network() {
         ))}
       </Row>
     </Container>
+    </body>
   );
 }
 export default Network;
