@@ -36,12 +36,12 @@ function Header() {
         <div>
           <span onClick={()=> navigate("/Portfolio")}>MyPortfolio</span>
         </div>
-        <div class="header-dropdown-container" id="my-page-img">
+        <div class="header-dropdown-container" id="my-page-img-btn">
           <img id="header-dropdown-btn" src={profile} alt='user icon'/>
           { isLogin && (
           <div class="header-dropdown-content">
-            <div id="logout-btn" onClick={logout}>Logout</div>
-            <div id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Withdrawal</div>
+            <a id="logout-btn" onClick={logout}>Logout</a>
+            <a id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Withdrawal</a>
           </div>
           )}
         </div>

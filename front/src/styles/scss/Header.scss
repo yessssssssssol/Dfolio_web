@@ -15,6 +15,10 @@ body {
 	min-width: 500px; /* 최소 넓이 500px 고정 */
 }
 
+#root {
+	background-color: #F3F3F4;
+}
+
 header {  
 	position: fixed;
 	top: 0;
@@ -62,7 +66,7 @@ header {
 }
 
 /* 드롭다운 메뉴 */
-#my-page-img img {
+#my-page-img-btn img {
 	width: 50px;
 	height: 50px;
 }
@@ -77,29 +81,36 @@ header {
 }
 
 .header-dropdown-content{
-  display : none;
+	margin: 0 auto;
+	padding: 0!important;
   position : absolute;
+	display: none;
 	left: -70px;
-  z-index : 1; /*다른 요소들보다 앞에 배치*/
   width : 150px;
-	background-color: rgba(230, 230, 230, 0.562);
+	height: 93px;
+	background-color: rgba(202, 202, 202, 0.562);
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
-	text-align: right;
+	z-index : 99; /*다른 요소들보다 앞에 배치*/
+	overflow: hidden; /* 넘치는 부분 숨김처리 */
 }
 
-.header-dropdown-content div{
+.header-dropdown-content a{
+	padding: 12px 16px;
+	text-align: center;
   display : block;
   text-decoration : none;
-  color : #707070;
+  color : hsl(0, 0%, 44%);
   font-size: 15px;
-  padding : 0 20px;
 }
 
 .header-dropdown-content #logout-btn:hover {
- color: #455494;
+	background-color: #F3F3F4;
+ 	color: #455494;
 }
 .header-dropdown-content #delete-btn:hover {
 	color: #ca5770;
+	background-color: #F3F3F4;
  }
 
 .header-dropdown-container:hover .header-dropdown-content {

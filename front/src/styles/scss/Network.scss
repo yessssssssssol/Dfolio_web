@@ -1,0 +1,24 @@
+body, html {
+	margin: 0!important;
+	padding: 0!important;
+	background-color: #F3F3F4;
+}
+
+#root {
+	background-color: #F3F3F4;
+	padding-top: 100px;
+	padding-bottom: 50px;
+}
+
+.userlist-container{
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	justify-content: space-evenly;
+}
+
+#network-toggle-btn-group {
+	margin: 0px 50px;
+}

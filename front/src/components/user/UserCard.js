@@ -44,7 +44,7 @@ function UserCard({
   // const { likeCount } = await api.post();
   // setLike(likeCount);
   return (
-    <div className="container">
+    <div className="card-container" id="card-container">
         <div className="card-box">
         <div className="card-isEditable-hover-container">
           <div className="card-img-container" onClick={()=> navigate(`/users/${user.id}`)}>

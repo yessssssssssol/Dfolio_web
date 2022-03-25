@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Container, Row, ButtonGroup, ToggleButton } from "react-bootstrap";
 import * as Api from "../../api";
 import UserCard from "./UserCard";
+
 import { UserStateContext } from "../../App";
+import '../../styles/scss/Network.scss';
+
 function Network() {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
@@ -20,21 +23,21 @@ function Network() {
       navigate("/login");
       return;
     }
-    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
 
+    // "userlist" 엔드포인트로 GET 요청을 하고, users를 response의 data로 세팅함.
     Api.get("userlist", sortBy).then((res) => setUsers(res.data));
+
   }, [userState]);
+
   const handelClickSortBtn = (e, value) => {
     setSortBy(value);
     Api.get("userlist", value).then((res) => setUsers(res.data));
   };
-  //   Api.get("userlist").then((res) => setUsers(res.data));
-  // }, [userState, navigate]);
+
 
   return (
-    <body style={{ padding: "2rem", background: "#F3F3F4" }}>
-    <Container fluid style={{ background: "#F3F3F4" }}>
-      <ButtonGroup style={{ marginTop: "100px", marginBottom: "20px" }}>
+    <>
+      <ButtonGroup id="network-toggle-btn-group">
         {sort.map((radio, idx) => (
           <ToggleButton
             key={idx}
@@ -49,7 +52,9 @@ function Network() {
           </ToggleButton>
         ))}
       </ButtonGroup>
-      <Row xs="auto" className="jusify-content-center">
+      <div 
+        className="userlist-container"
+      >
         {users.map((user) => (
           <UserCard
             key={user.id}
@@ -59,9 +64,8 @@ function Network() {
             users={users}
           />
         ))}
-      </Row>
-    </Container>
-    </body>
+      </div>
+    </>
   );
 }
 export default Network;

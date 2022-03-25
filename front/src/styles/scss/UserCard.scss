@@ -1,6 +1,6 @@
-.container {
+
+.card-container {
 	text-align: center;
-	margin-top: 100px;
 	font-family: 'Noto Sans', sans-serif;
 }
 
@@ -10,11 +10,10 @@
 	border-radius: 16px;
 	width: 260px;
 	height: 340px;
-	background-color: #fff;
 	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.26);
 	overflow: hidden; /* 넘치는 부분 숨김처리 */
 	display: inline-block; /* 카드 수평 정렬*/
-	margin: 10px 0;
+	margin: 20px 0;
 	transition: 0.5s; /* 효과가 부드럽게 */
 }
 .card-box:hover {
@@ -136,23 +135,23 @@
 }
 .card-link-box:hover {
 	transform: scale(1.02);
-	box-shadow: 0 2px 5px #527bff41;
+	box-shadow: 0 2px 5px #5C6EA7;
 }
 
 #card-link-img {
 	position: absolute;
 	left: 10px;
-	bottom: 4px;
-	width: 35px;
-	height: 35px;
+	bottom: 7px;
+	width: 30px;
+	height: 30px;
 }
 
 .card-link-box p {
 	position: absolute;
-	left: 52px;
-	bottom: -4px;
+	right: 10px;
+	bottom: -5px;
 	color: #707070;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -168,24 +167,24 @@
 }
 .card-like-box:hover {
 	transform: scale(1.02);
-	box-shadow: 0 2px 5px #b9790159;
+	box-shadow: 0 2px 5px #ecca08;
 }
 
 .card-like-box #like-text {
 	position: absolute;
 	left: 15px;
-	bottom: -4px;
+	bottom: -5px;
 	color: #707070;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
 .card-like-box #like-num {
 	position: absolute;
-	right: 15px;
-	bottom: -4px;
+	right: 12px;
+	bottom: -5px;
 	color: #707070;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	text-align: right;
 }
