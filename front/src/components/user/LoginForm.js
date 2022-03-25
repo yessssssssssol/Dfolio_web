@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { DispatchContext } from "../../App";
-import * as Api from "../../api";
 
+import * as Api from "../../api";
 import '../../styles/scss/LoginForm.scss';
 
 function LoginForm() {
@@ -101,7 +101,7 @@ function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
+                <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
                   Email is invalid.
                 </p>
                 )}
@@ -119,7 +119,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
               />
                 {!isPasswordValid && (
-                <p className="text-success" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+                <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
                   Password is too short (minimum is 4 characters)
                 </p>
                 )}
