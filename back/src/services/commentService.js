@@ -7,15 +7,12 @@ class commentAuthService {
     const host = await User.findById({ userId: hostId });
     const author = await User.findById({ userId: authorId });
     const id = uuidv4();
-    const name = author.name;
     const newComment = {
       id,
       host,
       content,
-      author,
-      name,
+      author: author.name,
     };
-    console.log(newComment);
     // db에 저장
     const createdNewComment = await Comment.create({ newComment });
     createdNewComment.errorMessage = null; // 문제 없이 db 저장 완료되었으므로 에러가 없음.
@@ -24,18 +21,18 @@ class commentAuthService {
   }
   static async getCommentInfo({ commentId }) {
     const comment = await Comment.findById({ commentId });
+
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
       const errorMessage = "올바른 id를 입력해 주세요. 댓글 내역이 없습니다.";
       return { errorMessage };
     }
 
-    return comment;
+    return newComment;
   }
   static async getComments({ hostId }) {
     const host = await User.findById({ userId: hostId });
-    const comments = await Comment.findAll({ hostId:host._id });
-
+    const comments = await Comment.findAll({ hostId: host._id });
     if (!comments) {
       const errorMessage =
         "해당 작성자의 댓글 내역이 없습니다. 다시 한번 확인해 주세요.";

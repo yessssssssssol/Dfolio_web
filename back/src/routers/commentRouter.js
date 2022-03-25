@@ -21,7 +21,7 @@ commentAuthRouter.post(
       const content = req.body.content;
       const authorId = req.currentUserId;
 
-      // 데이터를 유저 db에 추가하기
+      // 데이터를 댓글 db에 추가하기
       const newComment = await commentAuthService.addComment({
         hostId,
         content,
@@ -60,6 +60,7 @@ commentAuthRouter.get("/comments/:id", async (req, res, next) => {
 commentAuthRouter.get("/commentlist/:host", async (req, res, next) => {
   try {
     const hostId = req.params.host;
+
     // 사용자의 전체 댓글 목록을 가져옴
     const comments = await commentAuthService.getComments({
       hostId,
