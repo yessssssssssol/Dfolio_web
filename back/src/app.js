@@ -6,6 +6,7 @@ import { educationAuthRouter } from "./routers/educationRouter";
 import { projectAuthRouter } from "./routers/projectRouter";
 import { awardAuthRouter } from "./routers/awardRouter";
 import { passwordRouter } from "./routers/passwordRouter";
+import { commentAuthRouter } from "./routers/commentRouter";
 import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { application } from "express";
 
@@ -32,6 +33,7 @@ app.use(certificateAuthRouter);
 app.use(educationAuthRouter);
 app.use(projectAuthRouter);
 app.use(awardAuthRouter);
+app.use(commentAuthRouter);
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
