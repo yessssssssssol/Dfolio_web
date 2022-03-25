@@ -22,7 +22,6 @@ class commentAuthService {
   }
   static async getCommentInfo({ commentId }) {
     const comment = await Comment.findById({ commentId });
-
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
       const errorMessage =
@@ -33,11 +32,13 @@ class commentAuthService {
     return comment;
   }
   static async getComments({ hostId }) {
-    const comments = await Comment.findAll({ hostId });
+    const host = await User.findById({ userId: hostId });
+    const comments = await Comment.findAll({ hostId:host._id });
 
     if (!comments) {
       const errorMessage =
         "해당 작성자의 댓글 내역이 없습니다. 다시 한번 확인해 주세요.";
+      return { errorMessage };
     }
     return comments;
   }
