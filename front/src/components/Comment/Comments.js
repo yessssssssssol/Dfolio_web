@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, Form, InputGroup } from "react-bootstrap";
 import * as Api from "../../api";
 import Comment from "./Comment";
-import CommentAddForm from "./CommentAddForm";
 
-function Comments({ portfolioOwnerId }) {
-  //useState로 Comments 상태를 생성함.
+function Comments({ portfolioOwnerId, isEditable }) {
+  //useState로 awards 상태를 생성함.
   const [comments, setComments] = useState([]);
-  //useState로 isAdding 상태를 생성함.
-  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     // "commentlist/유저id"로 GET 요청하고, response의 data로 comments를 세팅함.
@@ -18,26 +15,32 @@ function Comments({ portfolioOwnerId }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>Comment</Card.Title>
+    <Form>
+      <InputGroup className="mb-3">
         {comments.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}
+            comments={comments}
             setComments={setComments}
-            portfolioOwnerId={portfolioOwnerId}
           />
         ))}
+        {/* {isEditable && (
+          <Row className="mt-3 text-center mb-4">
+            <Col sm={{ span: 20 }}>
+              <Button onClick={() => setIsAdding(true)}>+</Button>
+            </Col>
+          </Row>
+        )} */}
         {/* {isAdding && (
-          <CommentAddForm
+          <CoAddForm
             portfolioOwnerId={portfolioOwnerId}
-            setComments={setComments}
+            setAwards={setAwards}
             setIsAdding={setIsAdding}
           />
         )} */}
-      </Card.Body>
-    </Card>
+      </InputGroup>
+    </Form>
   );
 }
 
