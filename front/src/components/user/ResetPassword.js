@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "../../styles/scss/ResetPassword.scss";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import swal from "sweetalert";
 
 import * as Api from "../../api";
+import "../../styles/scss/ResetPassword.scss";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -86,10 +86,10 @@ const ResetPassword = () => {
               />
               {!isEmailValid && (
                 <p
-                  className="text-success"
+                  className="text-primary"
                   style={{ fontSize: "12px", margin: "5px 0 0 0" }}
                 >
-                  이메일 형식이 올바르지 않습니다.
+                  Email is invalid.
                 </p>
               )}
             </div>
@@ -105,6 +105,12 @@ const ResetPassword = () => {
             </button>
           </form>
         </div>
+        <p 
+					id="reset-login-page-lending"
+					onClick={()=> navigate("/login")}
+				>
+					Already a member?
+				</p>
       </div>
     </div>
   );
