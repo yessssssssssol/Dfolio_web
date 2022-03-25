@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import '../../styles/scss/ChangePassword.scss';
 import { useLocation, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import swal from 'sweetalert';
 
 import * as Api from "../../api";
+import '../../styles/scss/ChangePassword.scss';
 
 const ChangePassword = ( data ) => {
 	const navigate = useNavigate();
@@ -78,8 +78,8 @@ const ChangePassword = ( data ) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
 								{!isPasswordValid && (
-									<p className="text-success" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
-										Minimum 4 characters
+									<p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+										Password is too short (minimum is 4 characters)
 									</p>
 								)}
             </div>
@@ -93,18 +93,18 @@ const ChangePassword = ( data ) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-								{!isPasswordValid && (
-									<p className="text-success" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
-										Minimum 4 characters
-									</p>
-								)}
 						</div>
           </div>
-
           <form className="change-btn-wrap">
             <button className="change-btn" type="submit" disabled={!isPasswordValid}>Send</button>
           </form>
 			  </div>
+        <p 
+					id="change-login-page-lending"
+					onClick={()=> navigate("/login")}
+				>
+					Forgot password?
+				</p>
       </div>
 	</div>
   );
