@@ -161,4 +161,27 @@ userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
   }
 });
 
+userAuthRouter.post("/withdrawal/:id", async (req, res, next) => {
+  try {
+    // req (request) 에서 id 가져오기
+    const userId = req.params.id;
+    const email = req.body.email;
+    const password = req.body.password;
+    // 위 id를 이용하여 db에서 데이터 삭제하기
+    const result = await userAuthService.deleteUser({
+      userId,
+      email,
+      password,
+    });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { userAuthRouter };
