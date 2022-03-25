@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import * as Api from "../../api";
-import Comment from "./Comment";
+import CommentCard from "./CommentCard";
+import CommentAddForm from "./CommentAddForm";
 
-function Comments({ portfolioOwnerId, isEditable }) {
+function Comments({ portfolioOwnerId }) {
   //useState로 awards 상태를 생성함.
   const [comments, setComments] = useState([]);
 
@@ -15,32 +16,22 @@ function Comments({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Form>
-      <InputGroup className="mb-3">
+    <Card>
+      <Card.Body>
+        <Card.Title>Comment</Card.Title>
+        <CommentAddForm
+          portfolioOwnerId={portfolioOwnerId}
+          setComments={setComments}
+        />
         {comments.map((comment) => (
-          <Comment
+          <CommentCard
             key={comment.id}
             comment={comment}
-            comments={comments}
             setComments={setComments}
           />
         ))}
-        {/* {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )} */}
-        {/* {isAdding && (
-          <CoAddForm
-            portfolioOwnerId={portfolioOwnerId}
-            setAwards={setAwards}
-            setIsAdding={setIsAdding}
-          />
-        )} */}
-      </InputGroup>
-    </Form>
+      </Card.Body>
+    </Card>
   );
 }
 
