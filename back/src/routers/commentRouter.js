@@ -19,7 +19,7 @@ commentAuthRouter.post(
       // req (request) 에서 데이터 가져오기
       const hostId = req.body.hostId;
       const content = req.body.content;
-      const authorId = req.body.currentUserId;
+      const authorId = req.currentUserId;
 
       // 데이터를 유저 db에 추가하기
       const newComment = await commentAuthService.addComment({
@@ -27,6 +27,7 @@ commentAuthRouter.post(
         content,
         authorId,
       });
+      console.log(newComment);
 
       if (newComment.errorMessage) {
         throw new Error(newComment.errorMessage);
@@ -79,7 +80,7 @@ commentAuthRouter.put("/comments/:id", async (req, res, next) => {
     const commentId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
     const content = req.body.content ?? null;
-  
+
     const toUpdate = { content };
 
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
