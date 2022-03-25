@@ -1,3 +1,4 @@
+// 랜덤 패스워드 생성
 export default () => {
   if (process.env.GRADER) {
     return "00000000";

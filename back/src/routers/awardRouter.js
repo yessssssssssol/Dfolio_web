@@ -6,7 +6,7 @@ import { awardAuthService } from "../services/awardService";
 const awardAuthRouter = Router();
 awardAuthRouter.use(loginRequired);
 
-// Create Award
+// award 생성
 awardAuthRouter.post("/award/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
@@ -24,7 +24,7 @@ awardAuthRouter.post("/award/create", async (req, res, next) => {
   }
 });
 
-// Update Award
+// award 수정
 awardAuthRouter.put("/awards/:id", async (req, res, next) => {
   try {
     const awardId = req.params.id;
@@ -46,7 +46,7 @@ awardAuthRouter.put("/awards/:id", async (req, res, next) => {
   }
 });
 
-// Find Award By Award ID
+// award 가져오기
 awardAuthRouter.get("/awards/:id", async (req, res, next) => {
   try {
     const awardId = req.params.id;
@@ -61,7 +61,7 @@ awardAuthRouter.get("/awards/:id", async (req, res, next) => {
   }
 });
 
-// Find Award By User ID
+// user의 모든 award 가져오기
 awardAuthRouter.get("/awardlist/:userId", async (req, res, next) => {
   try {
     const userId = req.params.userId;
@@ -72,13 +72,10 @@ awardAuthRouter.get("/awardlist/:userId", async (req, res, next) => {
   }
 });
 
-// Delete Award
+// award 삭제
 awardAuthRouter.delete("/awards/:id", async (req, res, next) => {
   try {
-    // req (request) 에서 id 가져오기
     const awardId = req.params.id;
-
-    // 위 id를 이용하여 db에서 데이터 삭제하기
     const result = await awardAuthService.deleteAward({ awardId });
 
     if (result.errorMessage) {

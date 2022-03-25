@@ -6,16 +6,18 @@ import sendMail from "../utils/sendMail";
 
 const passwordRouter = Router();
 
+// 비밀번호 초기화
 passwordRouter.post("/reset-password", async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await passwordService.getUser({ email });
     console.log(user);
+    // db에 없는 경우, 에러
     if (!user) {
       throw new Error("해당 메일로 가입된 사용자가 없습니다.");
     }
 
-    // 랜덤 패스워드 생성하기
+    // 랜덤 패스워드 생성
     const newPassword = generateRandomPassword();
 
     const updatedUser = await passwordService.setUser({
@@ -24,7 +26,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
       passwordReset: true,
     });
 
-    // 패스워드 발송하기
+    // 랜덤 패스워드 발송
     await sendMail(
       email,
       "비밀번호가 변경되었습니다.",
@@ -36,6 +38,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
   }
 });
 
+// 비밀번호 변경
 passwordRouter.post("/change-password", async (req, res, next) => {
   try {
     const { currentPassword, password } = req.body;
