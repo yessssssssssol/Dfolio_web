@@ -18,13 +18,27 @@ class User {
 
   static async findAll(sortBy) {
     const users = await UserModel.find({}).sort({ [sortBy]: -1 });
+    console.log(users);
     return users;
   }
 
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
-    const option = { returnOriginal: false };
+    const option = { returnOriginal: false, timestamps: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  }
+
+  static async updatePassword({ email, newPassword, passwordReset }) {
+    const filter = { email };
+    const update = { password: newPassword, passwordReset };
+    const option = { runValidators: true };
 
     const updatedUser = await UserModel.findOneAndUpdate(
       filter,

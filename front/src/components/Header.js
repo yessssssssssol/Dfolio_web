@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
 
+import '../styles/scss/Header.scss';
+import profile from '../img/profile.png'
+
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,6 +27,7 @@ function Header() {
   };
 
   return (
+<<<<<<< HEAD
     <Nav activeKey={location.pathname}>
       <Nav.Item className="me-auto mb-5">
         <Nav.Link disabled>
@@ -47,6 +51,28 @@ function Header() {
         </Nav.Item>
       )}
     </Nav>
+=======
+    <header activeKey={location.pathname}>
+      <h1 id="header-logo">Dfolio</h1>
+      <nav id="header-menu-container">
+        <div>
+          <span onClick={()=> navigate("/network")}>NetWork</span>
+        </div>
+        <div>
+          <span onClick={()=> navigate("/Portfolio")}>MyPortfolio</span>
+        </div>
+        <div class="header-dropdown-container" id="my-page-img">
+          <img id="header-dropdown-btn" src={profile} alt='user icon'/>
+          { isLogin && (
+          <div class="header-dropdown-content">
+            <div id="logout-btn" onClick={logout}>Logout</div>
+            <div id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Withdrawal</div>
+          </div>
+          )}
+        </div>
+      </nav>
+    </header>
+>>>>>>> origin/dev
   );
 }
 

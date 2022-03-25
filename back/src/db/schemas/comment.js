@@ -3,6 +3,10 @@ import { Schema, model } from "mongoose";
 
 const CommentSchema = new Schema(
   {
+    id: {
+      type: String,
+      required: true,
+    },
     host: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "UserModel",
@@ -12,8 +16,8 @@ const CommentSchema = new Schema(
       required: true,
     },
     author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "UserModel",
+      type: String,
+      requried: true,
     },
   },
   { timestamps: true }

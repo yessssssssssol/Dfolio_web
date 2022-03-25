@@ -1,6 +1,10 @@
 import axios from "axios";
 
+<<<<<<< HEAD
 const backendPortNumber = "5200";
+=======
+const backendPortNumber = 5009;
+>>>>>>> origin/dev
 
 const serverUrl =
   "http://" + window.location.hostname + ":" + backendPortNumber + "/";
@@ -20,7 +24,7 @@ async function get(endpoint, params = "") {
 }
 
 async function post(endpoint, data) {
-  console.log(endpoint);
+  // console.log(endpoint);
   // JSON.stringify 함수: Javascript 객체를 JSON 형태로 변환함.
   // 예시: {name: "Kim"} => {"name": "Kim"}
   const bodyData = JSON.stringify(data);

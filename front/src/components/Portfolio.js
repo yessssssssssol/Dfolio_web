@@ -10,7 +10,8 @@ import User from "./user/User";
 import Certificates from "./certificate_MVP/Certificates";
 import Projects from "./project/Projects";
 import Awards from "./Award/Awards";
-import Educations from "./Education_MVP/Educations"
+import Educations from "./Education_MVP/Educations";
+import Comments from "./Comment/Comments";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -58,12 +59,17 @@ function Portfolio() {
   }
 
   return (
+    <body style={{ padding: "2rem", background: "#F3F3F4" }}>
     <Container fluid>
       <Row>
         <Col md="3" lg="3">
           <User
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
+          />
+          <Comments
+            portfolioOwnerId={portfolioOwner.id}
+            // isEditable={portfolioOwner.id === userState.user?.id}
           />
         </Col>
 
@@ -72,7 +78,6 @@ function Portfolio() {
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
-
           <Certificates
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
@@ -88,6 +93,7 @@ function Portfolio() {
         </Col>
       </Row>
     </Container>
+    </body>
   );
 }
 

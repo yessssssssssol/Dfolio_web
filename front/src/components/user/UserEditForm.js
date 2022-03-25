@@ -2,12 +2,15 @@ import React, { useState, useRef } from "react";
 import { Button, Form, Card, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
+import swal from "sweetalert";
+
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
+
   const [description, setDescription] = useState(user.description);
   //useState로 profilelink 상태를 생성함.
   const [profilelink, setProfilelink] = useState(user.profilelink);
@@ -37,6 +40,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   const onChange = (e) => {
+<<<<<<< HEAD
     //화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
@@ -51,6 +55,30 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       }
     };
     reader.readAsDataURL(e.target.files[0]);
+=======
+    // 화면에 프로필 사진 표시 && file 객체를 dataUrl을 통해 이미지로 변환
+    let file = e.target.files[0];
+
+    if (file.size > 45000) {
+      swal("Oops", "50KB 미만의 사진을 선택해주세요 😂", "error");
+    } else {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          const dataURL = reader.result;
+          // readyState === 2 -> DONE 작업 완료
+          setImage(dataURL);
+          // console.log("dataURL", dataURL);
+          return;
+        } else {
+          //업로드 취소/실패할 시
+          setImage("http://placekitten.com/200/200");
+          return;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+>>>>>>> origin/dev
   };
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
@@ -70,7 +98,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             type="file"
             name="imageFile"
             accept="image/*"
-            // style={{ display: "none" }}
             ref={fileInput}
             onChange={onChange}
           />
@@ -80,7 +107,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"
-              placeholder="이름"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -89,7 +116,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="userEditEmail" className="mb-3">
             <Form.Control
               type="email"
-              placeholder="이메일"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               readOnly
@@ -99,16 +126,17 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group controlId="userEditDescription">
             <Form.Control
               type="text"
-              placeholder="정보, 인사말"
+              placeholder="One-line introduction(maximum is 40 characters)"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              maxLength="40"
             />
           </Form.Group>
 
           <Form.Group controlId="userEditProfilelink">
             <Form.Control
               type="text"
-              placeholder="깃 주소"
+              placeholder="Git link"
               value={profilelink}
               onChange={(e) => setProfilelink(e.target.value)}
             />
@@ -117,10 +145,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
               <Button variant="primary" type="submit" className="me-3">
-                확인
+                Save
               </Button>
               <Button variant="secondary" onClick={() => setIsEditing(false)}>
-                취소
+                Back
               </Button>
             </Col>
           </Form.Group>

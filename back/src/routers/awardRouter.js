@@ -6,7 +6,7 @@ import { awardAuthService } from "../services/awardService";
 const awardAuthRouter = Router();
 awardAuthRouter.use(loginRequired);
 
-// Create Award
+// award 생성
 awardAuthRouter.post("/award/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
@@ -24,7 +24,7 @@ awardAuthRouter.post("/award/create", async (req, res, next) => {
   }
 });
 
-// Update Award
+// award 수정
 awardAuthRouter.put("/awards/:id", async (req, res, next) => {
   try {
     const awardId = req.params.id;
@@ -46,7 +46,7 @@ awardAuthRouter.put("/awards/:id", async (req, res, next) => {
   }
 });
 
-// Find Award By Award ID
+// award 가져오기
 awardAuthRouter.get("/awards/:id", async (req, res, next) => {
   try {
     const awardId = req.params.id;
@@ -61,7 +61,7 @@ awardAuthRouter.get("/awards/:id", async (req, res, next) => {
   }
 });
 
-// Find Award By User ID
+// user의 모든 award 가져오기
 awardAuthRouter.get("/awardlist/:userId", async (req, res, next) => {
   try {
     const userId = req.params.userId;
@@ -69,6 +69,21 @@ awardAuthRouter.get("/awardlist/:userId", async (req, res, next) => {
     res.status(200).json(awardList);
   } catch (err) {
     next(err);
+  }
+});
+
+// award 삭제
+awardAuthRouter.delete("/awards/:id", async (req, res, next) => {
+  try {
+    const awardId = req.params.id;
+    const result = await awardAuthService.deleteAward({ awardId });
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+    res.status(200).send(result);
+  } catch (error) {
+    next(error);
   }
 });
 

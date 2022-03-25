@@ -10,14 +10,16 @@ class Like {
   }
   static async findByUser({ currentUser, otherUser }) {
     const like = await LikeModel.findOne({
-      $and: [{ currentUser }, { otherUser }],
+      $and: [{ currentUser: currentUser }, { otherUser: otherUser }],
     });
+    console.log(like);
     return like;
   }
   static async deleteById({ isLiked }) {
     const deleteResult = await LikeModel.deleteOne({
-      isLiked,
+      _id: isLiked._id,
     });
+    console.log(isLiked._id);
     const isDataDeleted = deleteResult.deletedCount === 1;
     return isDataDeleted;
   }

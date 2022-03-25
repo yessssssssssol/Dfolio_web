@@ -1,0 +1,191 @@
+.container {
+	text-align: center;
+	margin-top: 100px;
+	font-family: 'Noto Sans', sans-serif;
+}
+
+.card-box {
+	position: relative;
+	top: 0; left: 0; /* 왼쪽 위부터 정렬 */
+	border-radius: 16px;
+	width: 260px;
+	height: 340px;
+	background-color: #fff;
+	box-shadow: 0 20px 30px rgba(0, 0, 0, 0.26);
+	overflow: hidden; /* 넘치는 부분 숨김처리 */
+	display: inline-block; /* 카드 수평 정렬*/
+	margin: 10px 0;
+	transition: 0.5s; /* 효과가 부드럽게 */
+}
+.card-box:hover {
+	transform: scale(1.05);
+}
+
+#card-img {
+	margin-top: 25px;
+	width: 9rem;
+	height: 9rem;
+	border-radius: 70%;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+#card-hover {
+	position: absolute;
+	top: 0px;
+	left: 22.5%;
+	margin-top: 25px;
+	width: 9rem;
+	height: 9rem;
+	border-radius: 70%;
+	background: rgba(0, 0, 0, 0.4);
+	text-align: center;
+	line-height: 150px;
+	color: #fff;
+	font-weight: 900;
+	font-size: 17px;
+	z-index: 2;
+}
+.card-img-container {
+	div { 
+		display: none;
+		position: relative;
+	}
+	&:hover {
+		#card-hover {
+			display: block;
+		}
+	}
+}
+
+#card-isEditable-hover {
+	position: absolute;
+	top: 0px;
+	left: 22.5%;
+	margin-top: 25px;
+	width: 9rem;
+	height: 9rem;
+	border-radius: 70%;
+	background: rgba(0, 0, 0, 0.4);
+	text-align: center;
+	line-height: 150px;
+	color: #fff;
+	font-weight: 900;
+	font-size: 17px;
+	z-index: 2;
+}
+.card-img-container {
+	div { 
+		display: none;
+		position: relative;
+	}
+	&:hover {
+		#card-isEditable-hover {
+			display: block;
+		}
+	}
+}
+
+
+.text-wrap {
+	position: absolute;
+	bottom: 0;
+	top: 150px;
+	padding: 24px;
+	z-index: 2;
+	text-align: left;
+}
+
+.text-wrap #card-name {
+	color: #000;
+	font-size: 14px;
+	font-weight: 900;
+	margin-bottom: 5px;
+	margin-right:10px;
+}
+.text-wrap #card-email {
+	color: #000;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
+.text-wrap #card-description {
+	color: #999999;
+	font-size: 12px;
+	font-weight:500;
+	margin-bottom: 5px;
+	margin-right:10px;
+	line-height: 1.5; /* 행간조절 */
+	/* description가 넘칠 경우 ...(말줄임)처리 */
+	width: 212px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2줄이 넘어가면 말줄임 */
+  -webkit-box-orient: vertical;
+}
+
+.card-link-box {
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+	width: 100px;
+	height: 45px;
+	border: 1px solid #F3F3F4;
+	border-radius: 50px;
+	z-index: 2;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+.card-link-box:hover {
+	transform: scale(1.02);
+	box-shadow: 0 2px 5px #527bff41;
+}
+
+#card-link-img {
+	position: absolute;
+	left: 10px;
+	bottom: 4px;
+	width: 35px;
+	height: 35px;
+}
+
+.card-link-box p {
+	position: absolute;
+	left: 52px;
+	bottom: -4px;
+	color: #707070;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.card-like-box {
+	position: absolute;
+	right: 24px;
+	bottom: 24px;
+	width: 100px;
+	height: 45px;
+	border-radius: 50px;
+	z-index: 2;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+.card-like-box:hover {
+	transform: scale(1.02);
+	box-shadow: 0 2px 5px #b9790159;
+}
+
+.card-like-box #like-text {
+	position: absolute;
+	left: 15px;
+	bottom: -4px;
+	color: #707070;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.card-like-box #like-num {
+	position: absolute;
+	right: 15px;
+	bottom: -4px;
+	color: #707070;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+}
