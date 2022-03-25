@@ -5,6 +5,11 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+body {
+  min-width: 500px; /* 최소 넓이 500px 고정 */
+}
+
+/* 회원가입 입력 컨테이너 */
 .register-container {
 	width: 100vw;
 	height: 100vh;
