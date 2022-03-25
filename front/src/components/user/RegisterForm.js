@@ -106,11 +106,11 @@ function RegisterForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-                {!isPasswordValid && (
-                <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
-                  Password is too short (minimum is 4 characters)
-                </p>
-                )}
+              {!isPasswordValid && (
+              <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+                Password is too short (minimum is 4 characters)
+              </p>
+              )}
             </div>
             <div id="register-confirm-password-container">
 							<Form.Control
@@ -122,6 +122,11 @@ function RegisterForm() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              {!isPasswordSame && (
+                <p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+                  Passwords dose not match.
+                </p>
+              )}
 						</div>
             <div id="register-name-container">
 							<Form.Control

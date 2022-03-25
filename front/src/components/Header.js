@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { UserStateContext, DispatchContext } from '../App';
 
 import '../styles/scss/Header.scss';
+import profile from '../img/profile.png'
 
 function Header() {
   const navigate = useNavigate();
@@ -36,11 +37,11 @@ function Header() {
           <span onClick={()=> navigate("/Portfolio")}>MyPortfolio</span>
         </div>
         <div class="header-dropdown-container" id="my-page-img">
-          <img id="header-dropdown-btn" src="img/profile.png" />
+          <img id="header-dropdown-btn" src={profile} alt='user icon'/>
           { isLogin && (
           <div class="header-dropdown-content">
             <div id="logout-btn" onClick={logout}>Logout</div>
-            <div id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Delete</div>
+            <div id="delete-btn" onClick={()=> navigate("/Withdrawal")}>Withdrawal</div>
           </div>
           )}
         </div>

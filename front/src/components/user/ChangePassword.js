@@ -93,6 +93,11 @@ const ChangePassword = ( data ) => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              	{!isPasswordSame && (
+									<p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+										Passwords dose not match.
+									</p>
+								)}
 						</div>
           </div>
           <form className="change-btn-wrap">

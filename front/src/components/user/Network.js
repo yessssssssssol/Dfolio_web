@@ -32,8 +32,8 @@ function Network() {
   // }, [userState, navigate]);
 
   return (
-    <Container fluid>
-      <ButtonGroup style={{ marginBottom: "20px" }}>
+    <Container fluid style={{ background: "#F3F3F4" }}>
+      <ButtonGroup style={{ marginTop: "100px", marginBottom: "20px" }}>
         {sort.map((radio, idx) => (
           <ToggleButton
             key={idx}

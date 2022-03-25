@@ -79,12 +79,12 @@ header {
 .header-dropdown-content{
   display : none;
   position : absolute;
-	left: -30px;
+	left: -70px;
   z-index : 1; /*다른 요소들보다 앞에 배치*/
-  min-width : 100px;
+  width : 150px;
 	background-color: rgba(61, 61, 61, 0.089);
 	border-radius: 10px;
-	text-align: center;
+	text-align: right;
 }
 
 .header-dropdown-content div{
