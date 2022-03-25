@@ -33,17 +33,20 @@ function CertificateCard({
     <Card.Body>
       <Row className="align-items-center">
         <Col>
+          <div className="portfolio-card-text">
           <span>{certificate.title}</span>
           <br />
           <span className="text-muted">{certificate.description}</span>
           <br />
           <span>{moment(certificate.whenDate).format("YYYY-MM-DD")}</span>
+          </div>
         </Col>
         {isEditable && (
-          <Col xs lg="1">
+          <Col>
+            <div style={{ margin: "10px 0 0 200px" }}></div>
             <Button
               variant="outline-info"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
@@ -51,7 +54,7 @@ function CertificateCard({
             </Button>
             <Button
               variant="outline-danger"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={handleDelete}
               className="mr-3"
             >

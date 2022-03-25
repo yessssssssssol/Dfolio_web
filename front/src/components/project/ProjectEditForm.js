@@ -58,15 +58,16 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group as={Row}>
-        <Col xs="auto">
+      <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
+        <Col>
           <DatePicker
             selected={fromDate}
             dateFormat="yyyy년 MM월 dd일"
             onChange={(date) => setFromDate(date)}
           />
         </Col>
-        <Col xs="auto">
+        <Col>
           <DatePicker
             selected={toDate}
             dateFormat="yyyy년 MM월 dd일"

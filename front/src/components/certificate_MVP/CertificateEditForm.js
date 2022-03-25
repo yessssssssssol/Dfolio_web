@@ -63,7 +63,7 @@ function CertificateEditForm({
         />
       </Form.Group>
 
-      <Form.Group as={Row}>
+      <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
         <Col xs="auto">
           <DatePicker
             selected={whenDate}

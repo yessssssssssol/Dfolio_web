@@ -27,6 +27,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
     <Card.Body>
       <Row className="align-items-center">
         <Col>
+          <div className="portfolio-card-text">
           <span>{project.title}</span>
           <br />
           <span className="text-muted">{project.description}</span>
@@ -36,13 +37,15 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
               project.toDate
             ).format("YYYY-MM-DD")}`}
           </span>
+          </div>
         </Col>
         {/* isEditable === true 인 경우 편집버튼 노출 */}
         {isEditable && (
-          <Col xs lg="1">
+          <Col>
+            <div style={{ margin: "10px 0 0 200px" }}>
             <Button
               variant="outline-info"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
@@ -50,12 +53,13 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             </Button>
             <Button
               variant="outline-danger"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={handleDelete}
               className="mr-3"
             >
               Delete
             </Button>
+            </div>
           </Col>
         )}
       </Row>

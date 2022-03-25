@@ -4,12 +4,13 @@
 }
 
 
-.card-container {
+#card-container {
 	text-align: center;
 	font-family: 'Noto Sans', sans-serif;
 }
 
 .card-box {
+	background: #fff;
 	position: relative;
 	top: 0; left: 0; /* 왼쪽 위부터 정렬 */
 	border-radius: 16px;

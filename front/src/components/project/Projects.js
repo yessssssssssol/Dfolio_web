@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
+import addBtn from '../../img/addBtn.png'
+import '../../styles/scss/Portfolio.scss';
 
 import * as Api from '../../api';
 
@@ -18,8 +20,8 @@ function Projects({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card>
-      <Card.Body>
+    <Card id="portfolio-card-body">
+      <Card.Body style={{ padding: "30px 40px" }}>
         <Card.Title>Project</Card.Title>
         {/* Project list를 map 함수로 뿌려줌 */}
         {projects.map(project => (
@@ -34,7 +36,7 @@ function Projects({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
+            <div className="portfolio-add-btn" onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Project</div>
             </Col>
           </Row>
         )}

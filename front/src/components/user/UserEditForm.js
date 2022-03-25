@@ -64,7 +64,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     }
   };
   return (
-    <Card className="edit-card-container" style={{ paddingTop: "200px" }}>
+    <Card className="edit-card-container" >
       <Card.Body>
         <Row className="justify-content-md-center">
           <div className="justify-content-md-center row">
@@ -87,6 +87,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           <br />
         </Row>
         <Form onSubmit={handleSubmit}>
+          
           <Form.Group controlId="useEditName" className="mb-3">
             <Form.Control
               type="text"

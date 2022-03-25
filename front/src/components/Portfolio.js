@@ -4,6 +4,9 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
+
+import '../styles/scss/Portfolio.scss';
+
 // import Awards from "./award/Awards";
 
 import User from "./user/User";
@@ -62,7 +65,7 @@ function Portfolio() {
     <body style={{ padding: "2rem", background: "#F3F3F4" }}>
     <Container fluid>
       <Row>
-        <Col md="3" lg="3">
+        <Col md="4" lg="3" style={{ marginTop: "100px"}}>
           <User
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
@@ -73,23 +76,32 @@ function Portfolio() {
           />
         </Col>
 
-        <Col>
-          <Awards
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-          <Certificates
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-          <Projects
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-          <Educations
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
+        <Col style={{ marginTop: "100px"}}>
+          <div className="protfolio-card" id="portfolio-Educations">
+            <Educations
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
+          <div className="protfolio-card" id="portfolio-Certificates">
+            <Certificates
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
+          <div className="protfolio-card" id="portfolio-Certificates">
+            <Projects
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
+          <div className="protfolio-card" id="portfolio-Awards">
+            <Awards
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </div>
+
         </Col>
       </Row>
     </Container>
