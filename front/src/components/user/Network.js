@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 import * as Api from "../../api";
 import UserCard from "./UserCard";
 

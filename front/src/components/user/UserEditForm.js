@@ -64,7 +64,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     }
   };
   return (
-    <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>
+    <Card className="edit-card-container" style={{ paddingTop: "200px" }}>
       <Card.Body>
         <Row className="justify-content-md-center">
           <div className="justify-content-md-center row">
