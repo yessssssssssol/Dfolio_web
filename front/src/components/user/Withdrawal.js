@@ -40,57 +40,53 @@ function Withdrawal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const result = await swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this account!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    });
     try {
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this account!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          Api.post(`withdrawal/${userState.user.id}`, {
-            email,
-            password,
-          });
-          swal("Your account has been deleted!", "Thank you for using Dfolio", {
-            icon: "success",
-          });
-          dispatch({ type: "LOGOUT" });
-          navigate("/login");
-          sessionStorage.removeItem("userToken");
-        } else {
-          swal("Your membership cancellation request has been cancelled.");
-          navigate("/");
-        }
-      });
-    } catch (err) {
-      window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
-    }
-
-    /*
-    try {
-      const check = confirmModal();
-      // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
-      if (check === 1) {
-        await Api.post(`withdrawal/${userState.user.id}`, {
+      if (result) {
+        Api.post(`withdrawal/${userState.user.id}`, {
           email,
           password,
         });
-        window.alert("그동안 Dfolio를 이용해 주셔서 감사합니다.");
+        swal("Your account has been deleted!", "Thank you for using Dfolio", {
+          icon: "success",
+        });
         dispatch({ type: "LOGOUT" });
         navigate("/login");
         sessionStorage.removeItem("userToken");
-      } else if (check === 0) {
-        window.alert("회원탈퇴를 취소하셨습니다.");
+      } else {
+        swal("Your membership cancellation request has been cancelled.");
         navigate("/");
       }
     } catch (err) {
       window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
     }
-    */
   };
+  //   try {
+  //     const check = confirmModal();
+  //     // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
+  //     if (check === 1) {
+  //       await Api.post(`withdrawal/${userState.user.id}`, {
+  //         email,
+  //         password,
+  //       });
+  //       window.alert("그동안 Dfolio를 이용해 주셔서 감사합니다.");
+  //       dispatch({ type: "LOGOUT" });
+  //       navigate("/login");
+  //       sessionStorage.removeItem("userToken");
+  //     } else if (check === 0) {
+  //       window.alert("회원탈퇴를 취소하셨습니다.");
+  //       navigate("/");
+  //     }
+  //   } catch (err) {
+  //     window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
+  //   }
+  // };
 
   return (
     <div className="withdrawal-container">
@@ -153,10 +149,18 @@ function Withdrawal() {
             </div>
           </div>
           <form className="withdrawal-btn-wrap">
-            <button className="withdrawal-btn-back" type="submit" onClick={() => navigate("/")}>
+            <button
+              className="withdrawal-btn-back"
+              type="submit"
+              onClick={() => navigate("/")}
+            >
               Back
             </button>
-            <button className="withdrawal-btn-delete" type="submit" disabled={!isFormValid}>
+            <button
+              className="withdrawal-btn-delete"
+              type="submit"
+              disabled={!isFormValid}
+            >
               Delete
             </button>
           </form>
