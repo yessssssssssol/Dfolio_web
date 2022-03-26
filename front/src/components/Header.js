@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { UserStateContext, DispatchContext } from '../App';
+import { useNavigate, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { UserStateContext, DispatchContext } from "../App";
 
 import "../styles/scss/Header.scss";
 import profile from "../img/profile.png";
