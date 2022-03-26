@@ -38,7 +38,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="학교 이름"
+          placeholder="Shool"
           value={school}
           onChange={(e) => setSchool(e.target.value)}
         />
@@ -46,72 +46,73 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="전공"
+          placeholder="Major"
           value={major}
           onChange={(e) => setMajor(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group>
-        <div key={`inline-radio`} className="mb-3 mt-3">
-          <Form.Check
-            inline
-            label="재학중"
-            id="radio1"
-            type="radio"
-            name="position"
-            value="재학중"
-            checked={position === "재학중"}
-            onChange={(e) => setPosition(e.target.value)}
-          />
-          <Form.Check
-            inline
-            label="학사졸업"
-            id="radio2"
-            type="radio"
-            name="position"
-            value="학사졸업"
-            checked={position === "학사졸업"}
-            onChange={(e) => setPosition(e.target.value)}
-          />
-          <Form.Check
-            inline
-            label="석사졸업"
-            id="radio3"
-            type="radio"
-            name="position"
-            value="석사졸업"
-            checked={position === "석사졸업"}
-            onChange={(e) => setPosition(e.target.value)}
-          />
-          <Form.Check
-            inline
-            label="박사졸업"
-            id="radio4"
-            type="radio"
-            name="position"
-            value="박사졸업"
-            checked={position === "박사졸업"}
-            onChange={(e) => setPosition(e.target.value)}
-          />
-        </div>
-      </Form.Group>
-      
-      <Form.Group as={Row}>
-        <Col xs="auto">
+      <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
+        <Col>
           <DatePicker
             selected={fromDate}
             dateFormat="yyyy년 MM월 dd일"
             onChange={(date) => setFromDate(date)}
           />
         </Col>
-        <Col xs="auto">
+        <Col>
           <DatePicker
             selected={toDate}
             dateFormat="yyyy년 MM월 dd일"
             onChange={(date) => setToDate(date)}
           />
         </Col>
+      </Form.Group>
+
+      <Form.Group style={{ fontSize: "15px", color: "#777777" }}>
+        <div key={`inline-radio`} className="mb-3 mt-3">
+          <Form.Check
+            inline
+            label="Degree expected"
+            id="radio1"
+            type="radio"
+            name="position"
+            value="Degree expected"
+            checked={position === "Degree expected"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="Bachelor degree"
+            id="radio2"
+            type="radio"
+            name="position"
+            value="Bachelor degree"
+            checked={position === "Bachelor degree"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="Masters degree"
+            id="radio3"
+            type="radio"
+            name="position"
+            value="Masters degree"
+            checked={position === "Masters degree"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+          <Form.Check
+            inline
+            label="Doctorate degree"
+            id="radio4"
+            type="radio"
+            name="position"
+            value="Doctorate degree"
+            checked={position === "Doctorate degree"}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+        </div>
       </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">

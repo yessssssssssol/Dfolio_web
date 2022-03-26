@@ -25,8 +25,9 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
 
   return (
     <Card.Body>
-      <Row className="align-items-center">
+      <Row className="align-items-center portfolio-card">
         <Col>
+        <div className="portfolio-card-text">
           <span>{education.school}</span>
           <br />
           <span>{education.major}</span>
@@ -37,12 +38,14 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
               education.toDate
             ).format("YYYY-MM-DD")}`}
           </span>
+        </div>
         </Col>
         {isEditable && (
-          <Col xs lg="1">
+          <Col>
+          <div style={{ margin: "10px 0 0 200px" }}>
             <Button
               variant="outline-info"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
@@ -51,12 +54,13 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
 
             <Button
               variant="outline-danger"
-              size="sm"
+              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
               onClick={handleDelete}
               className="mr-1"
             >
               Delete
             </Button>
+          </div>
           </Col>
         )}
       </Row>

@@ -57,7 +57,8 @@ function CertificateAddForm({
         />
       </Form.Group>
 
-      <Form.Group as={Row}>
+      <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>Date of Certification</Col>
         <Col xs="auto">
           <DatePicker
             selected={whenDate}

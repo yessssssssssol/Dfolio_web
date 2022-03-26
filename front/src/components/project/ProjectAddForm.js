@@ -60,7 +60,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         />
       </Form.Group>
 
-      <FormGroup as={Row}>
+      <FormGroup as={Row} style={{ padding: "0 5px !important" }}>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
         <Col xs="auto">
           <DatePicker
             selected={fromDate}
@@ -73,7 +74,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         </Col>
       </FormGroup>
 
-      <Form.Group as={Row} className="mt-3 text-center">
+      <Form.Group as={Row} className="mt-3 text-center" >
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
             Save

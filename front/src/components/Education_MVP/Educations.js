@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+import addBtn from '../../img/addBtn.png'
+import '../../styles/scss/Portfolio.scss';
 
 import * as Api from "../../api";
 
@@ -20,9 +22,9 @@ function Educations({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>학력</Card.Title>
+    <Card id="portfolio-card-body">
+      <Card.Body style={{ padding: "30px 40px" }}>
+        <Card.Title>Educations</Card.Title>
         {educations.map((education) => (
           <Education
             key={education.id}
@@ -34,7 +36,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
+              <div className="portfolio-add-btn" onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Education</div>
             </Col>
           </Row>
         )}

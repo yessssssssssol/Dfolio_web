@@ -3,6 +3,8 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
+import addBtn from '../../img/addBtn.png'
+import '../../styles/scss/Portfolio.scss';
 
 function Awards({ portfolioOwnerId, isEditable }) {
   //useState로 awards 상태를 생성함.
@@ -16,8 +18,8 @@ function Awards({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card>
-      <Card.Body>
+    <Card id="portfolio-card-body">
+      <Card.Body style={{ padding: "30px 40px" }}>
         <Card.Title>Award</Card.Title>
         {awards.map((award) => (
           <Award
@@ -30,7 +32,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
+            <div className="portfolio-add-btn" onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Awards</div>
             </Col>
           </Row>
         )}

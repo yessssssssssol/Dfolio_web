@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import { UserStateContext } from "../../App";
 import github from '../../img/github.png'
 
@@ -41,13 +41,17 @@ function UserCard({
       setUser(updatedUser);
     }
   };
+
   // const { likeCount } = await api.post();
   // setLike(likeCount);
   return (
-    <div className="container">
-        <div className="card-box">
+    <div className="card-container" id="card-container">
+      <div className="card-box">
         <div className="card-isEditable-hover-container">
-          <div className="card-img-container" onClick={()=> navigate(`/users/${user.id}`)}>
+          <div 
+            className="card-img-container"
+            onClick={()=> navigate(`/users/${user.id}`)}
+          >
             <img 
               id="card-img" 
               src={ user?.image ? user?.image : "http://placekitten.com/200/200" }

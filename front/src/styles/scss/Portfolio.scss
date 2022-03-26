@@ -1,0 +1,43 @@
+.protfolio-card {
+	margin: 20px;	
+	font-family: 'Noto Sans', sans-serif;
+	color: "#707070"
+}
+
+.card-body {
+	padding: 30px 40px;
+}
+
+.portfolio-add-btn {
+	font-size: 13px;
+	margin: 20px 0;
+}
+
+.portfolio-add-img {
+	width: 15px;
+	height: 15px;
+	margin: 0 5px 2px 0;
+}
+
+#formBasicTitle {
+	margin: 15px 0;
+	border: none;
+	background: #F3F3F4;
+}
+
+#formBasicDescription {
+	margin: 15px 0;
+	border: none;
+	background: #F3F3F4;
+}
+
+.portfolio-card-text span{
+	font-size: 15px;
+	margin-right: 20px;
+}
+
+#portfolio-card-body {
+	border: none;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20);
+	border-radius: 16px;
+}
