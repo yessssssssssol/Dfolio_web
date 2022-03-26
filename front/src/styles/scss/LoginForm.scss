@@ -66,6 +66,8 @@ body {
   height: 540px;
 	border-radius: 0px 10px 10px 0px;
 	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	justify-content: center;
 	flex-direction: column;
   align-items: center;
@@ -85,6 +87,8 @@ body {
 .login-right-container .right-top-wrap{
 	padding-bottom: 450px;
 	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	justify-content: flex-end;
 	align-items: center;
 	width:100%;
@@ -137,6 +141,8 @@ body {
 .login-btn-wrap{
 	margin-top: 20px;
 	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	flex-direction: column;
 	align-items: center;;
 }
