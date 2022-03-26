@@ -104,9 +104,12 @@ commentAuthRouter.delete("/comments/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const commentId = req.params.id;
-
+    const userId = req.currentUserId;
     // 위 id를 이용하여 db에서 데이터 삭제하기
-    const result = await commentAuthService.deleteComment({ commentId });
+    const result = await commentAuthService.deleteComment({
+      commentId,
+      userId,
+    });
 
     if (result.errorMessage) {
       throw new Error(result.errorMessage);

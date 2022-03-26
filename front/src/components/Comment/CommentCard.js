@@ -24,8 +24,9 @@ function CommentCard({ portfolioOwnerId, comment, setComments, comments }) {
   return (
     <Card.Body>
       <Row className=" mr-3 align-items-center">
-        <Col>{comment.content}</Col>
         <Col>{comment.author}</Col>
+        <Col>{comment.content}</Col>
+
         <Col>
           <Button
             variant="light"

@@ -65,7 +65,11 @@ class commentAuthService {
     return comment;
   }
 
-  static async deleteComment({ commentId }) {
+  static async deleteComment({ commentId, userId }) {
+    const user = await User.findById({ userId });
+    const comment = await Comment.findById({ commentId });
+    if (user._id===comment.)
+
     const isDataDeleted = await Comment.deleteById({ commentId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
