@@ -18,7 +18,7 @@ function Comments({ portfolioOwnerId }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>Comment</Card.Title>
+        <Card.Title>Comments</Card.Title>
         <CommentAddForm
           portfolioOwnerId={portfolioOwnerId}
           setComments={setComments}
