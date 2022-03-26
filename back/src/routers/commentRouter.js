@@ -43,8 +43,10 @@ commentAuthRouter.post(
 commentAuthRouter.get("/comments/:id", async (req, res, next) => {
   try {
     const commentId = req.params.id;
+    const authorId = req.currentUserId;
     const currentCommentInfo = await commentAuthService.getCommentInfo({
       commentId,
+      authorId,
     });
 
     if (currentCommentInfo.errorMessage) {
@@ -60,10 +62,12 @@ commentAuthRouter.get("/comments/:id", async (req, res, next) => {
 commentAuthRouter.get("/commentlist/:host", async (req, res, next) => {
   try {
     const hostId = req.params.host;
+    const authorId = req.currentUserId;
 
     // 사용자의 전체 댓글 목록을 가져옴
     const comments = await commentAuthService.getComments({
       hostId,
+      authorId,
     });
 
     if (comments.errorMessage) {

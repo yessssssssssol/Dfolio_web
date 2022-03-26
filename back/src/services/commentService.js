@@ -11,7 +11,7 @@ class commentAuthService {
       id,
       host,
       content,
-      author: author.name,
+      author,
     };
     // db에 저장
     const createdNewComment = await Comment.create({ newComment });
@@ -19,8 +19,9 @@ class commentAuthService {
 
     return createdNewComment;
   }
-  static async getCommentInfo({ commentId }) {
+  static async getCommentInfo({ commentId, authorId }) {
     const comment = await Comment.findById({ commentId });
+    const user = await User.findById({ authorId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!comment) {
@@ -28,17 +29,34 @@ class commentAuthService {
       return { errorMessage };
     }
 
+    const newComment = {
+      id: comment.id,
+      content: comment.content,
+      author: user.name,
+    };
+
     return newComment;
   }
   static async getComments({ hostId }) {
     const host = await User.findById({ userId: hostId });
     const comments = await Comment.findAll({ hostId: host._id });
+    const newComments = [];
     if (!comments) {
       const errorMessage =
         "해당 작성자의 댓글 내역이 없습니다. 다시 한번 확인해 주세요.";
       return { errorMessage };
     }
-    return comments;
+
+    for (let i = 0; i < comments.length; i++) {
+      let author = await User.findByObjectId({ objectId: comments[i].author });
+      newComments.push({
+        id: comments[i].id,
+        content: comments[i].content,
+        author: author.name,
+      });
+    }
+
+    return newComments;
   }
   static async setComment({ commentId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
@@ -68,7 +86,14 @@ class commentAuthService {
   static async deleteComment({ commentId, userId }) {
     const user = await User.findById({ userId });
     const comment = await Comment.findById({ commentId });
-    if (user._id===comment.)
+    const author = comment.author;
+    console.log(user);
+    console.log(comment);
+
+    if (!author.equals(user._id)) {
+      const errorMessage = "자신의 댓글만 지울 수 있습니다.";
+      return { errorMessage };
+    }
 
     const isDataDeleted = await Comment.deleteById({ commentId });
 
