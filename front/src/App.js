@@ -12,8 +12,8 @@ import Portfolio from "./components/Portfolio";
 import OAuth2RedirectHandler from "./components/user/KakaoLogin";
 import Withdrawal from "./components/user/Withdrawal";
 
-import ResetPassword from './components/user/ResetPassword';
-import ChangePassword from './components/user/ChangePassword';
+import ResetPassword from "./components/user/ResetPassword";
+import ChangePassword from "./components/user/ChangePassword";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -63,9 +63,7 @@ function App() {
     <DispatchContext.Provider value={dispatch}>
       <UserStateContext.Provider value={userState}>
         <Router>
-          {isLogin &&(
-            <Header />  
-          )}
+          {isLogin && <Header />}
           <Routes>
             <Route path="/" exact element={<Portfolio />} />
             <Route path="/login" element={<LoginForm />} />
@@ -73,16 +71,10 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
-<<<<<<< HEAD
             <Route path="/Withdrawal" element={<Withdrawal />} />
-            <Route
-              path="/oauth/callback/kakao"
-              component={OAuth2RedirectHandler}
-            ></Route>
-=======
+
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/change-password" element={<ChangePassword />} />
->>>>>>> origin/dev
           </Routes>
         </Router>
       </UserStateContext.Provider>
