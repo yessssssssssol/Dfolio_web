@@ -40,22 +40,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   const onChange = (e) => {
-<<<<<<< HEAD
-    //화면에 프로필 사진 표시
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        // readyState === 2 -> DONE 작업 완료
-        setImage(reader.result);
-        console.log(reader.result);
-      } else {
-        //업로드 취소/실패할 시
-        setImage("http://placekitten.com/200/200");
-        return;
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-=======
     // 화면에 프로필 사진 표시 && file 객체를 dataUrl을 통해 이미지로 변환
     let file = e.target.files[0];
 
@@ -78,7 +62,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       };
       reader.readAsDataURL(file);
     }
->>>>>>> origin/dev
   };
   return (
     <Card className="mb-2 ms-3 mr-5" style={{ width: "18rem" }}>

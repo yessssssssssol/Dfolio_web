@@ -5,7 +5,7 @@ import { DispatchContext } from "../../App";
 
 import * as Api from "../../api";
 import { KAKAO_AUTH_URL } from "./OAuth";
-import '../../styles/scss/LoginForm.scss';
+import "../../styles/scss/LoginForm.scss";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -41,16 +41,18 @@ function LoginForm() {
       const emailData = res.data.email; // navigate 할 때, state: emailData를 사용하여 emailData를 함께 보내주고자 함
       const currentPassword = res.data.password; // passwordRouter 에서 필요하여 일단 보내보려고 함.
 
-
-      if(res.data.passwordReset === true) {
-        navigate("/change-password", { 
+      if (res.data.passwordReset === true) {
+        navigate("/change-password", {
           state: {
             email: emailData,
-            currentPassword: currentPassword
+            currentPassword: currentPassword,
           },
-          replace: true
+          replace: true,
         });
-      } else if ((res.data.passwordReset === false) || (res.data.passwordReset === null)) {
+      } else if (
+        res.data.passwordReset === false ||
+        res.data.passwordReset === null
+      ) {
         // 유저 정보는 response의 data임.
         const user = res.data;
         // JWT 토큰은 유저 정보의 token임.
@@ -65,7 +67,6 @@ function LoginForm() {
         // 기본 페이지로 이동함.
         navigate("/", { replace: true });
       }
-  
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
@@ -78,34 +79,37 @@ function LoginForm() {
           <p>Discover the world’s top developers</p>
         </div>
       </div>
-		  <div className="login-right-container">
-			  <form className="right-top-wrap">
+      <div className="login-right-container">
+        <form className="right-top-wrap">
           <span>Don't have an account?</span>
-          <button className="create-account-btn shadow-light" onClick={()=> navigate("/register")}
-            >
+          <button
+            className="create-account-btn shadow-light"
+            onClick={() => navigate("/register")}
+          >
             Register
           </button>
         </form>
-        <div id="login-right-logo">
-          Dfolio
-        </div>
-			  <div className="login-input-container" onSubmit={handleSubmit}>
+        <div id="login-right-logo">Dfolio</div>
+        <div className="login-input-container" onSubmit={handleSubmit}>
           <div>
             <div id="login-eamil-container">
               <Form.Control
                 className="login-input-wrap input-id"
                 id="login-input-id"
-                placeholder="Email" 
+                placeholder="Email"
                 type="email"
                 autoComplete="on"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0" }}>
+                <p
+                  className="text-primary"
+                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                >
                   Email is invalid.
                 </p>
-                )}
+              )}
             </div>
           </div>
           <div>
@@ -113,107 +117,37 @@ function LoginForm() {
               <Form.Control
                 className="login-input-wrap input-password"
                 id="login-input-password"
-                placeholder="Password" 
+                placeholder="Password"
                 type="password"
                 autoComplete="on"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-<<<<<<< HEAD
               {!isPasswordValid && (
-                <Form.Text className="text-success">
-                  비밀번호는 4글자 이상입니다.
-                </Form.Text>
-              )}
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
-                  Log In
-                </Button>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/register")}>
-                  Sign Up
-                </Button>
-              </Col>
-            </Form.Group>
-          </Form>
-          <div
-            style={{
-              fontSize: 13,
-              textAlign: "center",
-              marginTop: 40,
-              color: "gray",
-            }}
-          >
-            --------------------- SNS 간편 로그인 ---------------------
-          </div>
-          <div className="snsLoginContainer">
-            <div style={{ textAlign: "center" }}>
-              <img
-                className="naverLogo"
-                src="img/naver.png"
-                alt="naver 간편 로그인 로고"
-                style={{
-                  width: "50px",
-                  margin: "25px 20px",
-                }}
-              />
-
-              <a href={KAKAO_AUTH_URL}>
-                <img
-                  className="kakaoLogo"
-                  src="img/kakao.png"
-                  alt="kakao 간편 로그인 로고"
-                  style={{ width: "50px", margin: "25px 20px" }}
-                ></img>
-              </a>
-
-              <img
-                className="facebookLogo"
-                src="img/facebook.png"
-                alt="facebook 간편 로그인 로고"
-                style={{
-                  width: "50px",
-                  margin: "25px 20px",
-                }}
-              />
-              <img
-                className="appleLogo"
-                src="img/apple.png"
-                alt="apple 간편 로그인 로고"
-                style={{
-                  width: "50px",
-                  margin: "25px 20px",
-                }}
-              />
-=======
-                {!isPasswordValid && (
-                <p className="text-primary" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+                <p
+                  className="text-primary"
+                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                >
                   Password is too short (minimum is 4 characters)
                 </p>
-                )}
->>>>>>> origin/dev
+              )}
             </div>
-            <p 
-							className="password-find"
-							style={{ fontSize: "12px", color: "gray", textAlign: "right"}}
-							onClick={()=> navigate("/reset-password")}
-						>
-							Forgot password?
-						</p>
+            <p
+              className="password-find"
+              style={{ fontSize: "12px", color: "gray", textAlign: "right" }}
+              onClick={() => navigate("/reset-password")}
+            >
+              Forgot password?
+            </p>
           </div>
           <form className="login-btn-wrap">
-            <button className="login-btn" type="submit" disabled={!isFormValid}>Login</button>
+            <button className="login-btn" type="submit" disabled={!isFormValid}>
+              Login
+            </button>
           </form>
-			  </div>
+        </div>
       </div>
-	</div>
+    </div>
   );
 }
 export default LoginForm;
