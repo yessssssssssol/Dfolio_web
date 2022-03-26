@@ -43,8 +43,10 @@ commentAuthRouter.post(
 commentAuthRouter.get("/comments/:id", async (req, res, next) => {
   try {
     const commentId = req.params.id;
+    const authorId = req.currentUserId;
     const currentCommentInfo = await commentAuthService.getCommentInfo({
       commentId,
+      authorId,
     });
 
     if (currentCommentInfo.errorMessage) {
@@ -60,10 +62,12 @@ commentAuthRouter.get("/comments/:id", async (req, res, next) => {
 commentAuthRouter.get("/commentlist/:host", async (req, res, next) => {
   try {
     const hostId = req.params.host;
+    const authorId = req.currentUserId;
 
     // 사용자의 전체 댓글 목록을 가져옴
     const comments = await commentAuthService.getComments({
       hostId,
+      authorId,
     });
 
     if (comments.errorMessage) {
@@ -104,9 +108,12 @@ commentAuthRouter.delete("/comments/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const commentId = req.params.id;
-
+    const userId = req.currentUserId;
     // 위 id를 이용하여 db에서 데이터 삭제하기
-    const result = await commentAuthService.deleteComment({ commentId });
+    const result = await commentAuthService.deleteComment({
+      commentId,
+      userId,
+    });
 
     if (result.errorMessage) {
       throw new Error(result.errorMessage);

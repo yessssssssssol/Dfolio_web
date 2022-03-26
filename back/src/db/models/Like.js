@@ -19,7 +19,6 @@ class Like {
     const deleteResult = await LikeModel.deleteOne({
       _id: isLiked._id,
     });
-    console.log(isLiked._id);
     const isDataDeleted = deleteResult.deletedCount === 1;
     return isDataDeleted;
   }

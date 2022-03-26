@@ -15,6 +15,10 @@ class User {
     const user = await UserModel.findOne({ id: userId });
     return user;
   }
+  static async findByObjectId({ objectId }) {
+    const user = await UserModel.findOne({ _id: objectId });
+    return user;
+  }
 
   static async findAll(sortBy) {
     const users = await UserModel.find({}).sort({ [sortBy]: -1 });
