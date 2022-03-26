@@ -4,7 +4,17 @@ import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
+
+import "../styles/scss/Portfolio.scss";
+
+// import Awards from "./award/Awards";
+
 import User from "./user/User";
+import Certificates from "./certificate_MVP/Certificates";
+import Projects from "./project/Projects";
+import Awards from "./Award/Awards";
+import Educations from "./Education_MVP/Educations";
+import Comments from "./Comment/Comments";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -52,23 +62,49 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
-      <Row>
-        <Col md="3" lg="3">
-          <User
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-        </Col>
-        <Col>
+    <body style={{ padding: "2rem", background: "#F3F3F4" }}>
+      <Container fluid>
+        <Row>
+          <Col md="4" style={{ marginTop: "100px" }}>
+            <User
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
+            <Comments
+              portfolioOwnerId={portfolioOwner.id}
+              // isEditable={portfolioOwner.id === userState.user?.id}
+            />
+          </Col>
 
-          <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
-          </div>
-
-        </Col>
-      </Row>
-    </Container>
+          <Col style={{ marginTop: "100px" }}>
+            <div className="protfolio-card" id="portfolio-Educations">
+              <Educations
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </div>
+            <div className="protfolio-card" id="portfolio-Certificates">
+              <Certificates
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </div>
+            <div className="protfolio-card" id="portfolio-Certificates">
+              <Projects
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </div>
+            <div className="protfolio-card" id="portfolio-Awards">
+              <Awards
+                portfolioOwnerId={portfolioOwner.id}
+                isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </body>
   );
 }
 

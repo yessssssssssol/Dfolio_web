@@ -11,20 +11,25 @@ class User {
     return user;
   }
 
-  static async findById({ user_id }) {
-    const user = await UserModel.findOne({ id: user_id });
+  static async findById({ userId }) {
+    const user = await UserModel.findOne({ id: userId });
+    return user;
+  }
+  static async findByObjectId({ objectId }) {
+    const user = await UserModel.findOne({ _id: objectId });
     return user;
   }
 
-  static async findAll() {
-    const users = await UserModel.find({});
+  static async findAll(sortBy) {
+    const users = await UserModel.find({}).sort({ [sortBy]: -1 });
+    console.log(users);
     return users;
   }
 
-  static async update({ user_id, fieldToUpdate, newValue }) {
-    const filter = { id: user_id };
+  static async update({ userId, fieldToUpdate, newValue }) {
+    const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
-    const option = { returnOriginal: false };
+    const option = { returnOriginal: false, timestamps: false };
 
     const updatedUser = await UserModel.findOneAndUpdate(
       filter,
@@ -32,6 +37,24 @@ class User {
       option
     );
     return updatedUser;
+  }
+
+  static async updatePassword({ email, newPassword, passwordReset }) {
+    const filter = { email };
+    const update = { password: newPassword, passwordReset };
+    const option = { runValidators: true };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  }
+  static async deleteById({ userId }) {
+    const deleteResult = await UserModel.deleteOne({ id: userId });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
   }
 }
 

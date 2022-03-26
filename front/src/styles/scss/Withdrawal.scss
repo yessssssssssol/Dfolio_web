@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,400;1,700&family=Noto+Sans&display=swap');
+/* 전체 */
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+  min-width: 500px; /* 최소 넓이 500px 고정 */
+}
+#root {
+	background-color: #F3F3F4;
+}
+
+
+.withdrawal-container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	justify-content: center;
+	align-items: center;
+	background: #F3F3F4;
+}
+
+/* withdrawal-left-container */
+
+.withdrawal-left-container {
+	width:430px;
+  height: 540px;
+	border-radius: 10px 0px 0px 10px;
+	left: 75px;
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	background-image: 
+    radial-gradient(ellipse farthest-corner at 0 140%, #7486BA 0%, #455494 70%, #5C6EA7 70%);
+}
+.withdrawal-left-wrap {
+	color: #fff;
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: 'IBM Plex Mono', monospace;
+}
+.withdrawal-left-wrap h1 {
+    text-align: center;
+    font-weight: 900;
+    font-size: 40px;
+		font-style: italic;
+}
+.withdrawal-left-wrap p {
+	padding-top: 30px;
+	font-size:13px;
+}
+
+/* withdrawal-right-container */
+
+.withdrawal-right-container {
+	width:430px;
+  height: 540px;
+	border-radius: 0px 10px 10px 0px;
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	justify-content: center;
+	flex-direction: column;
+  align-items: center;
+	background: #fff;
+}
+
+#withdrawal-right-logo{
+	position: absolute;
+	top: 30%;
+	text-align: center;
+	font-weight: 900;
+	font-size: 27px;
+	font-style: italic;
+	font-family: 'IBM Plex Mono', monospace;
+	color: #382E89;
+	display: none;
+}
+
+.withdrawal-right-container .right-top-wrap{
+	padding-bottom: 450px;
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	justify-content: flex-end;
+	align-items: center;
+	width:100%;
+	font-family: 'Noto Sans', sans-serif;
+}
+.withdrawal-right-container .right-top-wrap span{
+	color: gray;
+	font-size: 11px;
+	padding-right:20px;
+}
+.withdrawal-right-container .right-top-wrap .create-account-btn {
+	background: #F3F3F4;
+	border: 0;
+	margin-right: 20px;
+	width:85px;
+	height: 35px;
+	font-size: 11px;
+	color: #455494;
+	border-radius: 3px;
+}
+#withdrawal-text {
+	position: absolute;
+	top: 38%;
+	width:300px;
+	font-family: 'Noto Sans', sans-serif;
+	text-align: center;
+}
+#withdrawal-text p{
+	font-size: 11px;
+}
+.withdrawal-input-container{
+	position: absolute;
+	top: 48%;
+	width:300px;
+	font-family: 'Noto Sans', sans-serif;
+}
+#withdrawal-input-id {
+	font-size: 15px;
+	background: #F3F3F4;
+	border: none;
+	line-height: 20px;
+	padding-left:10px;
+	width:300px;
+}
+
+#withdrawal-input-password {
+	font-size: 15px;
+	background: #F3F3F4;
+	border: none;
+	line-height: 20px;
+	padding-left:10px;
+	width:300px;
+}
+
+.withdrawal-input-wrap .password-find {
+	margin-top:10px;
+	text-decoration: none;
+	font-size: 9px;
+	color: gray;
+	text-align: right;
+}
+.withdrawal-btn-wrap{
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 40px;
+}
+.withdrawal-btn-wrap .withdrawal-btn-back{
+	width:95px;
+	height:35px;
+	color:#fff;
+	border: 0;
+	border-radius: 4px;
+	background: #5C6EA7;
+	margin-right: 10px;
+}
+
+.withdrawal-btn-wrap .withdrawal-btn-delete{
+	width:95px;
+	height:35px;
+	color:#fff;
+	border: 0;
+	border-radius: 4px;
+	background: #999999;
+}
+
+
+#withdrawal-eamil-container {
+	width: 300px;
+	height: 65px;
+}
+
+#withdrawal-password-container {
+	width: 300px;
+	height: 50px;
+}
+
+
+/* sns 간편 로그인 */
+
+.sns-withdrawal-container {
+	padding-top: 40px;
+	font-family: 'Noto Sans', sans-serif;
+}
+.sns-withdrawal-text {
+	margin-top:10px;
+	text-decoration: none;
+	font-size: 11px;
+	color: gray;
+	text-align: center;
+}
+.sns-withdrawal-container img {
+	width: 40px;
+	margin: 15px 10px;
+	flex: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	flex-direction: row;
+}
+.hr-sect {
+	display: flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.25);
+	font-size: 12px;
+	margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.25);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
+
+#withdrawal-login-page-lending {
+	position: absolute;
+	top: 510px;
+	font-size: 11px;
+	color: grey;
+	text-align: right;
+}
+
+/* 반응형 */
+
+@media ( max-width: 880px ) {
+	.withdrawal-left-container {
+		display: none;
+	}
+	.withdrawal-right-container  {
+			border-radius: 10px;
+	}
+	#withdrawal-right-logo	{display: block;}
+}
+
+/* 탈퇴 화면에서 header 숨기기 */
+#Withdrawal {
+	display: none;
+}

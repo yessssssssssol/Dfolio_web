@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,400;1,700&family=Noto+Sans&display=swap');
+
+body, html {
+	margin: 0!important;
+	padding: 0!important;
+	background-color: #F3F3F4;
+}
+
+#root {
+	background-color: #F3F3F4;
+}
+
+
+.userlist-container{
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: start;
+	justify-content: space-evenly;
+}
+
+#network-toggle-btn-group {
+	margin: 110px 50px 20px 60px;
+}

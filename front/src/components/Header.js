@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
+import React, { useContext } from "react";
 import { UserStateContext, DispatchContext } from "../App";
+
+import "../styles/scss/Header.scss";
+import profile from "../img/profile.png";
 
 function Header() {
   const navigate = useNavigate();
@@ -23,23 +25,31 @@ function Header() {
     navigate("/");
   };
 
+  const pathName = location.pathname;
+  const headerId = pathName.substr(1)
+ 
+
   return (
-    <Nav activeKey={location.pathname}>
-      <Nav.Item className="me-auto mb-5">
-        <Nav.Link disabled>안녕하세요, 포트폴리오 공유 서비스입니다.</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>네트워크</Nav.Link>
-      </Nav.Item>
-      {isLogin && (
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
-        </Nav.Item>
-      )}
-    </Nav>
+    <header activeKey={location.pathname} id={headerId}>
+      <h1 id="header-logo">Dfolio</h1>
+      <div id="header-menu-container">
+        <div>
+          <span style={{cursor: "pointer"}} onClick={() => navigate("/network")}>NetWork</span>
+        </div>
+        <div>
+          <span style={{cursor: "pointer"}} onClick={() => navigate("/Portfolio")}>MyPortfolio</span>
+        </div>
+        <div class="header-dropdown-container" id="my-page-img-btn">
+          <img id="header-dropdown-btn" src={profile} alt="user icon" />
+          {isLogin && (
+            <div class="header-dropdown-content">
+              <a id="logout-btn" style={{cursor: "pointer"}} onClick={logout}>Logout</a>
+              <a id="delete-btn" style={{cursor: "pointer"}} onClick={()=> navigate("/Withdrawal")}>Withdrawal</a>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }
 
