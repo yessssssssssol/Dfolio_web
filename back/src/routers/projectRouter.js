@@ -72,6 +72,7 @@ projectAuthRouter.get("/projectlist/:userId", async (req, res, next) => {
 });
 projectAuthRouter.put("/projects/:id", async (req, res, next) => {
   try {
+    const userId = req.currentUserId;
     // URI로부터 프로젝트 id를 추출함.
     const projectId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -84,6 +85,7 @@ projectAuthRouter.put("/projects/:id", async (req, res, next) => {
 
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
     const updatedProject = await projectAuthService.setProject({
+      userId,
       projectId,
       toUpdate,
     });

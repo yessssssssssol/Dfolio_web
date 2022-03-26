@@ -74,6 +74,7 @@ educationAuthRouter.get("/educationlist/:userId", async (req, res, next) => {
 });
 educationAuthRouter.put("/educations/:id", async (req, res, next) => {
   try {
+    const userId = req.currentUserId;
     // URI로부터 자격증 id를 추출함.
     const educationId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -82,11 +83,12 @@ educationAuthRouter.put("/educations/:id", async (req, res, next) => {
     const position = req.body.position ?? null;
     const fromDate = req.body.fromDate ?? null;
     const toDate = req.body.toDate ?? null;
-  
-    const toUpdate = { school, major, position, fromDate, toDate, };
+
+    const toUpdate = { school, major, position, fromDate, toDate };
 
     // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
     const updatedEducation = await educationAuthService.setEducation({
+      userId,
       educationId,
       toUpdate,
     });

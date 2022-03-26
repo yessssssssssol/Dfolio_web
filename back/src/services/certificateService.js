@@ -1,4 +1,4 @@
-import { Certificate } from "../db";
+import { Certificate, User } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class certificateAuthService {
@@ -15,6 +15,11 @@ class certificateAuthService {
 
     //db에 저장
     const createdNewCertificate = await Certificate.create({ newCertificate });
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     createdNewCertificate.errorMessage = null;
 
     return createdNewCertificate;
@@ -40,7 +45,7 @@ class certificateAuthService {
     }
     return certificates;
   }
-  static async setCertificate({ certificateId, toUpdate }) {
+  static async setCertificate({ userId, certificateId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
     let certificate = await Certificate.findById({ certificateId });
 
@@ -80,6 +85,11 @@ class certificateAuthService {
       });
     }
 
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     return certificate;
   }
 

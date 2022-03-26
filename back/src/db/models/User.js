@@ -22,15 +22,23 @@ class User {
 
   static async findAll(sortBy) {
     const users = await UserModel.find({}).sort({ [sortBy]: -1 });
-    console.log(users);
+
     return users;
   }
 
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
-    const option = { returnOriginal: false, timestamps: false };
+    let option = {};
+    if (fieldToUpdate === "likeCount") {
+      option = { returnOriginal: false, timestamps: false };
+    } else {
+      option = { returnOriginal: false };
+    }
 
+    console.log(userId);
+    console.log(fieldToUpdate);
+    console.log(newValue);
     const updatedUser = await UserModel.findOneAndUpdate(
       filter,
       update,

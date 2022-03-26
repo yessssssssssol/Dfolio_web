@@ -23,6 +23,7 @@ class Award {
       update,
       option
     );
+
     return updatedAward;
   }
   static async deleteById({ awardId }) {

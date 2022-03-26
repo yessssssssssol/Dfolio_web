@@ -11,7 +11,7 @@ passwordRouter.post("/reset-password", async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await passwordService.getUser({ email });
-    console.log(user);
+
     // db에 없는 경우, 에러
     if (!user) {
       throw new Error("해당 메일로 가입된 사용자가 없습니다.");

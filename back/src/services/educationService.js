@@ -1,4 +1,4 @@
-import { Education } from "../db";
+import { Education, User } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class educationAuthService {
@@ -24,6 +24,11 @@ class educationAuthService {
 
     //db에 저장
     const createdNewEducation = await Education.create({ newEducation });
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     createdNewEducation.errorMessage = null;
 
     return createdNewEducation;
@@ -49,7 +54,7 @@ class educationAuthService {
     }
     return educations;
   }
-  static async setEducation({ educationId, toUpdate }) {
+  static async setEducation({ userId, educationId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
     let education = await Education.findById({ educationId });
 
@@ -107,7 +112,12 @@ class educationAuthService {
         newValue,
       });
     }
-
+    console.log(userId);
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     return education;
   }
 

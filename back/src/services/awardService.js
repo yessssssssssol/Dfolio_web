@@ -1,4 +1,4 @@
-import { Award } from "../db";
+import { Award, User } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class awardAuthService {
@@ -7,10 +7,15 @@ class awardAuthService {
     const awardId = uuidv4();
     const newAward = { id: awardId, userId, title, description };
     const createdNewAward = await Award.create({ newAward });
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     return createdNewAward;
   }
   // award 수정
-  static async setAward({ awardId, updateValue }) {
+  static async setAward({ userId, awardId, updateValue }) {
     let award = await Award.findById({ awardId });
     // db에 없는 경우, 에러 메시지 반환
     if (!award) {
@@ -22,11 +27,21 @@ class awardAuthService {
       const fieldToUpdate = "title";
       const newValue = updateValue.title;
       award = await Award.update({ awardId, fieldToUpdate, newValue });
+      await User.update({
+        userId,
+        fieldToUpdate: "updateCheck",
+        newValue: uuidv4(),
+      });
     }
     if (updateValue.description) {
       const fieldToUpdate = "description";
       const newValue = updateValue.description;
       award = await Award.update({ awardId, fieldToUpdate, newValue });
+      await User.update({
+        userId,
+        fieldToUpdate: "updateCheck",
+        newValue: uuidv4(),
+      });
     }
     return award;
   }

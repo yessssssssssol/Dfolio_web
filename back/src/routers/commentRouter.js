@@ -27,7 +27,6 @@ commentAuthRouter.post(
         content,
         authorId,
       });
-      console.log(newComment);
 
       if (newComment.errorMessage) {
         throw new Error(newComment.errorMessage);

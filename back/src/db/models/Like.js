@@ -12,7 +12,7 @@ class Like {
     const like = await LikeModel.findOne({
       $and: [{ currentUser: currentUser }, { otherUser: otherUser }],
     });
-    console.log(like);
+
     return like;
   }
   static async deleteById({ isLiked }) {

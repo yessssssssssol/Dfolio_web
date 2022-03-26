@@ -1,4 +1,4 @@
-import { Project } from "../db";
+import { Project, User } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class projectAuthService {
@@ -18,6 +18,11 @@ class projectAuthService {
 
     //db에 저장
     const createdNewProject = await Project.create({ newProject });
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     createdNewProject.errorMessage = null;
 
     return createdNewProject;
@@ -44,7 +49,7 @@ class projectAuthService {
 
     return projects;
   }
-  static async setProject({ projectId, toUpdate }) {
+  static async setProject({ userId, projectId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
     let project = await Project.findById({ projectId });
     // db에서 찾지 못한 경우, 에러 메시지 반환
@@ -76,7 +81,11 @@ class projectAuthService {
       const newValue = toUpdate.toDate;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
-
+    await User.update({
+      userId,
+      fieldToUpdate: "updateCheck",
+      newValue: uuidv4(),
+    });
     return project;
   }
 

@@ -42,6 +42,10 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    updateCheck: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

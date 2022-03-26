@@ -72,7 +72,7 @@ class commentAuthService {
     if (toUpdate.content) {
       const fieldToUpdate = "content";
       const newValue = toUpdate.content;
-      console.log(newValue);
+
       comment = await Comment.update({
         commentId,
         fieldToUpdate,
@@ -87,8 +87,6 @@ class commentAuthService {
     const user = await User.findById({ userId });
     const comment = await Comment.findById({ commentId });
     const author = comment.author;
-    console.log(user);
-    console.log(comment);
 
     if (!author.equals(user._id)) {
       const errorMessage = "자신의 댓글만 지울 수 있습니다.";
