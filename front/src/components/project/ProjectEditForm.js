@@ -12,8 +12,6 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   const [fromDate, setFromDate] = useState(new Date(currentProject.fromDate));
   const [toDate, setToDate] = useState(new Date(currentProject.toDate));
 
-  console.log(typeof currentProject.fromDate);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -59,7 +57,9 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
       </Form.Group>
 
       <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
-        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>
+          Period(from/to)
+        </Col>
         <Col>
           <DatePicker
             selected={fromDate}

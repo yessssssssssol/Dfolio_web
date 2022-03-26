@@ -10,7 +10,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
     e.stopPropagation();
 
     const userId = award.userId;
-    console.log(userId)
+
     // award.id로 조회하여 데이터 삭제
     await Api.delete(`awards/${award.id}`);
 
@@ -27,30 +27,40 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
       <Row className="align-items-center">
         <Col>
           <div className="portfolio-card-text">
-          <span>{award.title}</span>
-          <br />
-          <span className="text-muted">{award.description}</span>
+            <span>{award.title}</span>
+            <br />
+            <span className="text-muted">{award.description}</span>
           </div>
         </Col>
         {isEditable && (
           <Col>
             <div style={{ margin: "10px 0 0 200px" }}>
-            <Button
-              variant="outline-info"
-              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              Edit
-            </Button>
-            <Button
-              variant="outline-danger"
-              style={{ width: "60px", height: "25px", fontSize: "10px", margin: "0 auto"}}
-              onClick={handleDelete}
-              className="mr-3"
-            >
-              Delete
-            </Button>
+              <Button
+                variant="outline-info"
+                style={{
+                  width: "60px",
+                  height: "25px",
+                  fontSize: "10px",
+                  margin: "0 auto",
+                }}
+                onClick={() => setIsEditing((prev) => !prev)}
+                className="mr-3"
+              >
+                Edit
+              </Button>
+              <Button
+                variant="outline-danger"
+                style={{
+                  width: "60px",
+                  height: "25px",
+                  fontSize: "10px",
+                  margin: "0 auto",
+                }}
+                onClick={handleDelete}
+                className="mr-3"
+              >
+                Delete
+              </Button>
             </div>
           </Col>
         )}
