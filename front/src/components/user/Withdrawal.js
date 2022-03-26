@@ -40,23 +40,23 @@ function Withdrawal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let value
+    let value;
 
     await Swal.fire({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this account!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
     }).then((isConfirm) => {
       if (isConfirm.value === true) {
         value = true;
       } else if (isConfirm.dismiss === "cancel") {
         value = false;
       }
-    })
+    });
 
     const result = await swal({
       title: "Are you sure?",
@@ -66,41 +66,31 @@ function Withdrawal() {
       dangerMode: true,
     });
     try {
-<<<<<<< HEAD
-      if (result) {
-        Api.post(`withdrawal/${userState.user.id}`, {
-          email,
-          password,
-        });
-        swal("Your account has been deleted!", "Thank you for using Dfolio", {
-=======
       if (value === true) {
         await Api.post(`withdrawal/${userState.user.id}`, {
           email,
           password,
         });
         swal("Your account has been deleted.", "Thank you for using Dfolio!", {
->>>>>>> 77e7dd7389954a592dfcf80621c332be8f92e8c9
           icon: "success",
         });
         dispatch({ type: "LOGOUT" });
         navigate("/login");
         sessionStorage.removeItem("userToken");
-<<<<<<< HEAD
-      } else {
-        swal("Your membership cancellation request has been cancelled.");
-=======
       } else if (value === false) {
         swal("Your membership cancellation request has been cancelled.", {
-          icon: "error"
+          icon: "error",
         });
->>>>>>> 77e7dd7389954a592dfcf80621c332be8f92e8c9
         navigate("/");
       }
     } catch (err) {
-      swal("Failed to cancel membership.", "Please check your email or password", {
-        icon: "warning"
-      });
+      swal(
+        "Failed to cancel membership.",
+        "Please check your email or password",
+        {
+          icon: "warning",
+        }
+      );
     }
   };
   //   try {
@@ -135,7 +125,7 @@ function Withdrawal() {
       <div className="withdrawal-right-container">
         <div id="withdrawal-right-logo">Dfolio</div>
         <div id="withdrawal-text">
-          <h5>Are you sure leave the Difolio?</h5>
+          <h5>Are you sure leave the Dfolio?</h5>
           <p>
             Enter the email address you used when you joined.
             <br />
