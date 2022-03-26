@@ -7,7 +7,6 @@ import swal from "sweetalert";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 import { UserStateContext } from "../../App";
-// import confirmModal from "./ConfirmWithdrawal";
 import "../../styles/scss/Withdrawal.scss";
 
 function Withdrawal() {

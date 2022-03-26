@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 import React, { useContext } from "react";
 import { UserStateContext, DispatchContext } from "../App";
 
@@ -27,10 +28,10 @@ function Header() {
 
   const pathName = location.pathname;
   const headerId = pathName.substr(1)
- 
 
   return (
-    <header activeKey={location.pathname} id={headerId}>
+    <Nav activeKey={location.pathname} >
+    <header id={headerId}>
       <h1 id="header-logo">Dfolio</h1>
       <div id="header-menu-container">
         <div>
@@ -39,10 +40,10 @@ function Header() {
         <div>
           <span style={{cursor: "pointer"}} onClick={() => navigate("/Portfolio")}>MyPortfolio</span>
         </div>
-        <div class="header-dropdown-container" id="my-page-img-btn">
+        <div className="header-dropdown-container" id="my-page-img-btn">
           <img id="header-dropdown-btn" src={profile} alt="user icon" />
           {isLogin && (
-            <div class="header-dropdown-content">
+            <div className="header-dropdown-content">
               <a id="logout-btn" style={{cursor: "pointer"}} onClick={logout}>Logout</a>
               <a id="delete-btn" style={{cursor: "pointer"}} onClick={()=> navigate("/Withdrawal")}>Withdrawal</a>
             </div>
@@ -50,6 +51,7 @@ function Header() {
         </div>
       </div>
     </header>
+    </Nav>
   );
 }
 

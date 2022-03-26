@@ -62,7 +62,7 @@ function Portfolio() {
   }
 
   return (
-    <body style={{ padding: "2rem", background: "#F3F3F4" }}>
+    <div style={{ padding: "2rem", background: "#F3F3F4" }}>
       <Container fluid>
         <Row>
           <Col md="4" style={{ marginTop: "100px" }}>
@@ -104,7 +104,7 @@ function Portfolio() {
           </Col>
         </Row>
       </Container>
-    </body>
+    </div>
   );
 }
 
