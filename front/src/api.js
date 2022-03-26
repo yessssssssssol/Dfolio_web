@@ -1,10 +1,6 @@
 import axios from "axios";
 
-<<<<<<< HEAD
 const backendPortNumber = "5200";
-=======
-const backendPortNumber = 5009;
->>>>>>> origin/dev
 
 const serverUrl =
   "http://" + window.location.hostname + ":" + backendPortNumber + "/";
