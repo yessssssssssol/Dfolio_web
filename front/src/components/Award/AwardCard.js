@@ -10,7 +10,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
     e.stopPropagation();
 
     const userId = award.userId;
-
+    console.log(userId)
     // award.id로 조회하여 데이터 삭제
     await Api.delete(`awards/${award.id}`);
 

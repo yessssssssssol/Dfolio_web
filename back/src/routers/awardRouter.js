@@ -76,8 +76,9 @@ awardAuthRouter.get("/awardlist/:userId", async (req, res, next) => {
 awardAuthRouter.delete("/awards/:id", async (req, res, next) => {
   try {
     const awardId = req.params.id;
+    console.log(awardId);
     const result = await awardAuthService.deleteAward({ awardId });
-
+    console.log(result);
     if (result.errorMessage) {
       throw new Error(result.errorMessage);
     }
