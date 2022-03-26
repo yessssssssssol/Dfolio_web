@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import swal from "sweetalert";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 import { UserStateContext } from "../../App";
-import confirmModal from "./ConfirmWithdrawal";
+// import confirmModal from "./ConfirmWithdrawal";
+import "../../styles/scss/Withdrawal.scss";
 
 function Withdrawal() {
   const navigate = useNavigate();
@@ -32,10 +34,42 @@ function Withdrawal() {
   // 비밀번호가 4글자 이상인지 여부를 확인함.
   const isPasswordValid = password.length >= 4;
   // 비밀번호와 확인용 비밀번호가 일치하는지 여부를 확인함.
+  // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
+  const isFormValid = isEmailValid && isPasswordValid;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    try {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this account!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          Api.post(`withdrawal/${userState.user.id}`, {
+            email,
+            password,
+          });
+          swal("Your account has been deleted!", "Thank you for using Dfolio", {
+            icon: "success",
+          });
+          dispatch({ type: "LOGOUT" });
+          navigate("/login");
+          sessionStorage.removeItem("userToken");
+        } else {
+          swal("Your membership cancellation request has been cancelled.");
+          navigate("/");
+        }
+      });
+    } catch (err) {
+      window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
+    }
+
+    /*
     try {
       const check = confirmModal();
       // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
@@ -55,62 +89,80 @@ function Withdrawal() {
     } catch (err) {
       window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
     }
+    */
   };
 
   return (
-    <Container>
-      <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="deleteEmail">
-              <Form.Label>이메일 주소</Form.Label>
+    <div className="withdrawal-container">
+      <div className="withdrawal-left-container">
+        <div className="withdrawal-left-wrap">
+          <h1>Dfolio</h1>
+          <p>Discover the world’s top developers</p>
+        </div>
+      </div>
+      <div className="withdrawal-right-container">
+        <div id="withdrawal-right-logo">Dfolio</div>
+        <div id="withdrawal-text">
+          <h5>Are you sure leave the Difolio?</h5>
+          <p>
+            Enter the email address you used when you joined.
+            <br />
+          </p>
+        </div>
+        <div className="withdrawal-input-container" onSubmit={handleSubmit}>
+          <div>
+            <div id="withdrawal-eamil-container">
               <Form.Control
+                className="withdrawal-input-wrap input-id"
+                id="withdrawal-input-id"
+                placeholder="Email"
                 type="email"
-                autoComplete="off"
+                autoComplete="on"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <Form.Text className="text-success">
-                  이메일 형식이 올바르지 않습니다.
-                </Form.Text>
+                <p
+                  className="text-primary"
+                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                >
+                  Email is invalid.
+                </p>
               )}
-            </Form.Group>
-
-            <Form.Group controlId="deletePassword" className="mt-3">
-              <Form.Label>비밀번호</Form.Label>
+            </div>
+          </div>
+          <div>
+            <div id="withdrawal-password-container">
               <Form.Control
+                className="withdrawal-input-wrap input-password"
+                id="withdrawal-input-password"
+                placeholder="Password"
                 type="password"
-                autoComplete="off"
+                autoComplete="on"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
-                <Form.Text className="text-success">
-                  비밀번호는 4글자 이상입니다.
-                </Form.Text>
+                <p
+                  className="text-primary"
+                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                >
+                  Password is too short (minimum is 4 characters)
+                </p>
               )}
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="primary" onClick={() => navigate("/")}>
-                  뒤로가기
-                </Button>
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mt-3 text-center">
-              <Col sm={{ span: 20 }}>
-                <Button variant="light" type="submit">
-                  탈퇴하기
-                </Button>
-              </Col>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+            </div>
+          </div>
+          <form className="withdrawal-btn-wrap">
+            <button className="withdrawal-btn-back" type="submit" onClick={() => navigate("/")}>
+              Back
+            </button>
+            <button className="withdrawal-btn-delete" type="submit" disabled={!isFormValid}>
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -73,16 +73,13 @@ function App() {
             <Route path="/users/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
-<<<<<<< HEAD
             <Route path="/Withdrawal" element={<Withdrawal />} />
             <Route
               path="/oauth/callback/kakao"
               component={OAuth2RedirectHandler}
             ></Route>
-=======
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/change-password" element={<ChangePassword />} />
->>>>>>> origin/dev
           </Routes>
         </Router>
       </UserStateContext.Provider>

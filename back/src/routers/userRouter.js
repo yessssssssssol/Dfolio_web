@@ -160,10 +160,7 @@ userAuthRouter.put("/like/:id", loginRequired, async (req, res, next) => {
     next(error);
   }
 });
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev
 userAuthRouter.post("/withdrawal/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
