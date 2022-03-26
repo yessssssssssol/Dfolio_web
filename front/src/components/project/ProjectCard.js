@@ -26,7 +26,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   return (
     <Card.Body>
       <Row className="align-items-center">
-        <Col className="col-md-10">
+        <Col>
           <div className="portfolio-card-text">
           <span>{project.title}</span>
           <br />
@@ -41,7 +41,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
         </Col>
         {/* isEditable === true 인 경우 편집버튼 노출 */}
         {isEditable && (
-          <Col className="col-md-2">
+          <Col>
             <div style={{ margin: "10px 0 0 200px" }}>
             <Button
               variant="outline-info"

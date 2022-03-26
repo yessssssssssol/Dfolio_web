@@ -9,7 +9,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
     // 부모 엘리먼트에게 이벤트 전달을 중단해야 할 때 쓰이는 함수
     e.stopPropagation();
 
-    const userId = setAwards.userId;
+    const userId = award.userId;
 
     // award.id로 조회하여 데이터 삭제
     await Api.delete(`awards/${award.id}`);
