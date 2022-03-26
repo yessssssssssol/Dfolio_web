@@ -38,7 +38,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="Shool"
+          placeholder="School"
           value={school}
           onChange={(e) => setSchool(e.target.value)}
         />
@@ -53,7 +53,9 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       </Form.Group>
 
       <Form.Group as={Row} style={{ padding: "0 5px !important" }}>
-        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>
+          Period(from/to)
+        </Col>
         <Col>
           <DatePicker
             selected={fromDate}
@@ -84,32 +86,32 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           />
           <Form.Check
             inline
-            label="Bachelor degree"
+            label="Bachelor's Degree"
             id="radio2"
             type="radio"
             name="position"
-            value="Bachelor degree"
-            checked={position === "Bachelor degree"}
+            value="Bachelor's Degree"
+            checked={position === "Bachelor's Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
-            label="Masters degree"
+            label="Master's Degree"
             id="radio3"
             type="radio"
             name="position"
-            value="Masters degree"
-            checked={position === "Masters degree"}
+            value="Master's Degree"
+            checked={position === "Master's Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
-            label="Doctorate degree"
+            label="Doctorate Degree"
             id="radio4"
             type="radio"
             name="position"
-            value="Doctorate degree"
-            checked={position === "Doctorate degree"}
+            value="Doctorate Degree"
+            checked={position === "Doctorate Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
         </div>

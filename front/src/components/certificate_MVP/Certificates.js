@@ -3,8 +3,8 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 import Certificate from "./Certificate";
 import CertificateAddForm from "./CertificateAddForm";
-import addBtn from '../../img/addBtn.png'
-import '../../styles/scss/Portfolio.scss';
+import addBtn from "../../img/addBtn.png";
+import "../../styles/scss/Portfolio.scss";
 
 function Certificates({ portfolioOwnerId, isEditable }) {
   //useState로 Certificates 상태를 생성함.
@@ -20,9 +20,9 @@ function Certificates({ portfolioOwnerId, isEditable }) {
   }, [portfolioOwnerId]);
 
   return (
-    <Card id="portfolio-card-body" >
-      <Card.Body style={{ padding: "30px 40px"}}>
-        <Card.Title>Certificate</Card.Title>
+    <Card id="portfolio-card-body">
+      <Card.Body style={{ padding: "30px 40px" }}>
+        <Card.Title>Certificates</Card.Title>
         {certificates.map((certificate) => (
           <Certificate
             key={certificate.id}
@@ -34,7 +34,14 @@ function Certificates({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-            <div className="portfolio-add-btn" style={{cursor: "pointer"}} onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Certificates</div>
+              <div
+                className="portfolio-add-btn"
+                style={{ cursor: "pointer" }}
+                onClick={() => setIsAdding(true)}
+              >
+                <img className="portfolio-add-img" src={addBtn} />
+                Add Certificate
+              </div>
             </Col>
           </Row>
         )}

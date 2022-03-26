@@ -15,7 +15,6 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   // useState로 toDate 상태를 생성함.
   const [toDate, setToDate] = useState(new Date());
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -45,14 +44,14 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const handleNameChange = React.useCallback((e) => {
     const target = e.currentTarget;
     setSchool(target.value);
-  }, [])
+  }, []);
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="Shool"
+          placeholder="School"
           value={school}
           onChange={handleNameChange}
         />
@@ -67,7 +66,9 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       </Form.Group>
 
       <FormGroup as={Row} style={{ padding: "0 5px !important" }}>
-        <Col style={{ fontSize: "13px", color: "#777777" }}>Period(from/to)</Col>
+        <Col style={{ fontSize: "13px", color: "#777777" }}>
+          Period(from/to)
+        </Col>
         <Col>
           <DatePicker
             selected={fromDate}
@@ -80,7 +81,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         </Col>
       </FormGroup>
 
-      <Form.Group style={{ fontSize: "15px", color: "#777777"}}>
+      <Form.Group style={{ fontSize: "15px", color: "#777777" }}>
         <div key={`inline-radio`} className="mb-3 mt-3">
           <Form.Check
             inline
@@ -94,37 +95,36 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           />
           <Form.Check
             inline
-            label="Bachelor degree"
+            label="Bachelor's Degree"
             id="radio2"
             type="radio"
             name="position"
-            value="Bachelor degree"
-            checked={position === "Bachelor degree"}
+            value="Bachelor's Degree"
+            checked={position === "Bachelor's Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
-            label="Masters degree"
+            label="Master's Degree"
             id="radio3"
             type="radio"
             name="position"
-            value="Masters degree"
-            checked={position === "Masters degree"}
+            value="Master's Degree"
+            checked={position === "Master's Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
           <Form.Check
             inline
-            label="Doctorate degree"
+            label="Doctorate Degree"
             id="radio4"
             type="radio"
             name="position"
-            value="Doctorate degree"
-            checked={position === "Doctorate degree"}
+            value="Doctorate Degree"
+            checked={position === "Doctorate Degree"}
             onChange={(e) => setPosition(e.target.value)}
           />
         </div>
       </Form.Group>
-      
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
