@@ -11,7 +11,6 @@ body {
 }
 #root {
 	background-color: #F3F3F4;
-	padding-bottom: 50px;
 }
 
 
@@ -80,7 +79,7 @@ body {
 
 #withdrawal-right-logo{
 	position: absolute;
-	top: 150px;
+	top: 15%;
 	text-align: center;
 	font-weight: 900;
 	font-size: 27px;
@@ -117,7 +116,7 @@ body {
 }
 #withdrawal-text {
 	position: absolute;
-	top: 230px;
+	top: 30%;
 	width:300px;
 	font-family: 'Noto Sans', sans-serif;
 	text-align: center;
@@ -127,7 +126,7 @@ body {
 }
 .withdrawal-input-container{
 	position: absolute;
-	padding-top: 170px;
+	top: 48%;
 	width:300px;
 	font-family: 'Noto Sans', sans-serif;
 }
@@ -163,7 +162,7 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 .withdrawal-btn-wrap .withdrawal-btn-back{
 	width:95px;
