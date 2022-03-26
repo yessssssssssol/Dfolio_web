@@ -109,7 +109,7 @@ const ChangePassword = ( data ) => {
           style={{cursor:"pointer"}}
 					onClick={()=> navigate("/login")}
 				>
-					Forgot password?
+					Already a member?
 				</p>
       </div>
 	</div>
