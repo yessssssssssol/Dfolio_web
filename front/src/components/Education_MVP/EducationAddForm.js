@@ -80,7 +80,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         </Col>
       </FormGroup>
 
-      <Form.Group style={{ fontSize: "15px", color: "#777777" }}>
+      <Form.Group style={{ fontSize: "15px", color: "#777777"}}>
         <div key={`inline-radio`} className="mb-3 mt-3">
           <Form.Check
             inline

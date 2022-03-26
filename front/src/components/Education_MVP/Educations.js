@@ -36,7 +36,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-              <div className="portfolio-add-btn" onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Education</div>
+              <div className="portfolio-add-btn" onClick={() => setIsAdding(true)} style={{cursor: "pointer"}}><img className="portfolio-add-img" src={addBtn}/>Add Education</div>
             </Col>
           </Row>
         )}

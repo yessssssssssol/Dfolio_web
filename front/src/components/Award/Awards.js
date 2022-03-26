@@ -32,7 +32,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
         {isEditable && (
           <Row className="mt-3 text-center mb-4">
             <Col sm={{ span: 20 }}>
-            <div className="portfolio-add-btn" onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Awards</div>
+            <div className="portfolio-add-btn" style={{cursor: "pointer"}} onClick={() => setIsAdding(true)}><img className="portfolio-add-img" src={addBtn}/>Add Awards</div>
             </Col>
           </Row>
         )}

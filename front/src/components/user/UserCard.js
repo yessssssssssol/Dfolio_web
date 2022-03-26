@@ -57,13 +57,14 @@ function UserCard({
               src={ user?.image ? user?.image : "http://placekitten.com/200/200" }
               alt="user profile" />
             {isNetwork && (
-              <div id="card-hover">
+              <div id="card-hover" style={{cursor: "pointer"}}>
                 Portfolio 👉
               </div>
             )}
             {isEditable && (
               <div
                 id="card-isEditable-hover"
+                style={{cursor: "pointer"}}
                 onClick={() => setIsEditing(true)}
               >
                 Profile Edit 👉
@@ -77,14 +78,14 @@ function UserCard({
           <div id="card-description">{ user?.description }</div>
         </div>
         <a href={ user?.profilelink }>
-          <div className="card-link-box">
+          <div className="card-link-box" style={{cursor:"pointer"}}>
             <img id="card-link-img" src={github} alt="github link icon"/>
-            <p>Github</p>
+            <p style={{cursor:"pointer"}}>Github</p>
           </div>
         </a>
-        <div className="card-like-box" onClick={handleButtonClick}>
-          <p id="like-text">Like 👍</p>
-          <p id="like-num">{ user?.likeCount }</p>
+        <div className="card-like-box" onClick={handleButtonClick} style={{cursor:"pointer"}}>
+          <p id="like-text" style={{cursor:"pointer"}}>Like 👍</p>
+          <p id="like-num" style={{cursor:"pointer"}}>{ user?.likeCount }</p>
         </div>
       </div>
 	  </div>

@@ -78,7 +78,7 @@ const ChangePassword = ( data ) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
 								{!isPasswordValid && (
-									<p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0"}}>
+									<p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin:"5px 0 0 0", cursor:"pointer"}}>
 										Password is too short (minimum is 4 characters)
 									</p>
 								)}
@@ -106,6 +106,7 @@ const ChangePassword = ( data ) => {
 			  </div>
         <p 
 					id="change-login-page-lending"
+          style={{cursor:"pointer"}}
 					onClick={()=> navigate("/login")}
 				>
 					Forgot password?

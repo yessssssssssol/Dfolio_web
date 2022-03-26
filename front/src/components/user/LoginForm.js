@@ -134,7 +134,7 @@ function LoginForm() {
             </div>
             <p
               className="password-find"
-              style={{ fontSize: "12px", color: "gray", textAlign: "right" }}
+              style={{ fontSize: "12px", color: "gray", textAlign: "right", cursor:"pointer"}}
               onClick={() => navigate("/reset-password")}
             >
               Forgot password?
