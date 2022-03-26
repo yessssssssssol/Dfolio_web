@@ -75,11 +75,15 @@ function App() {
             <Route path="*" element={<Portfolio />} />
 <<<<<<< HEAD
             <Route path="/Withdrawal" element={<Withdrawal />} />
+<<<<<<< Updated upstream
             <Route
               path="/oauth/callback/kakao"
               component={OAuth2RedirectHandler}
             ></Route>
 =======
+=======
+
+>>>>>>> Stashed changes
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/change-password" element={<ChangePassword />} />
 >>>>>>> origin/dev

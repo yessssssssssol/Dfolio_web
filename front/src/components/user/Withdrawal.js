@@ -1,6 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< Updated upstream
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
+=======
+import { Form } from "react-bootstrap";
+import Swal from "sweetalert2";
+>>>>>>> Stashed changes
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
@@ -37,6 +42,60 @@ function Withdrawal() {
     e.preventDefault();
 
     try {
+<<<<<<< Updated upstream
+=======
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-danger",
+        },
+        buttonsStyling: false,
+      });
+
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, cancel!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            // await Api.post(`withdrawal/${userState.user.id}`, {
+            //   email,
+            //   password,
+            // });
+            swalWithBootstrapButtons.fire(
+              "Deleted!",
+              "Your file has been deleted.",
+              "success"
+            );
+
+            dispatch({ type: "LOGOUT" });
+            navigate("/login");
+            sessionStorage.removeItem("userToken");
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+              "Cancelled",
+              "Your imaginary file is safe :)",
+              "error"
+            );
+          }
+        });
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+
+    /*
+    try {
+>>>>>>> Stashed changes
       const check = confirmModal();
       // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
       if (check === 1) {
@@ -90,6 +149,7 @@ function Withdrawal() {
                   비밀번호는 4글자 이상입니다.
                 </Form.Text>
               )}
+<<<<<<< Updated upstream
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
@@ -111,6 +171,29 @@ function Withdrawal() {
         </Col>
       </Row>
     </Container>
+=======
+            </div>
+          </div>
+          <form className="withdrawal-btn-wrap">
+            <button
+              className="withdrawal-btn-back"
+              type="submit"
+              onClick={() => navigate("/")}
+            >
+              Back
+            </button>
+            <button
+              className="withdrawal-btn-delete"
+              type="submit"
+              disabled={!isFormValid}
+            >
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+>>>>>>> Stashed changes
   );
 }
 
