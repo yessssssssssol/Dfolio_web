@@ -9,7 +9,6 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
-import OAuth2RedirectHandler from "./components/user/KakaoLogin";
 import Withdrawal from "./components/user/Withdrawal";
 
 import ResetPassword from "./components/user/ResetPassword";

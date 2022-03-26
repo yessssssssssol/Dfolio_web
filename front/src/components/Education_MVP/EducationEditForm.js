@@ -38,7 +38,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="Shool"
+          placeholder="School"
           value={school}
           onChange={(e) => setSchool(e.target.value)}
         />
