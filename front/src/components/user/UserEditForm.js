@@ -44,7 +44,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     let file = e.target.files[0];
 
     if (file.size > 45000) {
-      swal("Oops", "50KB 미만의 사진을 선택해주세요 😂", "error");
+      swal("Oops", "45KB 미만의 사진을 선택해주세요 😂", "error");
     } else {
       const reader = new FileReader();
       reader.onload = () => {
