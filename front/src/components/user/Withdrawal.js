@@ -45,26 +45,18 @@ function Withdrawal() {
     await Swal.fire({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this account!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
     }).then((isConfirm) => {
       if (isConfirm.value === true) {
         value = true;
       } else if (isConfirm.dismiss === "cancel") {
         value = false;
       }
-    });
-
-    const result = await swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this account!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    });
+    })
     try {
       if (value === true) {
         await Api.post(`withdrawal/${userState.user.id}`, {
@@ -79,40 +71,16 @@ function Withdrawal() {
         sessionStorage.removeItem("userToken");
       } else if (value === false) {
         swal("Your membership cancellation request has been cancelled.", {
-          icon: "error",
+          icon: "error"
         });
         navigate("/");
       }
     } catch (err) {
-      swal(
-        "Failed to cancel membership.",
-        "Please check your email or password",
-        {
-          icon: "warning",
-        }
-      );
+      swal("Failed to cancel membership.", "Please check your email or password", {
+        icon: "warning"
+      });
     }
   };
-  //   try {
-  //     const check = confirmModal();
-  //     // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
-  //     if (check === 1) {
-  //       await Api.post(`withdrawal/${userState.user.id}`, {
-  //         email,
-  //         password,
-  //       });
-  //       window.alert("그동안 Dfolio를 이용해 주셔서 감사합니다.");
-  //       dispatch({ type: "LOGOUT" });
-  //       navigate("/login");
-  //       sessionStorage.removeItem("userToken");
-  //     } else if (check === 0) {
-  //       window.alert("회원탈퇴를 취소하셨습니다.");
-  //       navigate("/");
-  //     }
-  //   } catch (err) {
-  //     window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
-  //   }
-  // };
 
   return (
     <div className="withdrawal-container">
