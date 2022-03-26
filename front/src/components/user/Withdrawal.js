@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 import swal from "sweetalert";
 
 import * as Api from "../../api";
@@ -39,57 +40,47 @@ function Withdrawal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let value
+
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this account!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((isConfirm) => {
+      if (isConfirm.value === true) {
+        value = true;
+      } else if (isConfirm.dismiss === "cancel") {
+        value = false;
+      }
+    })
 
     try {
-      swal({
-        title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this account!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          Api.post(`withdrawal/${userState.user.id}`, {
-            email,
-            password,
-          });
-          swal("Your account has been deleted!", "Thank you for using Dfolio", {
-            icon: "success",
-          });
-          dispatch({ type: "LOGOUT" });
-          navigate("/login");
-          sessionStorage.removeItem("userToken");
-        } else {
-          swal("Your membership cancellation request has been cancelled.");
-          navigate("/");
-        }
-      });
-    } catch (err) {
-      window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
-    }
-
-    /*
-    try {
-      const check = confirmModal();
-      // "user/register" 엔드포인트로 post요청함.//////////////////////////////////
-      if (check === 1) {
+      if (value === true) {
         await Api.post(`withdrawal/${userState.user.id}`, {
           email,
           password,
         });
-        window.alert("그동안 Dfolio를 이용해 주셔서 감사합니다.");
+        swal("Your account has been deleted.", "Thank you for using Dfolio!", {
+          icon: "success",
+        });
         dispatch({ type: "LOGOUT" });
         navigate("/login");
         sessionStorage.removeItem("userToken");
-      } else if (check === 0) {
-        window.alert("회원탈퇴를 취소하셨습니다.");
+      } else if (value === false) {
+        swal("Your membership cancellation request has been cancelled.", {
+          icon: "error"
+        });
         navigate("/");
       }
     } catch (err) {
-      window.alert("회원탈퇴에 실패했습니다! 이메일 또는 아이디를 확인하세요.");
+      swal("Failed to cancel membership.", "Please check your email or password", {
+        icon: "warning"
+      });
     }
-    */
   };
 
   return (
