@@ -4,7 +4,6 @@ import { Form } from "react-bootstrap";
 import { DispatchContext } from "../../App";
 
 import * as Api from "../../api";
-import { KAKAO_AUTH_URL } from "./OAuth";
 import "../../styles/scss/LoginForm.scss";
 
 function LoginForm() {
@@ -134,7 +133,12 @@ function LoginForm() {
             </div>
             <p
               className="password-find"
-              style={{ fontSize: "12px", color: "gray", textAlign: "right", cursor:"pointer"}}
+              style={{
+                fontSize: "12px",
+                color: "gray",
+                textAlign: "right",
+                cursor: "pointer",
+              }}
               onClick={() => navigate("/reset-password")}
             >
               Forgot password?
