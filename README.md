@@ -11,8 +11,9 @@
 
 ---
 
-- **팀 문서 : [https://www.notion.so/1d701a9be74b4cc2b00bb8152e647188](https://docs.google.com/presentation/d/1Kre_E3Fudw_LK45JHEHuci2pe04APduvG7V6RLX-6Fc/edit?usp=sharing)**
-- **Wiki :** [https://github.com/yessssssssssol/Dfolio_web/wiki](https://github.com/yessssssssssol/Dfolio_web/wiki)
+- **팀 문서** [https://www.notion.so/1d701a9be74b4cc2b00bb8152e647188](https://docs.google.com/presentation/d/1Kre_E3Fudw_LK45JHEHuci2pe04APduvG7V6RLX-6Fc/edit?usp=sharing)
+- **Wiki** [https://github.com/yessssssssssol/Dfolio_web/wiki](https://github.com/yessssssssssol/Dfolio_web/wiki)
+- **📺 시연영상** [https://youtu.be/ocWnuZoBEzE](https://youtu.be/ocWnuZoBEzE)
 
 ## 1-2. 프로젝트 소개
 
